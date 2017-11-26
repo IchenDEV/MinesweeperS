@@ -89,9 +89,8 @@
         </Style>
     </Page.Resources>
     <Grid Background="{ThemeResource SystemControlAcrylicElementMediumHighBrush}">
-        <ScrollViewer>
+        <ScrollViewer x:Name="Mapv"   Margin="0,32,0,48" Background="#4FFFFFFF" ZoomMode="Enabled"  SizeChanged="Mapv_SizeChanged" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" MaxZoomFactor="1000" MinZoomFactor="0.1">
             <Grid x:Name="Map1"></Grid>
         </ScrollViewer>
-        <Button Style="{ThemeResource ButtonRevealStyle}"/>
     </Grid>
 </Page>
