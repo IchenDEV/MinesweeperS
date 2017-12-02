@@ -283,5 +283,19 @@ namespace MineS
 
 
         }
+         private void Mapv_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            try
+            {
+                float szoom = (float)Math.Min(Mapv.ActualWidth / (50*Widt), Mapv.ActualHeight / (50*Heigh));
+                Mapv.ChangeView(0, 0, szoom);
+            }
+            catch
+            {
+
+            }
+
+
+        }
     }
 }
