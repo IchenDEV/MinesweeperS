@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CompositionSampleGallery;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -29,11 +30,17 @@ namespace MineS
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
+            //LightInterop light = new LightInterop();
+            //root.Children.Add(light);
+
+
             Map M = new Map(set.MapHeigh, set.MapWidth, set.NumMine);
             root.Children.Add(M);
             M.HorizontalAlignment = HorizontalAlignment.Stretch;
             M.VerticalAlignment = VerticalAlignment.Stretch;
             M.PropertyChanged += M_PropertyChanged;
+            set.Visibility = Visibility.Collapsed;
         }
 
         private void M_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -41,6 +48,7 @@ namespace MineS
            if((sender as Map).finished)
             {
                 root.Children.Remove((sender as Map));
+                set.Visibility = Visibility.Visible;
             }
         }
     }

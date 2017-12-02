@@ -1,0 +1,67 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
+
+// https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“内容对话框”项模板
+
+namespace MineS
+{
+    public sealed partial class WinDialog : ContentDialog, INotifyPropertyChanged
+    {
+        private int _Source;
+        private string _Mode;
+
+        public WinDialog()
+        {
+            this.InitializeComponent();
+        }
+
+        public int Source
+        {
+            get { return this._Source; }
+            set
+            {
+                this._Source = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+        public String Mode
+        {
+            get { return this._Mode; }
+            set
+            {
+                this._Mode = value;
+                this.OnPropertyChanged();
+            }
+        }
+
+
+
+        public event PropertyChangedEventHandler PropertyChanged = delegate { };
+
+        public void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            // Raise the PropertyChanged event, passing the name of the property whose value has changed.
+            this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+        private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+        }
+
+   
+    }
+}

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CompositionSampleGallery.Samples.LightInterop;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -109,6 +110,7 @@ namespace MineS
 
         public Map(int H, int W, int N)
         {
+
             MineButtonStyle = (Style)Resources["ButtonRevealStyle"];
             this.InitializeComponent();
             Heigh = H;
@@ -144,12 +146,67 @@ namespace MineS
                     ButtonCollection[i, j].SetBinding(Button.StyleProperty, binding);
                     ButtonCollection[i, j].Click += B_Click;
                     ButtonCollection[i, j].RightTapped += B_RightTapped;
-
+                    ButtonCollection[i, j].Unloaded += Map_Unloaded;
                     ButtonCollection[i, j].Tag = new Point() { x = i, y = j };
                     Map1.Children.Add(ButtonCollection[i, j]);
                     Grid.SetRow(ButtonCollection[i, j], i);
                     Grid.SetColumn(ButtonCollection[i, j], j);
                 }
+            }
+        }
+
+        private async void Map_Unloaded(object sender, RoutedEventArgs e)
+        {
+            OpenedButton++;
+            var P = (sender as Button).Tag as Point;
+            if (MapNum[P.x, P.y] > 0)
+            {
+                TextBlock text = new TextBlock()
+                {
+                    Text = MapNum[P.x, P.y].ToString(),
+                    FontSize = 25,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center
+
+                };
+
+                Grid s = new Grid();
+                s.Background = new MaterialBrush();
+                s.Lights.Add(new HoverLight());
+                s.Lights.Add(new AmbLight());
+                s.Tag = P;
+                s.DoubleTapped += S_DoubleTapped;
+                s.Children.Add(text);
+                Grid.SetRow(s, P.x);
+                Grid.SetColumn(s, P.y);
+                Map1.Children.Add(s);
+            }
+            else if (MapNum[P.x, P.y] == 0)
+            {
+                for (int k = 0; k < 8; k++)
+                {
+                    try
+                    {
+                        if (Map1.Children.Contains((ButtonCollection[(P.x + direction[k].x), (P.y + direction[k].y)])))
+                        {
+                            Marked[P.x + direction[k].x, P.y + direction[k].y] = false;
+                            Map1.Children.Remove((ButtonCollection[(P.x + direction[k].x), (P.y + direction[k].y)]));
+
+                        }
+
+                    }
+                    catch { }
+                }
+            }
+            else
+            {
+                finished = true;
+            }
+            if (OpenedButton == Widt * Heigh - AllNum)
+            {
+                WinDialog win = new WinDialog() { Source = 1234, Mode = "KKK" };
+                await win.ShowAsync();
+
             }
         }
 
@@ -167,56 +224,7 @@ namespace MineS
             }
         }
 
-        private async void BUnload(Button sender)
-        {
-            sender.Visibility = Visibility.Collapsed;
-            var P = (sender).Tag as Point;
-            if (MapNum[P.x, P.y] > 0)
-            {
-                TextBlock text = new TextBlock()
-                {
-                    Text = MapNum[P.x, P.y].ToString(),
-                    FontSize = 25,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Center
 
-                };
-                Grid s = new Grid
-                {
-                    HorizontalAlignment = HorizontalAlignment.Stretch,
-                    VerticalAlignment = VerticalAlignment.Stretch,
-                    Tag = P
-                };
-                s.DoubleTapped += S_DoubleTapped;
-                s.Children.Add(text);
-                Grid.SetRow(s, P.x);
-                Grid.SetColumn(s, P.y);
-                Map1.Children.Add(s);
-            }
-            else if (MapNum[P.x, P.y] == 0)
-            {
-                for (int k = 0; k < 8; k++)
-                {
-                    try
-                    {
-                        if ((ButtonCollection[(P.x + direction[k].x), (P.y + direction[k].y)].Visibility == Visibility))
-                        {
-                            Marked[P.x + direction[k].x, P.y + direction[k].y] = false;
-                            BUnload((ButtonCollection[(P.x + direction[k].x), (P.y + direction[k].y)]));
-
-                        }
-
-                    }
-                    catch { }
-                }
-            }
-            else
-            {
-                finished = true;
-            }
-
-          
-        }
 
         private void S_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
@@ -242,7 +250,7 @@ namespace MineS
                     {
                         if (Marked[P.x + direction[k].x, P.y + direction[k].y] == false)
                         {
-                            BUnload((ButtonCollection[(P.x + direction[k].x), (P.y + direction[k].y)]));
+                            Map1.Children.Remove((ButtonCollection[(P.x + direction[k].x), (P.y + direction[k].y)]));
                         }
 
                     }
@@ -251,15 +259,14 @@ namespace MineS
             }
         }
 
-        private void B_Click(object sender, RoutedEventArgs e)
+        private  void B_Click(object sender, RoutedEventArgs e)
         {
             var P = (sender as Button).Tag as Point;
             if (Marked[P.x, P.y])
             {
                 return;
             }
-            OpenedButton++;
-            if (OpenedButton == 1)
+            if (OpenedButton == 0)
             {
                 SetMine((sender as Button).Tag as Point);
             }
@@ -267,13 +274,15 @@ namespace MineS
             {
 
             }
-            BUnload((sender as Button));
+            Map1.Children.Remove((sender as Button));
+           
         }
+
         private void Mapv_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             try
             {
-                float szoom = (float)Math.Min(Mapv.ActualWidth / Widt, Mapv.ActualHeight / Heigh);
+                float szoom = (float)Math.Min(Mapv.ActualWidth / (50 * Widt), Mapv.ActualHeight / (50 * Heigh));
                 Mapv.ChangeView(0, 0, szoom);
             }
             catch
@@ -283,19 +292,12 @@ namespace MineS
 
 
         }
-         private void Mapv_SizeChanged(object sender, SizeChangedEventArgs e)
+
+
+
+        private void ShButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            try
-            {
-                float szoom = (float)Math.Min(Mapv.ActualWidth / (50*Widt), Mapv.ActualHeight / (50*Heigh));
-                Mapv.ChangeView(0, 0, szoom);
-            }
-            catch
-            {
-
-            }
-
-
+            finished = true;
         }
     }
 }
