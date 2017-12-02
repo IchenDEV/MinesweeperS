@@ -31,6 +31,8 @@ namespace MineS
         {
             Map M = new Map(set.MapHeigh, set.MapWidth, set.NumMine);
             root.Children.Add(M);
+            M.HorizontalAlignment = HorizontalAlignment.Stretch;
+            M.VerticalAlignment = VerticalAlignment.Stretch;
             M.PropertyChanged += M_PropertyChanged;
         }
 

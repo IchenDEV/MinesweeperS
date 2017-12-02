@@ -25,6 +25,7 @@ namespace MineS
     }
     public sealed partial class Map : Page, INotifyPropertyChanged
     {
+        Button[,] ButtonCollection;
         int OpenedButton = 0;
         int AllNum = 0;
         bool[,] Mine;
@@ -126,28 +127,28 @@ namespace MineS
             {
                 Map1.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(50) });
             }
+            ButtonCollection = new Button[H, W];
             for (int i = 0; i < H; i++)
             {
                 for (int j = 0; j < W; j++)
                 {
-                    Button b = new Button
-                    {
-                        Name = i.ToString() + j.ToString(),
-                        HorizontalAlignment = HorizontalAlignment.Stretch,
-                        Margin = new Thickness(5),
-                        VerticalAlignment = VerticalAlignment.Stretch
-                    };
+                    ButtonCollection[i, j] = new Button();
+                    //ButtonCollection[i, j].Name = i.ToString() + j.ToString();
+                    ButtonCollection[i, j].HorizontalAlignment = HorizontalAlignment.Stretch;
+                    ButtonCollection[i, j].Margin = new Thickness(2);
+                    ButtonCollection[i, j].VerticalAlignment = VerticalAlignment.Stretch;
+
                     Binding binding = new Binding();
                     binding.Path = new PropertyPath("MineButtonStyle");
                     binding.Mode = BindingMode.OneWay;
-                    b.SetBinding(Button.StyleProperty, binding);
-                    b.Click += B_Click;
-                    b.RightTapped += B_RightTapped;
-                    b.Unloaded += B_Unloaded;
-                    b.Tag = new Point() { x = i, y = j };
-                    Map1.Children.Add(b);
-                    Grid.SetRow(b, i);
-                    Grid.SetColumn(b, j);
+                    ButtonCollection[i, j].SetBinding(Button.StyleProperty, binding);
+                    ButtonCollection[i, j].Click += B_Click;
+                    ButtonCollection[i, j].RightTapped += B_RightTapped;
+
+                    ButtonCollection[i, j].Tag = new Point() { x = i, y = j };
+                    Map1.Children.Add(ButtonCollection[i, j]);
+                    Grid.SetRow(ButtonCollection[i, j], i);
+                    Grid.SetColumn(ButtonCollection[i, j], j);
                 }
             }
         }
@@ -166,9 +167,10 @@ namespace MineS
             }
         }
 
-        private void B_Unloaded(object sender, RoutedEventArgs e)
+        private async void BUnload(Button sender)
         {
-            var P = (sender as Button).Tag as Point;
+            sender.Visibility = Visibility.Collapsed;
+            var P = (sender).Tag as Point;
             if (MapNum[P.x, P.y] > 0)
             {
                 TextBlock text = new TextBlock()
@@ -179,12 +181,16 @@ namespace MineS
                     VerticalAlignment = VerticalAlignment.Center
 
                 };
-                Grid s = new Grid();
+                Grid s = new Grid
+                {
+                    HorizontalAlignment = HorizontalAlignment.Stretch,
+                    VerticalAlignment = VerticalAlignment.Stretch,
+                    Tag = P
+                };
                 s.DoubleTapped += S_DoubleTapped;
                 s.Children.Add(text);
                 Grid.SetRow(s, P.x);
                 Grid.SetColumn(s, P.y);
-                s.Tag = P;
                 Map1.Children.Add(s);
             }
             else if (MapNum[P.x, P.y] == 0)
@@ -193,8 +199,13 @@ namespace MineS
                 {
                     try
                     {
-                        Marked[P.x + direction[k].x, P.y + direction[k].y] = false;
-                        Map1.Children.Remove((FindName((P.x + direction[k].x).ToString() + (P.y + direction[k].y).ToString()) as Button));
+                        if ((ButtonCollection[(P.x + direction[k].x), (P.y + direction[k].y)].Visibility == Visibility))
+                        {
+                            Marked[P.x + direction[k].x, P.y + direction[k].y] = false;
+                            BUnload((ButtonCollection[(P.x + direction[k].x), (P.y + direction[k].y)]));
+
+                        }
+
                     }
                     catch { }
                 }
@@ -204,7 +215,7 @@ namespace MineS
                 finished = true;
             }
 
-
+          
         }
 
         private void S_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
@@ -231,7 +242,7 @@ namespace MineS
                     {
                         if (Marked[P.x + direction[k].x, P.y + direction[k].y] == false)
                         {
-                            Map1.Children.Remove((FindName((P.x + direction[k].x).ToString() + (P.y + direction[k].y).ToString()) as Button));
+                            BUnload((ButtonCollection[(P.x + direction[k].x), (P.y + direction[k].y)]));
                         }
 
                     }
@@ -256,7 +267,21 @@ namespace MineS
             {
 
             }
-            Map1.Children.Remove((sender as Button));
+            BUnload((sender as Button));
+        }
+        private void Mapv_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            try
+            {
+                float szoom = (float)Math.Min(Mapv.ActualWidth / Widt, Mapv.ActualHeight / Heigh);
+                Mapv.ChangeView(0, 0, szoom);
+            }
+            catch
+            {
+
+            }
+
+
         }
     }
 }
