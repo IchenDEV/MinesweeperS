@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -26,9 +27,11 @@ namespace MineS
     }
     public sealed partial class Map : Page, INotifyPropertyChanged
     {
+        Stopwatch watch = new Stopwatch();
         Button[,] ButtonCollection;
         int OpenedButton = 0;
         int AllNum = 0;
+        string Mode;
         bool[,] Mine;
         int[,] MapNum;
         bool[,] Marked;
@@ -202,10 +205,13 @@ namespace MineS
             {
                 finished = true;
             }
-            if (OpenedButton == Widt * Heigh - AllNum)
+            if (OpenedButton == Widt * Heigh - AllNum&&!finished)
             {
-                WinDialog win = new WinDialog() { Source = 1234, Mode = "KKK" };
-                await win.ShowAsync();
+                watch.Stop();
+                var time = watch.Elapsed.TotalSeconds;
+                int source = (int)((AllNum * AllNum)*100 / (Widt * Heigh * time));
+                WinDialog win = new WinDialog() { Source = source, Mode = String.Format("{0},{1},{2}",Widt,Heigh,AllNum) };
+                root.Children.Add(win);
 
             }
         }
@@ -269,6 +275,7 @@ namespace MineS
             if (OpenedButton == 0)
             {
                 SetMine((sender as Button).Tag as Point);
+                watch.Start();
             }
             else
             {

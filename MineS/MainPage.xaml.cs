@@ -40,7 +40,7 @@ namespace MineS
             M.HorizontalAlignment = HorizontalAlignment.Stretch;
             M.VerticalAlignment = VerticalAlignment.Stretch;
             M.PropertyChanged += M_PropertyChanged;
-            set.Visibility = Visibility.Collapsed;
+            Showpp.Visibility = Visibility.Collapsed;
         }
 
         private void M_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -48,7 +48,7 @@ namespace MineS
            if((sender as Map).finished)
             {
                 root.Children.Remove((sender as Map));
-                set.Visibility = Visibility.Visible;
+               Showpp.Visibility = Visibility.Visible;
             }
         }
     }
