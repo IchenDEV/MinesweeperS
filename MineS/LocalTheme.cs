@@ -7,10 +7,13 @@ using Windows.UI.Xaml.Media;
 
 namespace MineS
 {
-    static class LocalTheme
+    public static class LocalTheme
     {
-      static  ImageSource BackIM { get; set; }
-      static  ImageSource MineIM { get; set; }
-      static  ImageSource KilIM { get; set; }
+        public static ImageSource BackIM { get; set; }
+        public static ImageSource MineIM { get; set; }
+        public static ImageSource KilIM { get; set; }
+
+     
+
     }
 }

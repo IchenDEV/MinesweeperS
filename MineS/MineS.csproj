@@ -121,6 +121,9 @@
     <Compile Include="ShaButton.xaml.cs">
       <DependentUpon>ShaButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ThemeSet.xaml.cs">
+      <DependentUpon>ThemeSet.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WinDialog.xaml.cs">
       <DependentUpon>WinDialog.xaml</DependentUpon>
     </Compile>
@@ -174,6 +177,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ShaButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ThemeSet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

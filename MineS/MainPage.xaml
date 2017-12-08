@@ -8,7 +8,7 @@
     mc:Ignorable="d">
 
     <StackPanel  x:Name="root" Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}">
-       
+        <Image Source="{x:Bind local:LocalTheme.BackIM}" ></Image>
         <StackPanel x:Name="Showpp"> <TextBlock Text="MineS" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,25" FontSize="36"/>
             <local:SetPage x:Name="set" Margin="15,0,15,0"></local:SetPage>
         <Button  Grid.Row="4" Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Content="Play" Height="50" Click="Button_Click" />

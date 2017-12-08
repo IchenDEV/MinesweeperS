@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Toolkit.Uwp.Helpers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -31,7 +32,7 @@ namespace MineS
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
-
+        public bool IsFirstUse => SystemInformation.IsFirstRun;
         /// <summary>
         /// 在应用程序由最终用户正常启动时进行调用。
         /// 将在启动应用程序以打开特定文件等情况下使用。
@@ -66,7 +67,15 @@ namespace MineS
                     // 当导航堆栈尚未还原时，导航到第一页，
                     // 并通过将所需信息作为导航参数传入来配置
                     // 参数
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    if (IsFirstUse)
+                    {
+                        rootFrame.Navigate(typeof(Guider), e.Arguments);
+                    }
+                    else
+                    {
+  rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    }
+                  
                 }
                 // 确保当前窗口处于活动状态
                 Window.Current.Activate();
