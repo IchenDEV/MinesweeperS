@@ -3,35 +3,76 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MineS"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
     mc:Ignorable="d" FontFamily="Bahnschrift Light" >
+    <Grid>
+        <Border Width="200" Height="200">
+            <Image x:Name="ToolkitLogo" Source="ms-appx:///Assets/StoreLogo.png" Height="100" Width="100" />
+            <interactivity:Interaction.Behaviors>
+                <behaviors:Blur x:Name="BlurBehavior"
+                        Value="1"
+                        Duration="3000"
+                        Delay="0"
+                        AutomaticallyStart="True"/>
+            </interactivity:Interaction.Behaviors>
+        </Border>
+        <Grid>
+            <Button Content="Setting" Click="Button_Click_1"/>
+        </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="618*"/>
+                <ColumnDefinition Width="482*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="282*"/>
+                <RowDefinition Height="618*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="MineS" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="36"/>
+            <Grid Grid.Row="1" Margin="25" Background="{ThemeResource SystemControlAcrylicElementMediumHighBrush}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Button HorizontalAlignment="Center" Content="Easy" Click="Easy_Click"></Button>
+                <Button Content="Mid" HorizontalAlignment="Center" Click="Mid_Click" Grid.Column="1"></Button>
+                <Button Content="Hard" HorizontalAlignment="Center" Click="Hatd_Click" Grid.Row="1"></Button>
+                <Button Content="Customize" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Click="Button_Click"></Button>
+            </Grid>
 
-    <Grid  >
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="3*"/>
-        </Grid.ColumnDefinitions>
+        </Grid>
+        <Grid x:Name="Cur" Visibility="Collapsed" Grid.RowSpan="2" Background="{ThemeResource SystemControlAcrylicElementMediumHighBrush}" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
 
-        <TextBlock   HorizontalAlignment="Center" Text="Height" VerticalAlignment="Center" FontSize="18"  ></TextBlock>
-        <TextBlock Grid.Row="1"  HorizontalAlignment="Center" Text="Width" VerticalAlignment="Center" FontSize="18" ></TextBlock>
-        <TextBlock Grid.Row="2" HorizontalAlignment="Center" Text="Number of mine" VerticalAlignment="Center" FontSize="18" ></TextBlock>
-        <TextBox x:Name="MapHeightBox" IsEnabled="{x:Bind isCustom,Mode=OneWay}" Text="{x:Bind MapHeigh ,Mode=TwoWay}" Grid.Column="1" Margin="5.2,5,4,5" FontFamily="Segoe UI" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
-        <TextBox x:Name="MapWidthBox" IsEnabled="{x:Bind isCustom,Mode=OneWay}" Text="{x:Bind MapWidth ,Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Margin="5.2,5,4,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
-        <TextBox x:Name="MapNumBox" IsEnabled="{x:Bind isCustom,Mode=OneWay}" Text="{x:Bind NumMine ,Mode=TwoWay}" Grid.Row="2" Grid.Column="1" Margin="5.2,5,4,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
-        <StackPanel Orientation="Horizontal" Grid.Row="3" VerticalAlignment="Top"  HorizontalAlignment="Center" Grid.ColumnSpan="2">
-            <RadioButton Content="Easy" IsChecked="True" Checked="Easy_Click" />
-            <RadioButton Content="Mid" Checked="Mid_Click"></RadioButton>
-            <RadioButton Content="Hard" Checked="Hatd_Click"></RadioButton>
-            <RadioButton Content="Customize" Checked="Custom_Click"></RadioButton>
-        </StackPanel>
-       
+            <TextBlock   HorizontalAlignment="Center" Text="Height" VerticalAlignment="Center" FontSize="18"  ></TextBlock>
+            <TextBlock Grid.Row="1"  HorizontalAlignment="Center" Text="Width" VerticalAlignment="Center" FontSize="18" ></TextBlock>
+            <TextBlock Grid.Row="2" HorizontalAlignment="Center" Text="Number of mine" VerticalAlignment="Center" FontSize="18" ></TextBlock>
+            <TextBox x:Name="MapHeightBox" IsEnabled="{x:Bind isCustom,Mode=OneWay}" Text="{x:Bind MapHeigh ,Mode=TwoWay}" Grid.Column="1" Margin="5.2,5,4,5" FontFamily="Segoe UI" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
+            <TextBox x:Name="MapWidthBox" IsEnabled="{x:Bind isCustom,Mode=OneWay}" Text="{x:Bind MapWidth ,Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Margin="5.2,5,4,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
+            <TextBox x:Name="MapNumBox" IsEnabled="{x:Bind isCustom,Mode=OneWay}" Text="{x:Bind NumMine ,Mode=TwoWay}" Grid.Row="2" Grid.Column="1" Margin="5.2,5,4,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
+            <StackPanel Orientation="Horizontal" Grid.Row="3" VerticalAlignment="Top"  HorizontalAlignment="Center" Grid.ColumnSpan="2">
+                <RadioButton Content="Customize" Checked="Custom_Click"></RadioButton>
+            </StackPanel>
+
+        </Grid>
     </Grid>
+   
+
 </UserControl>

@@ -5,12 +5,39 @@
     xmlns:local="using:MineS"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock Text="Theme Settings"/>
-        <StackPanel>
-            
+    <Grid >
+        <StackPanel Background="{ThemeResource SystemControlAcrylicElementMediumHighBrush}" >
+            <TextBlock  Margin="30,30,0,0" Text="Theme Settings" FontSize="36" FontWeight="Bold" />
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Center">
+            <ScrollViewer>
+                <StackPanel  Margin="30">
+                      <ToggleSwitch Header="Is NumBack Flower Enable"></ToggleSwitch>
+                <ToggleSwitch Header="Is Acr Enable"></ToggleSwitch>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Mine Color" ></TextBlock>
+                        <Rectangle ></Rectangle>
+                        <controls:Expander x:Name="Expander1" VerticalAlignment="Top" Margin="0,0,0,10"
+                          Header="Color Picker"
+                          HorizontalContentAlignment="Stretch"
+                       
+                         
+                          IsExpanded="False"
+                          ExpandDirection="Down">
+                            <Grid>
+                                <ColorPicker/>
+                            </Grid>
+
+                        </controls:Expander>
+                    </StackPanel>
+                <ToggleSwitch Header="Is NumBack Flower Enable"></ToggleSwitch>
+                </StackPanel>
+              
+            </ScrollViewer>
         </StackPanel>
     </Grid>
 </Page>

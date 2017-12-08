@@ -105,6 +105,17 @@ namespace MineS
             isCustom = true;
         }
 
-       
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Cur.Visibility = Visibility.Visible;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Frame rootFrame = Window.Current.Content as Frame;
+
+                        rootFrame.Navigate(typeof(ThemeSet));
+                    
+                }
     }
 }

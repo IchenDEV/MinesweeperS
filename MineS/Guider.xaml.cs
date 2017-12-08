@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Toolkit.Uwp.Helpers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,6 +26,17 @@ namespace MineS
         public Guider()
         {
             this.InitializeComponent();
+
+
+            
+
+
+
+        }
+        public OSVersion OperatingSystemVersion => SystemInformation.OperatingSystemVersion;
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            pivot.SelectedIndex++;
         }
     }
 }

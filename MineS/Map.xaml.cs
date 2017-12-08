@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -159,7 +160,9 @@ namespace MineS
             }
         }
 
-        private void Unloaded(Point P)
+        private async 
+        Task
+Unload(Point P)
         {
            
 
@@ -174,7 +177,7 @@ namespace MineS
                             OpenedButton++;
                             Marked[P.x + direction[k].x, P.y + direction[k].y] = false;
                             isOpened[(P.x + direction[k].x), (P.y + direction[k].y)] = true;
-                            Unloaded(new Point() { x = P.x + direction[k].x, y = P.y + direction[k].y });
+                            Unload(new Point() { x = P.x + direction[k].x, y = P.y + direction[k].y });
 
                         }
 
@@ -239,7 +242,7 @@ namespace MineS
                         {
                             OpenedButton++;
                             isOpened[(P.x + direction[k].x), (P.y + direction[k].y)] = true;
-                            Unloaded(new Point() { x = P.x + direction[k].x, y = P.y + direction[k].y });
+                            Unload(new Point() { x = P.x + direction[k].x, y = P.y + direction[k].y });
                         }
 
                     }
@@ -249,7 +252,7 @@ namespace MineS
             Refresh();
         }
 
-        private void B_Click(object sender, RoutedEventArgs e)
+        private async void B_Click(object sender, RoutedEventArgs e)
         {
             var P = (sender as Button).Tag as Point;
           
@@ -268,7 +271,7 @@ namespace MineS
             }
             OpenedButton++;
             isOpened[P.x, P.y] = true;
-            Unloaded(P);
+          await  Unload(P);
 
             Refresh();
 
