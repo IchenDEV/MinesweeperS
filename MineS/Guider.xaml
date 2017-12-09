@@ -30,7 +30,7 @@
             <PivotItem Header="PivotItem 2">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0,10,0,10">
                     <TextBlock Text="Finish" HorizontalAlignment="Center" FontSize="48"/>
-                    <HyperlinkButton Click="HyperlinkButton_Click"></HyperlinkButton>
+                    <HyperlinkButton Content="Go" Click="HyperlinkButton_Click"></HyperlinkButton>
                 </StackPanel>
             </PivotItem>
         </Pivot>

@@ -14,6 +14,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.Storage.Pickers;
+using Windows.Storage;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -48,6 +50,18 @@ namespace MineS
         public ThemeSet()
         {
             this.InitializeComponent();
+        }
+
+        private async void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            FileOpenPicker fileOpen = new FileOpenPicker();
+            fileOpen.FileTypeFilter.Add(".png");
+            var file = await fileOpen.PickSingleFileAsync();
+            var dest = await ApplicationData.Current.LocalFolder.CreateFolderAsync("Theme", CreationCollisionOption.OpenIfExists);
+            var fli = await file.CopyAsync(dest, file.Name, NameCollisionOption.ReplaceExisting);
+            LocalTheme.Local.BackIMage = fli.Path;
+            localtheme = LocalTheme.Local;
+            await LocalTheme.write(LocalTheme.TojsonData(localtheme));
         }
     }
 }

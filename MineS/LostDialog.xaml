@@ -7,6 +7,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
    >
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary x:Name="ioh"  Source="ms-appx:///Resouse/Dictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+    </UserControl.Resources>
     <StackPanel x:Name="root" Background="{ThemeResource SuperRedAcrylicELBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Center"  >
         <TextBlock Text="Lose" FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
        

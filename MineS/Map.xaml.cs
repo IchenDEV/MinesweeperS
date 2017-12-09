@@ -218,21 +218,33 @@ Unload(Point P)
                 LostDialog lost = new LostDialog();
                 root.Children.Add(lost);
                 lost.PropertyChanged += Win_PropertyChanged;
+
+                foreach (var item in ButtonCollection)
+                {
+                    item.IsEnabled = false;
+                }
+
+
+
             }
             if (OpenedButton == Widt * Heigh - AllNum && !finished)
             {
                 watch.Stop();
                 var time = watch.Elapsed.TotalSeconds;
                 int source = (int)((AllNum * AllNum) * 1000 / (Widt * Heigh * time));
-                WinDialog win = new WinDialog() { Source = source, Mode = String.Format("{0},{1},{2}\n{3}", Widt, Heigh, AllNum,Mode) };
+                WinDialog win = new WinDialog() { Source = source, Mode = String.Format("{0},{1},{2}\n{3}", Widt, Heigh, AllNum, Mode) };
                 root.Children.Add(win);
                 win.PropertyChanged += Win_PropertyChanged;
+                foreach (var item in ButtonCollection)
+                {
+                    item.IsEnabled = false;
+                }
             }
         }
 
         private void Win_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-          if(e.PropertyName == "Back")
+            if (e.PropertyName == "Back")
             {
                 rootFrame.Navigate(typeof(SetPage), rootFrame);
             }
@@ -244,7 +256,7 @@ Unload(Point P)
             Marked[P.x, P.y] = !Marked[P.x, P.y];
             if (Marked[P.x, P.y])
             {
-                
+
 
                 (sender as Button).Style = (Style)ioh["ButtonRevealMarkedStyle"];
 
@@ -284,7 +296,7 @@ Unload(Point P)
                             OpenedButton++;
                             isOpened[(P.x + direction[k].x), (P.y + direction[k].y)] = true;
                             pr.IsActive = true;
-                            await  Unload(new Point() { x = P.x + direction[k].x, y = P.y + direction[k].y });
+                            await Unload(new Point() { x = P.x + direction[k].x, y = P.y + direction[k].y });
                             pr.IsActive = false;
                         }
 
@@ -298,7 +310,7 @@ Unload(Point P)
         private async void B_Click(object sender, RoutedEventArgs e)
         {
             var P = (sender as Button).Tag as Point;
-pr.IsActive = true;
+            pr.IsActive = true;
             if (Marked[P.x, P.y])
             {
                 return;
@@ -314,7 +326,7 @@ pr.IsActive = true;
             }
             OpenedButton++;
             isOpened[P.x, P.y] = true;
-            
+
             await Unload(P);
 
             Refresh();
@@ -347,9 +359,13 @@ pr.IsActive = true;
                                 };
 
                                 Grid s = new Grid();
-                                s.Background = new MaterialBrush();
-                                s.Lights.Add(new HoverLight());
-                                s.Lights.Add(new AmbLight());
+                                if (LocalTheme.Local.IsHighMode)
+                                {
+                                    s.Background = new MaterialBrush();
+                                    s.Lights.Add(new HoverLight());
+                                    s.Lights.Add(new AmbLight());
+                                }
+
                                 s.Tag = P;
                                 s.DoubleTapped += S_DoubleTapped;
                                 s.Children.Add(text);

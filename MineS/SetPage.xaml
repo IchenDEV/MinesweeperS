@@ -14,11 +14,16 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary x:Name="ioh"  Source="ms-appx:///Resouse/Dictionary.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
-       
+            <Storyboard x:Name="EnterStoryboard">
+                <FadeOutThemeAnimation Storyboard.TargetName="Cur" />
+            </Storyboard>
+            <Storyboard x:Name="ExitStoryboard">
+                <FadeInThemeAnimation Storyboard.TargetName="Cur" />
+            </Storyboard>
         </ResourceDictionary>
     </Page.Resources>
     <Grid>
-        
+
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="618*"/>
@@ -38,58 +43,66 @@
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <Button Background="{ThemeResource SuperHighAcrylicELBrush}"  HorizontalAlignment="Stretch"  Click="Easy_Click" VerticalAlignment="Stretch" Margin="36">
+                <Button Background="{ThemeResource SuperHighAcrylicELBrush}"  HorizontalAlignment="Stretch"  Click="Easy_Click" VerticalAlignment="Stretch" Margin="36,36,10,10" Style="{StaticResource ButtonStyle}">
                     <Image Source="Assets/Easy.png" Stretch="UniformToFill"/>
                 </Button>
-                <Button Background="{ThemeResource SuperHighAcrylicELBrush}"   HorizontalAlignment="Stretch" Click="Mid_Click" Grid.Column="1" VerticalAlignment="Stretch" Margin="36" Style="{StaticResource ButtonStyle}">
+                <Button Background="{ThemeResource SuperHighAcrylicELBrush}"   HorizontalAlignment="Stretch" Click="Mid_Click" Grid.Column="1" VerticalAlignment="Stretch" Margin="10,36,36,8" Style="{StaticResource ButtonStyle}">
                     <Image Source="Assets/Mid.png" Stretch="UniformToFill"/>
                 </Button>
-                <Button Background="{ThemeResource SuperHighAcrylicELBrush}"  HorizontalAlignment="Stretch" Click="Hatd_Click" Grid.Row="1"  Margin="36" VerticalAlignment="Stretch">
+                <Button Background="{ThemeResource SuperHighAcrylicELBrush}"  HorizontalAlignment="Stretch" Click="Hatd_Click" Grid.Row="1"  Margin="36,10,10,36" VerticalAlignment="Stretch" Style="{StaticResource ButtonStyle}">
                     <Image Source="Assets/Hard.png" Stretch="UniformToFill"/>
                 </Button>
-                <Button Background="{ThemeResource SuperHighAcrylicELBrush}"  Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Click="Button_Click"  Margin="36" VerticalAlignment="Stretch">
+                <Button  Background="{ThemeResource SuperHighAcrylicELBrush}"  Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Click="Button_Click"  Margin="10,10,36,36" VerticalAlignment="Stretch" Style="{StaticResource ButtonStyle}">
                     <Image Source="Assets/Customize.png" Stretch="UniformToFill"/>
+                    <Button.Flyout>
+                        <Flyout x:Name="tl"    >
+                            <Grid x:Name="Cur"  Grid.RowSpan="3"   Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="100"  >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="50"/>
+
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock   HorizontalAlignment="Center" Text="Height" VerticalAlignment="Center" FontSize="18"  ></TextBlock>
+                                <TextBlock Grid.Row="1"  HorizontalAlignment="Center" Text="Width" VerticalAlignment="Center" FontSize="18" ></TextBlock>
+                                <TextBlock Grid.Row="2" HorizontalAlignment="Center" Text="Number of mine" VerticalAlignment="Center" FontSize="18" ></TextBlock>
+                                <TextBox x:Name="MapHeightBox"  Text="{x:Bind MapHeigh ,Mode=TwoWay}" Grid.Column="1" Margin="5.2,5,4,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
+                                <TextBox x:Name="MapWidthBox"  Text="{x:Bind MapWidth ,Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Margin="5.2,5,4,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
+                                <TextBox x:Name="MapNumBox" Text="{x:Bind NumMine ,Mode=TwoWay}" Grid.Row="2" Grid.Column="1" Margin="5.2,5,4,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
+                                <HyperlinkButton Content="Play" Click="HyperlinkButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="20" />
+
+                            </Grid>
+                        </Flyout>
+
+                    </Button.Flyout>
                 </Button>
             </Grid>
 
             <Grid Grid.Row="1" Grid.Column="1">
-                <Button  Click="Button_Click_1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                    <SymbolIcon Symbol="Setting" />
+                <Button  Click="Button_Click_1" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#00000000">
+                    <SymbolIcon Symbol="Setting"  />
                 </Button>
             </Grid>
-            <UI:AdControl Grid.Row="0" Grid.Column="1"
+            <Grid Grid.Row="0" Grid.Column="1">
+                <TextBlock Text="AD"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <UI:AdControl
                               ApplicationId="9plcjb2gqn1t"
                               AdUnitId="341043"
                               HorizontalAlignment="Center"
-                              Height="250"
-                              VerticalAlignment="Top"
+                              Height="250"                    Margin="0,50,0,0"
+                              VerticalAlignment="Center"
                               Width="300"/>
-        </Grid>
-        <Grid x:Name="Cur" Visibility="Collapsed" Grid.RowSpan="2" Background="{ThemeResource SystemControlAcrylicElementMediumHighBrush}" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"  >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="3*"/>
-            </Grid.ColumnDefinitions>
-
-            <TextBlock   HorizontalAlignment="Center" Text="Height" VerticalAlignment="Center" FontSize="18"  ></TextBlock>
-            <TextBlock Grid.Row="1"  HorizontalAlignment="Center" Text="Width" VerticalAlignment="Center" FontSize="18" ></TextBlock>
-            <TextBlock Grid.Row="2" HorizontalAlignment="Center" Text="Number of mine" VerticalAlignment="Center" FontSize="18" ></TextBlock>
-            <TextBox x:Name="MapHeightBox" IsEnabled="{x:Bind isCustom,Mode=OneWay}" Text="{x:Bind MapHeigh ,Mode=TwoWay}" Grid.Column="1" Margin="5.2,5,4,5" FontFamily="Segoe UI" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
-            <TextBox x:Name="MapWidthBox" IsEnabled="{x:Bind isCustom,Mode=OneWay}" Text="{x:Bind MapWidth ,Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Margin="5.2,5,4,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
-            <TextBox x:Name="MapNumBox" IsEnabled="{x:Bind isCustom,Mode=OneWay}" Text="{x:Bind NumMine ,Mode=TwoWay}" Grid.Row="2" Grid.Column="1" Margin="5.2,5,4,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
-            <StackPanel Orientation="Horizontal" Grid.Row="3" VerticalAlignment="Top"  HorizontalAlignment="Center" Grid.ColumnSpan="2">
-                <RadioButton Content="Customize" Checked="Custom_Click"></RadioButton>
-            </StackPanel>
+            </Grid>
 
         </Grid>
+
     </Grid>
-   
+
 
 </Page>

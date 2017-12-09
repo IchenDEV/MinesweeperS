@@ -127,6 +127,8 @@ namespace MineS
         private void Custom_Click(object sender, RoutedEventArgs e)
         {
             isCustom = true; Mode = "Custom";
+            //  EnterStoryboard.Begin();
+           // tl.IsOpen = true;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -141,5 +143,10 @@ namespace MineS
                         rootFrame.Navigate(typeof(ThemeSet));
                     
                 }
+
+        private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
+        {
+            goToPlay();
+        }
     }
 }
