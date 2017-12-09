@@ -10,6 +10,8 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Phone.Devices.Notification;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -153,15 +155,23 @@ namespace MineS
                     ButtonCollection[i, j].HorizontalAlignment = HorizontalAlignment.Stretch;
                     ButtonCollection[i, j].Margin = new Thickness(2);
                     ButtonCollection[i, j].VerticalAlignment = VerticalAlignment.Stretch;
+                    try
+                    {
+                        var ss = LocalTheme.Local.mineColor.Remove(0, 1);
 
+                        ButtonCollection[i, j].Background = new SolidColorBrush(Color.FromArgb(Convert.ToByte(ss.Substring(0, 2), 16), Convert.ToByte(ss.Substring(2, 2), 16), Convert.ToByte(ss.Substring(4, 2), 16), Convert.ToByte(ss.Substring(6, 2), 16)));
+                    }
+                    catch { }
+                  
                     Binding binding = new Binding();
                     binding.Path = new PropertyPath("MineButtonStyle");
                     binding.Mode = BindingMode.OneWay;
                     ButtonCollection[i, j].SetBinding(Button.StyleProperty, binding);
-                    ButtonCollection[i, j].Click += B_Click;
+                    ButtonCollection[i, j].Tapped += B_Click;
                     ButtonCollection[i, j].RightTapped += B_RightTapped;
-                    // ButtonCollection[i, j].Unloaded += Map_Unloaded;
-                    ButtonCollection[i, j].Tag = new Point() { x = i, y = j };
+                    ButtonCollection[i, j].Holding += Map_Holding;
+                   // ButtonCollection[i, j].Unloaded += Map_Unloaded;
+                   ButtonCollection[i, j].Tag = new Point() { x = i, y = j };
                     Map1.Children.Add(ButtonCollection[i, j]);
                     Grid.SetRow(ButtonCollection[i, j], i);
                     Grid.SetColumn(ButtonCollection[i, j], j);
@@ -170,7 +180,22 @@ namespace MineS
 
         }
 
+        private void Map_Holding(object sender, HoldingRoutedEventArgs e)
+        {
+            var P = (sender as Button).Tag as Point;
+            Marked[P.x, P.y] = !Marked[P.x, P.y];
+            if (Marked[P.x, P.y])
+            {
 
+
+                (sender as Button).Style = (Style)ioh["ButtonRevealMarkedStyle"];
+
+            }
+            else
+            {
+                (sender as Button).Style = (Style)Resources["ButtonRevealStyle"];
+            }
+        }
 
         public Map()
         {
@@ -310,6 +335,8 @@ Unload(Point P)
         private async void B_Click(object sender, RoutedEventArgs e)
         {
             var P = (sender as Button).Tag as Point;
+         
+            M3.Play();
             pr.IsActive = true;
             if (Marked[P.x, P.y])
             {
@@ -383,14 +410,20 @@ Unload(Point P)
             }
         }
 
+        public static void VibrateOnce(double hs = 300)
+        {
 
+            VibrationDevice vb = VibrationDevice.GetDefault();
+            vb.Vibrate(TimeSpan.FromMilliseconds(hs));
+
+        }
 
         private void Mapv_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             try
             {
                 float szoom = (float)Math.Min(Mapv.ActualWidth / (50 * Widt), Mapv.ActualHeight / (50 * Heigh));
-                Mapv.ChangeView(0, 0, szoom);
+                Mapv.ChangeView(0, -300, szoom);
             }
             catch
             {
@@ -399,9 +432,6 @@ Unload(Point P)
 
 
         }
-
-
-
         private void ShButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
             finished = true;

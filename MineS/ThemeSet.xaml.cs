@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.Storage.Pickers;
 using Windows.Storage;
+using Windows.UI.Core;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -37,15 +38,36 @@ namespace MineS
                 this.OnPropertyChanged();
             }
         }
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            Frame rootFrame = Window.Current.Content as Frame;
 
+
+
+            if (rootFrame.CanGoBack)
+            {
+                // Show UI in title bar if opted-in and in-app backstack is not empty. 
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                    AppViewBackButtonVisibility.Visible;
+            }
+            else
+            {
+                // Remove the UI from the title bar if in-app back stack is empty. 
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
+                    AppViewBackButtonVisibility.Collapsed;
+            }
+        }
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
         public async void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             // Raise the PropertyChanged event, passing the name of the property whose value has changed.
             this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            LocalTheme.Local = localtheme;
+            try { LocalTheme.Local = localtheme;
             await LocalTheme.write(LocalTheme.TojsonData(localtheme));
+            }
+            catch { }
+            
         }
         public ThemeSet()
         {
@@ -62,6 +84,34 @@ namespace MineS
             LocalTheme.Local.BackIMage = fli.Path;
             localtheme = LocalTheme.Local;
             await LocalTheme.write(LocalTheme.TojsonData(localtheme));
+        }
+
+        private async void ColorPicker_ColorChanged(ColorPicker sender, ColorChangedEventArgs args)
+        {
+            try
+            {
+  LocalTheme.Local.mineColor = args.NewColor.ToString();
+            localtheme = LocalTheme.Local;
+            await LocalTheme.write(LocalTheme.TojsonData(localtheme));
+            }
+            catch
+            {
+
+            }
+          
+        }
+
+        private async void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+ LocalTheme.Local.IsHighMode = (sender as ToggleSwitch).IsOn;
+            localtheme = LocalTheme.Local;
+            await LocalTheme.write(LocalTheme.TojsonData(localtheme));
+            }
+            catch { }
+           
+
         }
     }
 }

@@ -23,7 +23,7 @@
             Text="{x:Bind localtheme.ThemeName}"
             Orientation="Horizontal"
             Margin="20,10,0,0" />
-                    <ToggleSwitch Header="Is NumBack Flower Enable" IsOn="{x:Bind localtheme.IsHighMode,Mode=TwoWay}"></ToggleSwitch>
+                    <ToggleSwitch Header="Is NumBack Flower Enable" IsOn="{x:Bind localtheme.IsHighMode,Mode=TwoWay}" Toggled="ToggleSwitch_Toggled"></ToggleSwitch>
                     <!--<ToggleSwitch Header="Is Acr Enable" IsOn="{x:Bind localtheme.IsAcrlic,Mode=TwoWay}" ></ToggleSwitch>-->
 
                     <StackPanel Orientation="Horizontal">
@@ -37,7 +37,7 @@
                           IsExpanded="False"
                           ExpandDirection="Down">
                             <Grid>
-                                <ColorPicker/>
+                                <ColorPicker IsAlphaEnabled="True" ColorChanged="ColorPicker_ColorChanged"/>
                             </Grid>
 
                         </controls:Expander>

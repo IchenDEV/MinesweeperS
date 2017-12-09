@@ -15,11 +15,9 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    <Grid x:Name="root">
-
-        <Button Style="{ThemeResource ButtonRevealMarkedStyle}"></Button>
-
-        <ScrollViewer x:Name="Mapv" ZoomMode="Enabled" MaxZoomFactor="1000" SizeChanged="Mapv_SizeChanged">
+    <Grid x:Name="root" Margin="0,50,0,0">
+        <MediaElement x:Name="M3" Source="{x:Bind local:LocalTheme.Local.ClickMusic}" />
+        <ScrollViewer  x:Name="Mapv" ZoomMode="Enabled" MaxZoomFactor="1000" SizeChanged="Mapv_SizeChanged">
             <Grid x:Name="Map1" VerticalAlignment="Center" HorizontalAlignment="Center"></Grid>
         </ScrollViewer>
         <ProgressRing x:Name="pr" IsEnabled="True" Foreground="Black"/>

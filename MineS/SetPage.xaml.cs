@@ -113,14 +113,14 @@ namespace MineS
         private void Mid_Click(object sender, RoutedEventArgs e)
         {
             isCustom = false;
-            MapHeigh = 10; MapWidth = 20; NumMine = 9; Mode = "mid";
+            MapHeigh = 20; MapWidth = 15; NumMine = 30; Mode = "mid";
             goToPlay();
         }
 
         private void Hatd_Click(object sender, RoutedEventArgs e)
         {
             isCustom = false;
-            MapHeigh = 15; MapWidth = 15; NumMine = 9; Mode = "hard";
+            MapHeigh = 16; MapWidth = 30; NumMine = 99; Mode = "hard";
             goToPlay();
         }
 
