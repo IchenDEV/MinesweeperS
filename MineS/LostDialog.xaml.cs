@@ -24,9 +24,18 @@ namespace MineS
 {
     public sealed partial class LostDialog : UserControl, INotifyPropertyChanged
     {
-        private int _Source;
+       
         private string _Mode;
-
+        private bool _back;
+        public bool Back
+        {
+            get { return this._back; }
+            set
+            {
+                this._back = value;
+                this.OnPropertyChanged();
+            }
+        }
         public LostDialog()
         {
             this.InitializeComponent();
@@ -61,6 +70,9 @@ namespace MineS
         {
         }
 
-    
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            Back = true;
+        }
     }
 }

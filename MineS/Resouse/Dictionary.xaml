@@ -154,5 +154,9 @@
             TintColor="#FFFFFFFF"
             TintOpacity="0.3"
             FallbackColor="#FF7F0000"/>
-
+    <AcrylicBrush x:Key="SuperRedAcrylicELBrush"
+            BackgroundSource="Backdrop"
+            TintColor="#FF8F0000"
+            TintOpacity="0.5"
+            FallbackColor="#FF7F0000"/>
 </ResourceDictionary>

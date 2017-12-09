@@ -7,12 +7,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
    >
-    <StackPanel x:Name="root" Background="{ThemeResource SystemControlAcrylicElementMediumHighBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Center"  >
+    <StackPanel x:Name="root" Background="{ThemeResource SuperRedAcrylicELBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Center"  >
         <TextBlock Text="Lose" FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
        
         
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <AppBarButton Icon="Back"/>
+            <AppBarButton Icon="Back" Click="AppBarButton_Click"/>
         </StackPanel>
        
     </StackPanel>

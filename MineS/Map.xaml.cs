@@ -214,6 +214,10 @@ Unload(Point P)
             else if (MapNum[P.x, P.y] < 0)
             {
                 finished = true;
+                watch.Stop();
+                LostDialog lost = new LostDialog();
+                root.Children.Add(lost);
+                lost.PropertyChanged += Win_PropertyChanged;
             }
             if (OpenedButton == Widt * Heigh - AllNum && !finished)
             {

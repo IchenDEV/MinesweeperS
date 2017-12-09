@@ -142,7 +142,8 @@
     </AppxManifest>
     <None Include="MineS_StoreKey.pfx" />
     <None Include="MineS_TemporaryKey.pfx" />
-    <PRIResource Include="Strings\Zh-cn\zh-cn.resw" />
+    <PRIResource Include="Strings\en-US\Resources.resw" />
+    <PRIResource Include="Strings\Zh-cn\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Background.png" />
