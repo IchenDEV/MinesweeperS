@@ -5,14 +5,29 @@
     xmlns:local="using:MineS"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
     mc:Ignorable="d">
-
-    <StackPanel  x:Name="root" Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}">
-        <Image Source="{x:Bind local:LocalTheme.Local.BackIMage}" ></Image>
-        <StackPanel x:Name="Showpp"> <TextBlock Text="MineS" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,25" FontSize="36"/>
-            <local:SetPage x:Name="set" Margin="15,0,15,0"></local:SetPage>
-        <Button  Grid.Row="4" Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Content="Play" Height="50" Click="Button_Click" />
-      </StackPanel>
+    <Page.Resources>
+        <local:ConverterTOIMG x:Key="ImgConverter"/>
+        <local:ConverterTOResouce x:Key="ResouceConverter"/>
+    </Page.Resources>
+    <Grid  x:Name="root" Background="{x:Bind local:LocalTheme.Local.BackgroundResouceName ,Converter={StaticResource ResouceConverter}}">
+        <Border Opacity="0.8">
+            <Image  Source="{x:Bind local:LocalTheme.Local.BackIMage ,Converter={StaticResource ImgConverter}}" Stretch="UniformToFill" ></Image>
+            <interactivity:Interaction.Behaviors>
+                <behaviors:Blur x:Name="BlurBehavior"
+                        Value="8.54"
+                        Duration="272.94"
+                        Delay="30.26"
+                        AutomaticallyStart="True"/>
+            </interactivity:Interaction.Behaviors>
+        </Border>
         
-    </StackPanel>
+        <StackPanel x:Name="Showpp"> 
+            <local:SetPage x:Name="set"  Margin="15,0,15,0"></local:SetPage>
+        </StackPanel>
+        <Frame x:Name="froot" Navigated="froot_Navigated">
+        </Frame>
+    </Grid>
 </Page>

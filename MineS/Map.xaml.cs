@@ -26,6 +26,11 @@ namespace MineS
     {
         public int x, y;
     }
+    public class MapData
+    {
+        public int w, h, mine;
+        public string mode;
+    }
     public sealed partial class Map : Page, INotifyPropertyChanged
     {
         Stopwatch watch = new Stopwatch();
@@ -112,12 +117,12 @@ namespace MineS
                 }
             }
         }
-
-        public Map(int H, int W, int N)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-
-            MineButtonStyle = (Style)Resources["ButtonRevealStyle"];
-            this.InitializeComponent();
+            var data =
+         ((MapData)e.Parameter);
+            int H = data.h, W = data.w, N = data.mine;
+            Mode = data.mode;
             Heigh = H;
             Widt = W;
             AllNum = N;
@@ -158,34 +163,50 @@ namespace MineS
                     Grid.SetColumn(ButtonCollection[i, j], j);
                 }
             }
+
         }
 
-        private async 
+
+
+        public Map()
+        {
+
+            MineButtonStyle = (Style)Resources["ButtonRevealStyle"];
+            this.InitializeComponent();
+
+        }
+
+        private async
         Task
 Unload(Point P)
         {
-           
+
 
             if (MapNum[P.x, P.y] == 0)
             {
                 for (int k = 0; k < 8; k++)
                 {
-                    try
-                    {
-                        if (!isOpened[(P.x + direction[k].x), (P.y + direction[k].y)])
-                        {
-                            OpenedButton++;
-                            Marked[P.x + direction[k].x, P.y + direction[k].y] = false;
-                            isOpened[(P.x + direction[k].x), (P.y + direction[k].y)] = true;
-                            Unload(new Point() { x = P.x + direction[k].x, y = P.y + direction[k].y });
 
+                    if (!isOpened[(P.x + direction[k].x), (P.y + direction[k].y)])
+                    {
+                        OpenedButton++;
+                        Marked[P.x + direction[k].x, P.y + direction[k].y] = false;
+                        isOpened[(P.x + direction[k].x), (P.y + direction[k].y)] = true;
+                        try
+                        {
+ Unload(new Point() { x = P.x + direction[k].x, y = P.y + direction[k].y });
                         }
+                        catch { }
+                       
+
 
                     }
-                    catch { }
+
                 }
+
             }
-            else if(MapNum[P.x, P.y] < 0)
+
+            else if (MapNum[P.x, P.y] < 0)
             {
                 finished = true;
             }
@@ -216,7 +237,7 @@ Unload(Point P)
 
 
 
-        private void S_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        private async void S_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
             var P = (sender as Grid).Tag as Point;
             int ActMark = 0;
@@ -238,7 +259,7 @@ Unload(Point P)
                 {
                     try
                     {
-                        if (Marked[P.x + direction[k].x, P.y + direction[k].y] == false&&!isOpened[P.x + direction[k].x, P.y + direction[k].y])
+                        if (Marked[P.x + direction[k].x, P.y + direction[k].y] == false && !isOpened[P.x + direction[k].x, P.y + direction[k].y])
                         {
                             OpenedButton++;
                             isOpened[(P.x + direction[k].x), (P.y + direction[k].y)] = true;
@@ -255,7 +276,7 @@ Unload(Point P)
         private async void B_Click(object sender, RoutedEventArgs e)
         {
             var P = (sender as Button).Tag as Point;
-          
+
             if (Marked[P.x, P.y])
             {
                 return;
@@ -271,7 +292,7 @@ Unload(Point P)
             }
             OpenedButton++;
             isOpened[P.x, P.y] = true;
-          await  Unload(P);
+            await Unload(P);
 
             Refresh();
 
@@ -288,7 +309,7 @@ Unload(Point P)
                     if (isOpened[i, j])
                     {
 
-                       if( ButtonCollection[i, j].Visibility == Visibility.Visible)
+                        if (ButtonCollection[i, j].Visibility == Visibility.Visible)
                         {
                             var P = new Point() { x = i, y = j };
                             if (MapNum[P.x, P.y] > 0)
@@ -315,8 +336,8 @@ Unload(Point P)
                             }
                             ButtonCollection[i, j].Visibility = Visibility.Collapsed;
                         }
-                      
-                        
+
+
                     }
 
                 }

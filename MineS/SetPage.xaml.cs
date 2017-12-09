@@ -30,9 +30,11 @@ namespace MineS
         {
             this.InitializeComponent();
         }
+        public Frame band;
         private int _MapHeigh = 0;
         private int _MapWidth = 0;
         private int _NumMine = 0;
+        private string _Mode ;
         private bool _isCustom = false;
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
@@ -77,32 +79,47 @@ namespace MineS
                 this.OnPropertyChanged();
             }
         }
+        public string Mode
+        {
+            get { return this._Mode; }
+            set
+            {
+                this._Mode = value;
+                this.OnPropertyChanged();
+            }
+        }
 
 
 
-
+        void goToPlay()
+        {
+            MapData md = new MapData() { w = MapWidth, h = MapHeigh, mine = NumMine, mode = Mode };
+            band.Navigate(typeof(Map),md);
+        }
         private void Easy_Click(object sender, RoutedEventArgs e)
         {
             isCustom = false;
-            MapHeigh = 10; MapWidth = 10; NumMine = 9;
-
+            MapHeigh = 10; MapWidth = 10; NumMine = 9;Mode = "easy";
+            goToPlay();
         }
 
         private void Mid_Click(object sender, RoutedEventArgs e)
         {
             isCustom = false;
-            MapHeigh = 10; MapWidth = 20; NumMine = 9;
+            MapHeigh = 10; MapWidth = 20; NumMine = 9; Mode = "mid";
+            goToPlay();
         }
 
         private void Hatd_Click(object sender, RoutedEventArgs e)
         {
             isCustom = false;
-            MapHeigh = 15; MapWidth = 15; NumMine = 9;
+            MapHeigh = 15; MapWidth = 15; NumMine = 9; Mode = "hard";
+            goToPlay();
         }
 
         private void Custom_Click(object sender, RoutedEventArgs e)
         {
-            isCustom = true;
+            isCustom = true; Mode = "Custom";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

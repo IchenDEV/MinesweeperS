@@ -25,7 +25,9 @@ namespace MineS
     {
         public MainPage()
         {
+            LocalTheme.Initialize();
             this.InitializeComponent();
+            set.band = froot;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -35,11 +37,11 @@ namespace MineS
             //root.Children.Add(light);
 
 
-            Map M = new Map(set.MapHeigh, set.MapWidth, set.NumMine);
-            root.Children.Add(M);
-            M.HorizontalAlignment = HorizontalAlignment.Stretch;
-            M.VerticalAlignment = VerticalAlignment.Stretch;
-            M.PropertyChanged += M_PropertyChanged;
+            //Map M = new Map(set.MapHeigh, set.MapWidth, set.NumMine);
+            //root.Children.Add(M);
+            //M.HorizontalAlignment = HorizontalAlignment.Stretch;
+            //M.VerticalAlignment = VerticalAlignment.Stretch;
+            //M.PropertyChanged += M_PropertyChanged;
             Showpp.Visibility = Visibility.Collapsed;
         }
 
@@ -49,6 +51,18 @@ namespace MineS
             {
                 root.Children.Remove((sender as Map));
                Showpp.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void froot_Navigated(object sender, NavigationEventArgs e)
+        {
+           if(e.SourcePageType == typeof(Map))
+            {
+                Showpp.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                Showpp.Visibility = Visibility.Visible;
             }
         }
     }
