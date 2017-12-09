@@ -15,10 +15,10 @@
                 <ResourceDictionary x:Name="ioh"  Source="ms-appx:///Resouse/Dictionary.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
             <Storyboard x:Name="EnterStoryboard">
-                <FadeOutThemeAnimation Storyboard.TargetName="Cur" />
+                <PopInThemeAnimation Storyboard.TargetName="super" />
             </Storyboard>
             <Storyboard x:Name="ExitStoryboard">
-                <FadeInThemeAnimation Storyboard.TargetName="Cur" />
+               <FadeOutThemeAnimation Storyboard.TargetName="super" />   
             </Storyboard>
         </ResourceDictionary>
     </Page.Resources>
@@ -33,8 +33,8 @@
                 <RowDefinition Height="282*"/>
                 <RowDefinition Height="618*"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="MineS" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="54" FontFamily="Bahnschrift Light"/>
-            <Grid Grid.Row="1" Margin="25" Background="{ThemeResource SuperMidAcrylicELBrush}" CornerRadius="54,54,54,54">
+            <TextBlock Text="Minesweeper S" x:Uid="AppName"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="54" FontFamily="Bahnschrift Light" Foreground="White"/>
+            <Grid x:Name="super" Grid.Row="1" Margin="25" Background="{ThemeResource SuperMidAcrylicELBrush}" CornerRadius="54,54,54,54" Loaded="super_Loaded">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
@@ -75,7 +75,7 @@
                                 <TextBox x:Name="MapHeightBox"  Text="{x:Bind MapHeigh ,Mode=TwoWay}" Grid.Column="1" Margin="5.2,5,4,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
                                 <TextBox x:Name="MapWidthBox"  Text="{x:Bind MapWidth ,Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Margin="5.2,5,4,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
                                 <TextBox x:Name="MapNumBox" Text="{x:Bind NumMine ,Mode=TwoWay}" Grid.Row="2" Grid.Column="1" Margin="5.2,5,4,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
-                                <HyperlinkButton Content="Play" Click="HyperlinkButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="20" />
+                                <HyperlinkButton Content="Play" Grid.RowSpan="5" Grid.ColumnSpan="5" Click="HyperlinkButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="30"  />
 
                             </Grid>
                         </Flyout>
@@ -85,8 +85,19 @@
             </Grid>
 
             <Grid Grid.Row="1" Grid.Column="1">
+               <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
                 <Button  Click="Button_Click_1" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#00000000">
                     <SymbolIcon Symbol="Setting"  />
+                </Button>
+                <Button Grid.Row="1" Click="Button_Click_2" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#00000000">
+                    <SymbolIcon Symbol="SolidStar"  />
+                </Button>
+                <Button Grid.Row="2" Click="Button_Click_3" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#00000000">
+                    <SymbolIcon Symbol="Account"  />
                 </Button>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="1">

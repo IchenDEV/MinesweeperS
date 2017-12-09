@@ -152,13 +152,17 @@
     <AcrylicBrush x:Key="SuperMidAcrylicELBrush"
             BackgroundSource="Backdrop"
             TintColor="#FFFFFFFF"
-            TintOpacity="0.3"
+            TintOpacity="0.2"
             FallbackColor="#FF7F0000"/>
     <AcrylicBrush x:Key="SuperRedAcrylicELBrush"
             BackgroundSource="Backdrop"
             TintColor="#6F8F0000"
             TintOpacity="0.2"
             FallbackColor="#FF7F0000"/>
+    <AcrylicBrush x:Key="SuperMidAcrylicWiBrush"
+            BackgroundSource="HostBackdrop"
+            TintColor="#FFFFFFFF"
+            TintOpacity="0"
+           FallbackColor="#FFFFFFFF"/>
 
-    
 </ResourceDictionary>

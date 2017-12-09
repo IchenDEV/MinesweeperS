@@ -33,8 +33,8 @@ namespace MineS
                 {
                     var Theme = new Themes()
                     {
-                        ThemeName = "1709",
-                        BackgroundResouceName = "SystemControlAcrylicWindowMediumHighBrush",
+                        ThemeName = "Snow",
+                        BackgroundResouceName = "SuperMidAcrylicWiBrush",
                         ClickMusic = "ms-appx:///Assets//Theme//1709//M.mp3",
                         BackIMage = "ms-appx:///Assets//Theme//1709//01_hiking_1920x1200.png",
                         IsAcrlic = true,

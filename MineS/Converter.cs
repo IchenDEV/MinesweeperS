@@ -27,7 +27,9 @@ namespace MineS
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            ResourceDictionary re = new ResourceDictionary();   
+            ResourceDictionary re = new ResourceDictionary();
+            re.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("ms-appx:///Resouse/Dictionary.xaml") });
+            
             return re[value];
         }
 

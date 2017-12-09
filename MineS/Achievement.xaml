@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <Grid Background="{x:Bind local:LocalTheme.Local.BackgroundResouceName ,Converter={StaticResource ResouceConverter}}">
+        <TextBlock VerticalAlignment="Center" Text="Sorry,We do not finsh it" HorizontalAlignment="Center" FontSize="25"/>
     </Grid>
 </Page>

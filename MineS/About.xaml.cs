@@ -1,4 +1,4 @@
-﻿using CompositionSampleGallery;
+﻿using Microsoft.Toolkit.Uwp.Helpers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,23 +15,24 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
+// https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
 namespace MineS
 {
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class About : Page
     {
-        public MainPage()
+        public About()
         {
-            LocalTheme.Initialize();
             this.InitializeComponent();
-
-            froot.Navigate(typeof(SetPage), froot);
-
         }
+        public string ApplicationName => SystemInformation.ApplicationName;
+
+        // To get application's version:
+        public string ApplicationVersion => $"{SystemInformation.ApplicationVersion.Major}.{SystemInformation.ApplicationVersion.Minor}.{SystemInformation.ApplicationVersion.Build}.{SystemInformation.ApplicationVersion.Revision}";
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
@@ -50,37 +51,6 @@ namespace MineS
                 SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
                     AppViewBackButtonVisibility.Collapsed;
             }
-        }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-          
-        }
-
-        private void M_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-           if((sender as Map).finished)
-            {
-                root.Children.Remove((sender as Map));
-              
-            }
-        }
-
-        private void froot_Navigated(object sender, NavigationEventArgs e)
-        {
-            if (e.SourcePageType == typeof(Map))
-            {
-                newGame.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                newGame.Visibility = Visibility.Collapsed;
-            }
-        }
-
-        private void ShButton_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            froot.Navigate(typeof(SetPage), froot);
-           // newGame.Visibility = Visibility.Collapsed;
         }
     }
 }

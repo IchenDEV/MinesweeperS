@@ -12,22 +12,23 @@
         <local:ConverterTOResouce x:Key="ResouceConverter"/>
     </Page.Resources>
     <Grid >
-        <StackPanel Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}" >
-            <TextBlock  Margin="30,30,0,0" Text="Theme Settings" FontSize="36" FontWeight="Bold" />
+        <StackPanel Background="{x:Bind local:LocalTheme.Local.BackgroundResouceName ,Converter={StaticResource ResouceConverter}}" >
+            <TextBlock  Margin="30,30,0,0" Text="Theme Settings" x:Uid="ThemeSet" FontSize="36" FontWeight="Bold" />
         </StackPanel>
         <StackPanel HorizontalAlignment="Center" Margin="0,100,0,0">
             <ScrollViewer>
                 <StackPanel  Margin="30">
                     <controls:HeaderedTextBlock 
             Header="Current Theme Name"
+                        x:Uid="CTN"
             Text="{x:Bind localtheme.ThemeName}"
             Orientation="Horizontal"
             Margin="20,10,0,0" />
-                    <ToggleSwitch Header="Is NumBack Flower Enable" IsOn="{x:Bind localtheme.IsHighMode,Mode=TwoWay}" Toggled="ToggleSwitch_Toggled"></ToggleSwitch>
+                    <ToggleSwitch Header="Is NumBack Flower Enable" x:Uid="IsNFE" IsOn="{x:Bind localtheme.IsHighMode,Mode=TwoWay}" Toggled="ToggleSwitch_Toggled"></ToggleSwitch>
                     <!--<ToggleSwitch Header="Is Acr Enable" IsOn="{x:Bind localtheme.IsAcrlic,Mode=TwoWay}" ></ToggleSwitch>-->
 
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Mine Color" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
+                        <TextBlock Text="Color" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
                         <Rectangle ></Rectangle>
                         <controls:Expander x:Name="Expander1" VerticalAlignment="Top" Margin="0,0,0,10"
                           Header="Color Picker"
@@ -44,11 +45,12 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" >
                         <controls:HeaderedTextBlock 
+                            x:Uid="backimg"
             Header="BackImage"
             Text="{x:Bind localtheme.BackIMage}"
             Orientation="Horizontal"
             Margin="20,10,0,0" Width="99" />
-                        <Image Height="50" Width="100" Source="{x:Bind localtheme.BackIMage,Mode=OneWay,Converter={StaticResource ImgConverter}}" Stretch="Uniform"/>
+                        <Image Height="50" Width="200" Source="{x:Bind localtheme.BackIMage,Mode=OneWay,Converter={StaticResource ImgConverter}}" Stretch="Uniform"/>
                         <AppBarButton Icon="OpenFile" Click="AppBarButton_Click"/>
                     </StackPanel>
 

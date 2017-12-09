@@ -13,6 +13,9 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary x:Name="ioh"  Source="ms-appx:///Resouse/Dictionary.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
+            <Storyboard x:Name="EnterStoryboard">
+                <PopInThemeAnimation Storyboard.TargetName="win" />
+            </Storyboard>
         </ResourceDictionary>
     </Page.Resources>
     <Grid x:Name="root" Margin="0,50,0,0">

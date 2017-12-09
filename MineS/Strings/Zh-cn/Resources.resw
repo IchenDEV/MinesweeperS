@@ -117,7 +117,62 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="about.Text" xml:space="preserve">
+    <value>关于</value>
+  </data>
   <data name="App" xml:space="preserve">
     <value>扫雷S</value>
+  </data>
+  <data name="AppName.Text" xml:space="preserve">
+    <value>扫雷 S</value>
+  </data>
+  <data name="backimg.Header" xml:space="preserve">
+    <value>背景图片（重新启动应用生效）：</value>
+  </data>
+  <data name="CTN.Header" xml:space="preserve">
+    <value>当前主题：</value>
+  </data>
+  <data name="haschsen.Text" xml:space="preserve">
+    <value>我们已经为你选择合适的主题</value>
+  </data>
+  <data name="howToPlay.Text" xml:space="preserve">
+    <value>游戏的基本操作包括左键单击、右键单击(手机长按)、双击三种。
+
+左键用于打开安全的格子，推进游戏进度；右键（长按）用于标记地雷,以辅助判断，或为接下来的双击做准备；
+双击在一个数字周围的地雷标记完时，相当于对数字周围未打开的方块均进行一次左键单击操作，若数字周围有标错的地雷，则游戏结束
+
+雷诀八条
+第一条：基本定式不要忘，现场推理真够呛
+第二条：鼠标点击不要快，稳定节奏把空开。
+第三条：顺手标雷不要惯，积累下来记录悬。
+第四条：无从下手不要愣，就近猜雷把心横。
+第五条：遇到猜雷不要怕，爆了脸上不留疤。
+第六条：猜雷猜错不要悔，哭天抢地也白费。
+第七条：碰上好局不要慌，紧盯局部慢扩张。
+第八条：痛失好局不要恨，既然有缘定有份。</value>
+  </data>
+  <data name="IsNFE.Header" xml:space="preserve">
+    <value>数字背景：</value>
+  </data>
+  <data name="next.Content" xml:space="preserve">
+    <value>下一步</value>
+  </data>
+  <data name="privacy.Content" xml:space="preserve">
+    <value>隐私声明</value>
+  </data>
+  <data name="ThemeSet.Text" xml:space="preserve">
+    <value>主题设置</value>
+  </data>
+  <data name="using.Header" xml:space="preserve">
+    <value>引用</value>
+  </data>
+  <data name="using.Text" xml:space="preserve">
+    <value>Win2D;UI Dev;UWP Toolkit....</value>
+  </data>
+  <data name="ver.Header" xml:space="preserve">
+    <value>版本</value>
+  </data>
+  <data name="welcome.Text" xml:space="preserve">
+    <value>欢迎</value>
   </data>
 </root>

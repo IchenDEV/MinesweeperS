@@ -118,6 +118,35 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="App" xml:space="preserve">
-    <value>S</value>
+    <value>Minesweeper S</value>
+  </data>
+  <data name="AppName.Text" xml:space="preserve">
+    <value>Minesweeper S</value>
+  </data>
+  <data name="howToPlay.Text" xml:space="preserve">
+    <value>The basic operation of the game includes left click, right click (phone long Press), double-click three kinds.
+
+The left mouse button is used to open a secure grid to advance the game's progress; right-click to mark a mine to assist in judgment, or to prepare for the next double-click;
+Double-click a mine around a number to mark the end of a left-click operation that is equivalent to a box that is not open around the number, and if the number is marked with a wrong mine, the game ends
+
+Thunder tactic Eight
+The first: The basic formula Don't forget, the field reasoning is really tough.
+Second: Mouse click not fast, stable rhythm to open.
+Article three: Do not be accustomed to the standard Lei, accumulated down record hanging.
+Article fourth: Do not want to do not Leng, the nearest guess Ray Heart horizontal.
+Article fifth: Do not be afraid to meet the guessing Ray, the face does not leave scar.
+Article sixth: Guess Ray guess wrong don't regret, cry day Rob Ground also in vain.
+Article seventh: Do not panic in the good innings, keep a close eye on the local slow expansion.
+Article eighth: Do not hate the good Bureau of Pain, since it is destined to have a part.
+ticle &amp;#x000A; the first: The basic formula Don't forget, the field reasoning is really bad. &amp;#x000A; Second: Mouse click not fast, stable rhythm to open. &amp;#x000A;
+Article three: Do not be accustomed to the standard Lei, accumulated down record hanging. &amp;#x000A;
+Article fourth: Do not want to do not Leng, the nearest guess Ray Heart horizontal. &amp;#x000A;
+Article fifth: Do not be afraid to meet the guessing Ray, the face does not leave scar. &amp;#x000A;
+Article sixth: Guess Ray guess wrong don't regret, cry day Rob Ground also in vain. &amp;#x000A;
+Article seventh: Do not panic in the good innings, keep a close eye on the local slow expansion. &amp;#x000A;
+Article eighth: Do not hate the good Bureau of Pain, since it is destined to have a part. &amp;#x000A;</value>
+  </data>
+  <data name="using.Text" xml:space="preserve">
+    <value>Win2D;UI Dev;UWP Toolkit....</value>
   </data>
 </root>

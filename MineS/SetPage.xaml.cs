@@ -34,8 +34,8 @@ namespace MineS
         {
            band =
          ((Frame)e.Parameter);
-           
 
+            EnterStoryboard.Begin();
         }
         public Frame band;
         private int _MapHeigh = 0;
@@ -148,5 +148,26 @@ namespace MineS
         {
             goToPlay();
         }
+
+        private void super_Loaded(object sender, RoutedEventArgs e)
+        {
+            EnterStoryboard.Begin();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Frame rootFrame = Window.Current.Content as Frame;
+
+            rootFrame.Navigate(typeof(Achievement));
+
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            Frame rootFrame = Window.Current.Content as Frame;
+
+            rootFrame.Navigate(typeof(About));
+        }
     }
+    
 }

@@ -5,7 +5,13 @@
     xmlns:local="using:MineS"
     >
     <Application.Resources >
-       
-       
+    
+        <local:ConverterTOIMG x:Key="ImgConverter"/>
+        <local:ConverterTOResouce x:Key="ResouceConverter"/>
+        <ResourceDictionary x:Key="Res">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary x:Name="ioh"  Source="ms-appx:///Resouse/Dictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

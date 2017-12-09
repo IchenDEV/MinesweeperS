@@ -264,6 +264,8 @@ Unload(Point P)
                 {
                     item.IsEnabled = false;
                 }
+                EnterStoryboard.Begin();
+                
             }
         }
 

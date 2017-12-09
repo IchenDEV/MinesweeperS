@@ -11,26 +11,34 @@
    
     
         <Pivot x:Name="pivot" >
-            <PivotItem Header="PivotItem 0">
+            <PivotItem Header="Start">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0,10,0,10">
-                    <TextBlock Text="Welcome" HorizontalAlignment="Center" FontSize="48"/>
-                    <TextBlock Text="MineS" HorizontalAlignment="Center" FontSize="30"/>
-                    <TextBlock Text="We have someting" HorizontalAlignment="Center"/>
-                    <Button Content="Next"  HorizontalAlignment="Center" Click="Button_Click"/>
+                    <TextBlock x:Uid="welcome" Text="Welcome" HorizontalAlignment="Center" FontSize="48"/>
+                    <TextBlock Text="" x:Uid="AppName" HorizontalAlignment="Center" FontSize="30"/>
+                
+                    <Button Content="Next"  x:Uid="next" HorizontalAlignment="Center" Click="Button_Click"/>
                 </StackPanel>
             </PivotItem>
-            <PivotItem Header="PivotItem 1">
+            <PivotItem Header="Set Theme">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0,10,0,10">
                     <TextBlock Text="Your System is" HorizontalAlignment="Center" FontSize="48"/>
                     <TextBlock Text="{x:Bind OperatingSystemVersion.Build}" HorizontalAlignment="Center" FontSize="30"/>
-                    <TextBlock Text="We have someting" HorizontalAlignment="Center"/>
-                    <Button Content="Next"  HorizontalAlignment="Center" Click="Button_Click"/>
+                    <TextBlock Text="We has chosen the best theme for you" x:Uid="haschsen" HorizontalAlignment="Center"/>
+                    <Button Content="Next" x:Uid="next" HorizontalAlignment="Center" Click="Button_Click"/>
                 </StackPanel>
             </PivotItem>
-            <PivotItem Header="PivotItem 2">
+            <PivotItem Header="Guide">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0,10,0,10">
+                    <ScrollViewer>
+                        <TextBlock x:Uid="howToPlay" TextWrapping="WrapWholeWords" Text="" HorizontalAlignment="Center" FontSize="20"/>
+                    </ScrollViewer>
+                    <Button Content="Next" x:Uid="next" VerticalAlignment="Bottom" Margin="35"  HorizontalAlignment="Center" Click="Button_Click"/>
+                </StackPanel>
+            </PivotItem>
+            <PivotItem Header="Finish">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0,10,0,10">
                     <TextBlock Text="Finish" HorizontalAlignment="Center" FontSize="48"/>
-                    <HyperlinkButton Content="Go" Click="HyperlinkButton_Click"></HyperlinkButton>
+                    <HyperlinkButton Content="Go" Click="HyperlinkButton_Click" HorizontalAlignment="Center"></HyperlinkButton>
                 </StackPanel>
             </PivotItem>
         </Pivot>

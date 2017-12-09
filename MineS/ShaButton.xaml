@@ -11,8 +11,8 @@
     <UserControl.Resources>
         <AcrylicBrush x:Key="MyAcrylicBrush"
             BackgroundSource="Backdrop"
-            TintColor="#FF0000FF"
-            TintOpacity="0.2"
+            TintColor="#4F0000FF"
+            TintOpacity="0.1"
             FallbackColor="#FF7F0000"/>
 
         <Style x:Key="btnNext" TargetType="Button">

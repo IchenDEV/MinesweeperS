@@ -45,7 +45,7 @@ namespace MineS
 
             inkCanvas.InkPresenter.InputDeviceTypes =
 
-                Windows.UI.Core.CoreInputDeviceTypes.Mouse |
+                Windows.UI.Core.CoreInputDeviceTypes.Mouse | Windows.UI.Core.CoreInputDeviceTypes.Touch|
 
                 Windows.UI.Core.CoreInputDeviceTypes.Pen;
         }
@@ -53,14 +53,18 @@ namespace MineS
         private async void DataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
         {
             DataRequest request = args.Request;
-           
+            var deferral = args.Request.GetDeferral();
+
             RenderTargetBitmap bitmap = new RenderTargetBitmap();
             await bitmap.RenderAsync(root);
             var ss = (await bitmap.GetPixelsAsync()).AsStream().AsRandomAccessStream();
-            request.Data.Properties.Title = "Share Example";
-           
+            args.Request.Data.Properties.Title = "共享图像";
+            args.Request.Data.Properties.Description = "共享以下图片。";
+
+
             request.Data.SetBitmap(RandomAccessStreamReference.CreateFromStream(ss));
-            request.GetDeferral();
+            deferral.Complete();
+
         }
 
         public int Source
