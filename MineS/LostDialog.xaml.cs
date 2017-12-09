@@ -5,49 +5,62 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
-// https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
+// https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“内容对话框”项模板
 
 namespace MineS
 {
-    /// <summary>
-    /// 可用于自身或导航至 Frame 内部的空白页。
-    /// </summary>
-    public sealed partial class ThemeSet : Page, INotifyPropertyChanged
+    public sealed partial class LostDialog : UserControl, INotifyPropertyChanged
     {
-        private Themes _localtheme = LocalTheme.Local;
+        private int _Source;
+        private string _Mode;
 
-        public Themes localtheme
+        public LostDialog()
         {
-            get { return this._localtheme; }
+            this.InitializeComponent();
+           
+
+        }
+
+        
+
+       
+
+        public String Mode
+        {
+            get { return this._Mode; }
             set
             {
-                this._localtheme = value;
+                this._Mode = value;
                 this.OnPropertyChanged();
             }
         }
 
+
+
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
-        public async void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             // Raise the PropertyChanged event, passing the name of the property whose value has changed.
             this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            LocalTheme.Local = localtheme;
-            await LocalTheme.write(LocalTheme.TojsonData(localtheme));
         }
-        public ThemeSet()
+        private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            this.InitializeComponent();
         }
+
+    
     }
 }

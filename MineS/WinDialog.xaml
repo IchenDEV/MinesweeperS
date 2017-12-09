@@ -12,16 +12,23 @@
 
    >
 
+    <Grid>
+        <StackPanel x:Name="root" Background="{ThemeResource SystemControlAcrylicElementMediumHighBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Center"  >
+            <TextBlock Text="Succeed" FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="{x:Bind Mode}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            <TextBlock FontSize="36" Text="{x:Bind Source}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            <Grid Height="100" Tapped="Grid_Tapped">
+                <InkCanvas x:Name="inkCanvas"  ></InkCanvas>
+                <TextBlock x:Name="sin" Text="Sign Your Name Here" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+            </Grid>
 
-    <StackPanel x:Name="root" Background="{ThemeResource SystemControlAcrylicElementMediumHighBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Center"  >
-        <TextBlock Text="Succeed" FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-        <TextBlock Text="{x:Bind Mode}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-        <TextBlock FontSize="36" Text="{x:Bind Source}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-        <InkCanvas x:Name="inkCanvas" Height="100" ></InkCanvas>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-             <AppBarButton Icon="Share" Click="AppBarButton_Click"/>
-            <AppBarButton Icon="Save"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <AppBarButton Icon="Share" Click="AppBarButton_Click"/>
+                <AppBarButton Icon="Back" Click="AppBarButton_Click_1"/>
+                <AppBarButton Icon="Save"/>
+            </StackPanel>
+
         </StackPanel>
-       
-    </StackPanel>
+    </Grid>
+   
 </UserControl>

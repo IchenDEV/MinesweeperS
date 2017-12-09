@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MineS</RootNamespace>
     <AssemblyName>MineS</AssemblyName>
-    <DefaultLanguage>zh-CN</DefaultLanguage>
+    <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.16299.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
@@ -17,7 +17,11 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
-    <PackageCertificateKeyFile>MineS_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>MineS_StoreKey.pfx</PackageCertificateKeyFile>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>x86|x64</AppxBundlePlatforms>
+    <PackageCertificateThumbprint>5B43CC4ABB8A30B3386D886820297E6255E57E9E</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -95,7 +99,7 @@
     <Compile Include="Achievement.xaml.cs">
       <DependentUpon>Achievement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AmbLight.cs" />
+    <Compile Include="Lights\AmbLight.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -103,7 +107,7 @@
     <Compile Include="Guider.xaml.cs">
       <DependentUpon>Guider.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HoverLight.cs" />
+    <Compile Include="Lights\HoverLight.cs" />
     <Compile Include="LocalTheme.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -125,6 +129,9 @@
     <Compile Include="ThemeSet.xaml.cs">
       <DependentUpon>ThemeSet.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LostDialog.xaml.cs">
+      <DependentUpon>LostDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WinDialog.xaml.cs">
       <DependentUpon>WinDialog.xaml</DependentUpon>
     </Compile>
@@ -133,7 +140,9 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <None Include="MineS_StoreKey.pfx" />
     <None Include="MineS_TemporaryKey.pfx" />
+    <PRIResource Include="Strings\Zh-cn\zh-cn.resw" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Background.png" />
@@ -145,6 +154,7 @@
     <Content Include="Assets\Theme\1709\01_hiking_1920x1200.png" />
     <Content Include="Assets\Theme\1709\M.mp3" />
     <Content Include="Damaged_NormalMap.jpg" />
+    <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -196,6 +206,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="LostDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="WinDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -203,7 +217,10 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.0.1</Version>
+      <Version>6.0.4</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Services.Store.SDK">
+      <Version>10.1705.16001</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
       <Version>2.1.0</Version>
@@ -213,8 +230,20 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <SDKReference Include="Microsoft.Advertising.Xaml, Version=10.0">
+      <Name>Microsoft Advertising SDK for XAML</Name>
+    </SDKReference>
+    <SDKReference Include="Microsoft.Services.Store.Engagement, Version=10.0">
+      <Name>Microsoft Engagement Framework</Name>
+    </SDKReference>
+    <SDKReference Include="Microsoft.VCLibs, Version=14.0">
+      <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
+    </SDKReference>
     <SDKReference Include="WindowsDesktop, Version=10.0.16299.0">
       <Name>Windows Desktop Extensions for the UWP</Name>
+    </SDKReference>
+    <SDKReference Include="WindowsMobile, Version=10.0.15063.0">
+      <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>
   <ItemGroup>

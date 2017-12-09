@@ -11,6 +11,11 @@
     <Page.Resources>
         <local:ConverterTOIMG x:Key="ImgConverter"/>
         <local:ConverterTOResouce x:Key="ResouceConverter"/>
+        <ResourceDictionary x:Key="Res">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary x:Name="ioh"  Source="ms-appx:///Resouse/Dictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Page.Resources>
     <Grid  x:Name="root" Background="{x:Bind local:LocalTheme.Local.BackgroundResouceName ,Converter={StaticResource ResouceConverter}}">
         <Border Opacity="0.8">
@@ -23,11 +28,9 @@
                         AutomaticallyStart="True"/>
             </interactivity:Interaction.Behaviors>
         </Border>
-        
-        <StackPanel x:Name="Showpp"> 
-            <local:SetPage x:Name="set"  Margin="15,0,15,0"></local:SetPage>
-        </StackPanel>
+       
         <Frame x:Name="froot" Navigated="froot_Navigated">
         </Frame>
+        <local:ShButton x:Name="newGame" VerticalAlignment="Bottom" HorizontalAlignment="Right" Tapped="ShButton_Tapped" Visibility="Collapsed"></local:ShButton>
     </Grid>
 </Page>

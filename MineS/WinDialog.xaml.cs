@@ -26,7 +26,16 @@ namespace MineS
     {
         private int _Source;
         private string _Mode;
-
+        private bool _back;
+        public bool Back
+        {
+            get { return this._back; }
+            set
+            {
+                this._back = value;
+                this.OnPropertyChanged();
+            }
+        }
         public WinDialog()
         {
             this.InitializeComponent();
@@ -51,6 +60,7 @@ namespace MineS
             request.Data.Properties.Title = "Share Example";
            
             request.Data.SetBitmap(RandomAccessStreamReference.CreateFromStream(ss));
+            request.GetDeferral();
         }
 
         public int Source
@@ -89,6 +99,16 @@ namespace MineS
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
             DataTransferManager.ShowShareUI();
+        }
+
+        private void Grid_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            sin.Visibility = Visibility.Collapsed;
+        }
+
+        private void AppBarButton_Click_1(object sender, RoutedEventArgs e)
+        {
+            Back = true;
         }
     }
 }

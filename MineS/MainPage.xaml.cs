@@ -27,22 +27,14 @@ namespace MineS
         {
             LocalTheme.Initialize();
             this.InitializeComponent();
-            set.band = froot;
+
+            froot.Navigate(typeof(SetPage), froot);
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
-            //LightInterop light = new LightInterop();
-            //root.Children.Add(light);
-
-
-            //Map M = new Map(set.MapHeigh, set.MapWidth, set.NumMine);
-            //root.Children.Add(M);
-            //M.HorizontalAlignment = HorizontalAlignment.Stretch;
-            //M.VerticalAlignment = VerticalAlignment.Stretch;
-            //M.PropertyChanged += M_PropertyChanged;
-            Showpp.Visibility = Visibility.Collapsed;
+          
         }
 
         private void M_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -50,20 +42,26 @@ namespace MineS
            if((sender as Map).finished)
             {
                 root.Children.Remove((sender as Map));
-               Showpp.Visibility = Visibility.Visible;
+              
             }
         }
 
         private void froot_Navigated(object sender, NavigationEventArgs e)
         {
-           if(e.SourcePageType == typeof(Map))
+            if (e.SourcePageType == typeof(Map))
             {
-                Showpp.Visibility = Visibility.Collapsed;
+                newGame.Visibility = Visibility.Visible;
             }
             else
             {
-                Showpp.Visibility = Visibility.Visible;
+                newGame.Visibility = Visibility.Collapsed;
             }
+        }
+
+        private void ShButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            froot.Navigate(typeof(SetPage), froot);
+           // newGame.Visibility = Visibility.Collapsed;
         }
     }
 }

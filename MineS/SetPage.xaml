@@ -1,4 +1,4 @@
-﻿<UserControl
+﻿<Page
     x:Class="MineS.SetPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -7,14 +7,18 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
+    xmlns:UI="using:Microsoft.Advertising.WinRT.UI"
     mc:Ignorable="d" FontFamily="Bahnschrift Light" >
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary x:Name="ioh"  Source="ms-appx:///Resouse/Dictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+       
+        </ResourceDictionary>
+    </Page.Resources>
     <Grid>
         
-        <Grid>
-            <Button  Click="Button_Click_1">
-                <SymbolIcon Symbol="Setting" />
-            </Button>
-        </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="618*"/>
@@ -37,7 +41,7 @@
                 <Button Background="{ThemeResource SuperHighAcrylicELBrush}"  HorizontalAlignment="Stretch"  Click="Easy_Click" VerticalAlignment="Stretch" Margin="36">
                     <Image Source="Assets/Easy.png" Stretch="UniformToFill"/>
                 </Button>
-                <Button Background="{ThemeResource SuperHighAcrylicELBrush}"   HorizontalAlignment="Stretch" Click="Mid_Click" Grid.Column="1" VerticalAlignment="Stretch" Margin="36">
+                <Button Background="{ThemeResource SuperHighAcrylicELBrush}"   HorizontalAlignment="Stretch" Click="Mid_Click" Grid.Column="1" VerticalAlignment="Stretch" Margin="36" Style="{StaticResource ButtonStyle}">
                     <Image Source="Assets/Mid.png" Stretch="UniformToFill"/>
                 </Button>
                 <Button Background="{ThemeResource SuperHighAcrylicELBrush}"  HorizontalAlignment="Stretch" Click="Hatd_Click" Grid.Row="1"  Margin="36" VerticalAlignment="Stretch">
@@ -48,6 +52,18 @@
                 </Button>
             </Grid>
 
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Button  Click="Button_Click_1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <SymbolIcon Symbol="Setting" />
+                </Button>
+            </Grid>
+            <UI:AdControl Grid.Row="0" Grid.Column="1"
+                              ApplicationId="9plcjb2gqn1t"
+                              AdUnitId="341043"
+                              HorizontalAlignment="Center"
+                              Height="250"
+                              VerticalAlignment="Top"
+                              Width="300"/>
         </Grid>
         <Grid x:Name="Cur" Visibility="Collapsed" Grid.RowSpan="2" Background="{ThemeResource SystemControlAcrylicElementMediumHighBrush}" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"  >
             <Grid.RowDefinitions>
@@ -76,4 +92,4 @@
     </Grid>
    
 
-</UserControl>
+</Page>

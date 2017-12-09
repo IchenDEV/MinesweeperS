@@ -1,8 +1,10 @@
 ﻿using Microsoft.Toolkit.Uwp.Helpers;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +19,7 @@ namespace MineS
         // To get operating system version
         public static OSVersion OperatingSystemVersion => SystemInformation.OperatingSystemVersion;
         public static Themes Local { get; set; }
+      
         public async static void Initialize()
         {
 
@@ -43,19 +46,11 @@ namespace MineS
                         MarkMineResouceName = "",
                         NomalMineResouceName = "",
                         ShowNumResouceName = "",
-                        mineColor="#"
+                        mineColor = "#"
                     };
                     Local = Theme;
                     string js = TojsonData(Theme);
-                    using (var stream = await (file as StorageFile).OpenStreamForWriteAsync())
-                    {
-                        using (StreamWriter sw = new StreamWriter(stream))
-                        {
-                            sw.Write(js);
-                            await sw.FlushAsync();
-
-                        }
-                    }
+                    await write( js);
                 }
 
 
@@ -80,6 +75,21 @@ namespace MineS
 
 
         }
+
+        public static async Task write( string js)
+        {
+            var file = await localFolder.TryGetItemAsync("localTheme.json");
+            using (var stream = await (file as StorageFile).OpenStreamForWriteAsync())
+            {
+                using (StreamWriter sw = new StreamWriter(stream))
+                {
+                    sw.Write(js);
+                    await sw.FlushAsync();
+
+                }
+            }
+        }
+
         public static string TojsonData(object item)
         {
             DataContractJsonSerializer serializer = new DataContractJsonSerializer(item.GetType());

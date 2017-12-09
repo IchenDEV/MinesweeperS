@@ -23,12 +23,19 @@ namespace MineS
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class SetPage : UserControl, INotifyPropertyChanged
+    public sealed partial class SetPage :Page, INotifyPropertyChanged
 
     {
         public SetPage()
         {
             this.InitializeComponent();
+        }
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+           band =
+         ((Frame)e.Parameter);
+           
+
         }
         public Frame band;
         private int _MapHeigh = 0;
@@ -93,7 +100,7 @@ namespace MineS
 
         void goToPlay()
         {
-            MapData md = new MapData() { w = MapWidth, h = MapHeigh, mine = NumMine, mode = Mode };
+            MapData md = new MapData() { w = MapWidth, h = MapHeigh, mine = NumMine, mode = Mode,local=band };
             band.Navigate(typeof(Map),md);
         }
         private void Easy_Click(object sender, RoutedEventArgs e)
