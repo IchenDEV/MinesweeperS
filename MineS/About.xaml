@@ -6,9 +6,21 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+        xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
     mc:Ignorable="d">
 
     <Grid Background="{x:Bind local:LocalTheme.Local.BackgroundResouceName ,Converter={StaticResource ResouceConverter}}">
+        <Border Opacity="0.5">
+            <Image  Source="{x:Bind local:LocalTheme.Local.BackIMage ,Converter={StaticResource ImgConverter}}" Stretch="UniformToFill" ></Image>
+            <interactivity:Interaction.Behaviors>
+                <behaviors:Blur x:Name="BlurBehavior"
+                        Value="8.54"
+                        Duration="272.94"
+                        Delay="30.26"
+                        AutomaticallyStart="True"/>
+            </interactivity:Interaction.Behaviors>
+        </Border>
         <TextBlock Text="About" x:Uid="about" FontSize="36" Margin="36"/>
         <ScrollViewer Margin="50,100,0,0" HorizontalAlignment="Center">
              <StackPanel >

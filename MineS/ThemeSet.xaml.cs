@@ -81,7 +81,7 @@ namespace MineS
             var file = await fileOpen.PickSingleFileAsync();
             var dest = await ApplicationData.Current.LocalFolder.CreateFolderAsync("Theme", CreationCollisionOption.OpenIfExists);
             var fli = await file.CopyAsync(dest, file.Name, NameCollisionOption.ReplaceExisting);
-            LocalTheme.Local.BackIMage = fli.Path;
+            LocalTheme.Local.BackIMage.Add( fli.Path);
             localtheme = LocalTheme.Local;
             await LocalTheme.write(LocalTheme.TojsonData(localtheme));
         }

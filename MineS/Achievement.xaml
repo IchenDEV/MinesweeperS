@@ -4,10 +4,22 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MineS"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
     <Grid Background="{x:Bind local:LocalTheme.Local.BackgroundResouceName ,Converter={StaticResource ResouceConverter}}">
+        <Border Opacity="0.5">
+            <Image  Source="{x:Bind local:LocalTheme.Local.BackIMage ,Converter={StaticResource ImgConverter}}" Stretch="UniformToFill" ></Image>
+            <interactivity:Interaction.Behaviors>
+                <behaviors:Blur x:Name="BlurBehavior"
+                        Value="8.54"
+                        Duration="272.94"
+                        Delay="30.26"
+                        AutomaticallyStart="True"/>
+            </interactivity:Interaction.Behaviors>
+        </Border>
         <TextBlock VerticalAlignment="Center" Text="Sorry,We do not finsh it" HorizontalAlignment="Center" FontSize="25"/>
     </Grid>
 </Page>

@@ -15,7 +15,7 @@ namespace MineS
         public object Convert(object value, Type targetType, object parameter, string language)
         {
        
-            return new BitmapImage(new Uri(value.ToString()));
+            return new BitmapImage(new Uri(((List<string>)value)[0]));
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

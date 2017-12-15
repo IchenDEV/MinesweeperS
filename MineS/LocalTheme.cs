@@ -35,8 +35,8 @@ namespace MineS
                     {
                         ThemeName = "Snow",
                         BackgroundResouceName = "SuperMidAcrylicWiBrush",
-                        ClickMusic = "ms-appx:///Assets//Theme//1709//M.mp3",
-                        BackIMage = "ms-appx:///Assets//Theme//1709//01_hiking_1920x1200.png",
+                        ClickMusic = "ms-appx:///Assets//Theme//1709//M.mp3",      
+                        BackIMage=new List<string> (),
                         IsAcrlic = true,
                         IsHighMode = true,
                         BoomMusic = "",
@@ -48,6 +48,7 @@ namespace MineS
                         ShowNumResouceName = "",
                         mineColor = "#"
                     };
+                    Theme.BackIMage.Add("ms-appx:///Assets//Theme//1709//01_hiking_1920x1200.png");
                     Local = Theme;
                     string js = TojsonData(Theme);
                     await write( js);
@@ -123,11 +124,13 @@ namespace MineS
     {
         public Themes() { }
         public String ThemeName { get; set; }
-        public String BackIMage { get; set; }
+        public bool AutoBackChange{get;set;}
+        public List<String> BackIMage { get; set; }
         public String MineIM { get; set; }
         public String KilIM { get; set; }
         public String ClickMusic { get; set; }
         public String BoomMusic { get; set; }
+        public String MarkMusic { get; set; }
         public String SuccessMusic { get; set; }
         public bool IsHighMode { get; set; }
         public bool IsAcrlic { get; set; }
@@ -135,6 +138,7 @@ namespace MineS
         public String BackgroundResouceName { get; set; }
         public String NomalMineResouceName { get; set; }
         public String ShowNumResouceName { get; set; }
+        public bool isAutoColor { get; set; }
         public string mineColor { get; set; }
         private int MinSystemVer { get; set; }
 
