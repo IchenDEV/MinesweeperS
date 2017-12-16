@@ -1,0 +1,41 @@
+﻿<UserControl
+    x:Class="MineS.ThemePicker"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MineS"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    <UserControl.Resources>
+        <local:ConverterTOIMG x:Key="ImgConverter"/>
+        <local:ConverterTOResouce x:Key="ResouceConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid>
+            <GridView x:Name="Gv">
+                <GridView.ItemTemplate >
+                    <DataTemplate x:DataType="local:Themes">
+                        <Grid>
+                            <Border Opacity="0.5">
+                                <Image  Source="{x:Bind BackIMage ,Converter={StaticResource ImgConverter}}" Stretch="UniformToFill" ></Image>
+                                <interactivity:Interaction.Behaviors>
+                                    <behaviors:Blur x:Name="BlurBehavior"
+                        Value="8.54"
+                        Duration="272.94"
+                        Delay="30.26"
+                        AutomaticallyStart="True"/>
+                                </interactivity:Interaction.Behaviors>
+                            </Border>
+                        </Grid>
+                           
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+        </Grid>
+       
+    </Grid>
+</UserControl>

@@ -126,6 +126,9 @@
     <Compile Include="ShaButton.xaml.cs">
       <DependentUpon>ShaButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ThemePicker.xaml.cs">
+      <DependentUpon>ThemePicker.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ThemeSet.xaml.cs">
       <DependentUpon>ThemeSet.xaml</DependentUpon>
     </Compile>
@@ -242,6 +245,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ThemePicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ThemeSet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -282,8 +289,8 @@
     <SDKReference Include="WindowsDesktop, Version=10.0.16299.0">
       <Name>Windows Desktop Extensions for the UWP</Name>
     </SDKReference>
-    <SDKReference Include="WindowsMobile, Version=10.0.15063.0">
-      <Name>Windows Mobile Extensions for the UWP</Name>
+    <SDKReference Include="WindowsMobile, Version=10.0.16299.0">
+      <Name>Windows Mobile Extensions for the UWP %28WindowsMobile, Version=10.0.16299.0%29</Name>
     </SDKReference>
   </ItemGroup>
   <ItemGroup>

@@ -26,16 +26,19 @@
         </Border>
         <StackPanel Background="{x:Bind local:LocalTheme.Local.BackgroundResouceName ,Converter={StaticResource ResouceConverter}}" >
             <TextBlock  Margin="30,30,0,0" Text="Theme Settings" x:Uid="ThemeSet" FontSize="36" FontWeight="Bold" />
-        </StackPanel>
-        <StackPanel HorizontalAlignment="Center" Margin="0,100,0,0">
-            <ScrollViewer>
+        </StackPanel> 
+        <ScrollViewer HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+        <StackPanel  Margin="250,100,0,0" HorizontalAlignment="Stretch">
+           
                 <StackPanel  Margin="30">
+                    
                     <controls:HeaderedTextBlock 
             Header="Current Theme Name"
                         x:Uid="CTN"
             Text="{x:Bind localtheme.ThemeName}"
             Orientation="Horizontal"
             Margin="20,10,0,0" />
+                    
                     <ToggleSwitch Header="Is NumBack Flower Enable" x:Uid="IsNFE" IsOn="{x:Bind localtheme.IsHighMode,Mode=TwoWay}" Toggled="ToggleSwitch_Toggled"></ToggleSwitch>
                     <!--<ToggleSwitch Header="Is Acr Enable" IsOn="{x:Bind localtheme.IsAcrlic,Mode=TwoWay}" ></ToggleSwitch>-->
 
@@ -68,7 +71,8 @@
 
                 </StackPanel>
 
-            </ScrollViewer>
-        </StackPanel>
+           
+        </StackPanel> 
+        </ScrollViewer>
     </Grid>
 </Page>

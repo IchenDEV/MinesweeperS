@@ -425,7 +425,8 @@ Unload(Point P)
             try
             {
                 float szoom = (float)Math.Min(Mapv.ActualWidth / (50 * Widt), Mapv.ActualHeight / (50 * Heigh));
-                Mapv.ChangeView(0, -300, szoom);
+              // Mapv.ChangeView(0,0 , szoom);
+                Mapv.ZoomToFactor(szoom);
             }
             catch
             {
