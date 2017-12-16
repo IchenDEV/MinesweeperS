@@ -19,6 +19,9 @@
     </Page.Resources>
     <Grid x:Name="root" Margin="0,50,0,0">
         <MediaElement x:Name="M3" Source="{x:Bind local:LocalTheme.Local.ClickMusic}" />
+        <MediaElement x:Name="M2" Source="{x:Bind local:LocalTheme.Local.BoomMusic}" />
+        <MediaElement x:Name="M1" Source="{x:Bind local:LocalTheme.Local.MarkMusic}" />
+        <MediaElement x:Name="M0" Source="{x:Bind local:LocalTheme.Local.SuccessMusic}" />
         <ScrollViewer  x:Name="Mapv" ZoomMode="Enabled" MaxZoomFactor="10000" SizeChanged="Mapv_SizeChanged" VerticalScrollMode="Enabled" HorizontalScrollMode="Enabled" HorizontalSnapPointsAlignment="Near" VerticalSnapPointsAlignment="Near" ZoomSnapPointsType="OptionalSingle" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalScrollBarVisibility="Visible">
             <Grid x:Name="Map1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="8"  ></Grid>
         </ScrollViewer>

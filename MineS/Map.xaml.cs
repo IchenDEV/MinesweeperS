@@ -12,6 +12,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Phone.Devices.Notification;
 using Windows.UI;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -157,9 +158,17 @@ namespace MineS
                     ButtonCollection[i, j].VerticalAlignment = VerticalAlignment.Stretch;
                     try
                     {
-                        var ss = LocalTheme.Local.mineColor.Remove(0, 1);
-
-                        ButtonCollection[i, j].Background = new SolidColorBrush(Color.FromArgb(Convert.ToByte(ss.Substring(0, 2), 16), Convert.ToByte(ss.Substring(2, 2), 16), Convert.ToByte(ss.Substring(4, 2), 16), Convert.ToByte(ss.Substring(6, 2), 16)));
+                        if (LocalTheme.Local.mineColor== "transparent")
+                        {
+                            UISettings ui = new UISettings();
+                            ButtonCollection[i, j].Background = new SolidColorBrush(ui.GetColorValue( UIColorType.Accent));
+                        }
+                        else
+                        {
+                            var ss = LocalTheme.Local.mineColor.Remove(0, 1);
+                            ButtonCollection[i, j].Background = new SolidColorBrush(Color.FromArgb(Convert.ToByte(ss.Substring(0, 2), 16), Convert.ToByte(ss.Substring(2, 2), 16), Convert.ToByte(ss.Substring(4, 2), 16), Convert.ToByte(ss.Substring(6, 2), 16)));
+                        }
+                       
                     }
                     catch { }
                   
@@ -182,11 +191,11 @@ namespace MineS
 
         private void Map_Holding(object sender, HoldingRoutedEventArgs e)
         {
+            M1.Play();
             var P = (sender as Button).Tag as Point;
             Marked[P.x, P.y] = !Marked[P.x, P.y];
             if (Marked[P.x, P.y])
             {
-
 
                 (sender as Button).Style = (Style)ioh["ButtonRevealMarkedStyle"];
 
@@ -205,9 +214,7 @@ namespace MineS
 
         }
 
-        private async
-        Task
-Unload(Point P)
+        private async Task Unload(Point P)
         {
 
 
@@ -241,6 +248,8 @@ Unload(Point P)
                 finished = true;
                 watch.Stop();
                 LostDialog lost = new LostDialog();
+                M2.Play();
+                AchievementInfo.GameoverTime++;
                 root.Children.Add(lost);
                 lost.PropertyChanged += Win_PropertyChanged;
 
@@ -258,6 +267,8 @@ Unload(Point P)
                 var time = watch.Elapsed.TotalSeconds;
                 int source = (int)((AllNum * AllNum) * 1000 / (Widt * Heigh * time));
                 WinDialog win = new WinDialog() { Source = source, Mode = String.Format("{0},{1},{2}\n{3}", Widt, Heigh, AllNum, Mode) };
+                AchievementInfo.WinTime++;
+                M3.Play();
                 root.Children.Add(win);
                 win.PropertyChanged += Win_PropertyChanged;
                 foreach (var item in ButtonCollection)
@@ -279,6 +290,7 @@ Unload(Point P)
 
         private void B_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
+            M1.Play();
             var P = (sender as Button).Tag as Point;
             Marked[P.x, P.y] = !Marked[P.x, P.y];
             if (Marked[P.x, P.y])
@@ -335,9 +347,9 @@ Unload(Point P)
         }
 
         private async void B_Click(object sender, RoutedEventArgs e)
-        {
+        {  AchievementInfo.ClickTime++;
             var P = (sender as Button).Tag as Point;
-         
+          
             M3.Play();
             pr.IsActive = true;
             if (Marked[P.x, P.y])
@@ -425,8 +437,8 @@ Unload(Point P)
             try
             {
                 float szoom = (float)Math.Min(Mapv.ActualWidth / (50 * Widt), Mapv.ActualHeight / (50 * Heigh));
-              // Mapv.ChangeView(0,0 , szoom);
-                Mapv.ZoomToFactor(szoom);
+              Mapv.ChangeView(0,0 , szoom);
+              //  Mapv.ZoomToFactor(szoom);
             }
             catch
             {

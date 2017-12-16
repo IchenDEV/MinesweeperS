@@ -12,6 +12,7 @@
     <Page.Resources>
         <local:ConverterTOIMG x:Key="ImgConverter"/>
         <local:ConverterTOResouce x:Key="ResouceConverter"/>
+        <local:ObjectConverterTOable x:Key="CheckCC"/>
     </Page.Resources>
     <Grid >
         <Border Opacity="0.5">
@@ -42,10 +43,12 @@
                     <ToggleSwitch Header="Is NumBack Flower Enable" x:Uid="IsNFE" IsOn="{x:Bind localtheme.IsHighMode,Mode=TwoWay}" Toggled="ToggleSwitch_Toggled"></ToggleSwitch>
                     <!--<ToggleSwitch Header="Is Acr Enable" IsOn="{x:Bind localtheme.IsAcrlic,Mode=TwoWay}" ></ToggleSwitch>-->
                     <local:ThemePicker></local:ThemePicker>
-                    <StackPanel Orientation="Horizontal">
+                    
+                    <StackPanel >
                         <TextBlock Text="Color" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
+                        <CheckBox x:Name="ColorAuto" IsChecked="{x:Bind local:LocalTheme.Local.isAutoColor,Mode=TwoWay}" Content="Auto" Checked="ColorAuto_Checked"></CheckBox>
                         <Rectangle ></Rectangle>
-                        <controls:Expander x:Name="Expander1" VerticalAlignment="Top" Margin="0,0,0,10"
+                        <controls:Expander IsEnabled="{x:Bind ColorAuto.IsChecked ,Converter={StaticResource CheckCC},Mode=OneWay}" x:Name="Expander1" VerticalAlignment="Top" Margin="0,0,0,10"
                           Header="Color Picker"
                           HorizontalContentAlignment="Stretch"
                        

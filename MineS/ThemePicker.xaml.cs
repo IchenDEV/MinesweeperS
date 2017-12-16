@@ -28,9 +28,16 @@ namespace MineS
         ObservableCollection<Themes> them = new ObservableCollection<Themes>();
         private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-
-
-            var folder = await ApplicationData.Current.LocalFolder.GetFolderAsync("Theme");
+           StorageFolder folder;
+            try
+            {
+                folder = await ApplicationData.Current.LocalFolder.GetFolderAsync("Theme");
+            }
+            catch
+            {
+             folder=await   ApplicationData.Current.LocalFolder.CreateFolderAsync("Theme");
+            }
+           
 
             List<StorageFile> SL = (await folder.GetFilesAsync()).ToList();
             foreach (var item in SL)

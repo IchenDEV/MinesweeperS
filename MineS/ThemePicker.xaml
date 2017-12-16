@@ -19,7 +19,7 @@
             <GridView x:Name="Gv" ItemsSource="{x:Bind them}" ItemClick="Gv_ItemClick" IsItemClickEnabled="True">
                 <GridView.ItemTemplate >
                     <DataTemplate x:DataType="local:Themes">
-                        <Grid>
+                        <Grid  >
                             <Border Opacity="0.5">
                                 <Image  Source="{x:Bind BackIMage ,Converter={StaticResource ImgConverter}}" Stretch="UniformToFill" ></Image>
                                 <interactivity:Interaction.Behaviors>
@@ -30,6 +30,11 @@
                         AutomaticallyStart="True"/>
                                 </interactivity:Interaction.Behaviors>
                             </Border>
+                            <Grid Background="{StaticResource SystemControlAcrylicElementMediumHighBrush}">
+                                  <TextBlock VerticalAlignment="Bottom" Text="{x:Bind ThemeName}"/>
+                            </Grid>
+                                
+                          
                         </Grid>
                            
                     </DataTemplate>

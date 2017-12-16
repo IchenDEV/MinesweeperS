@@ -113,5 +113,17 @@ namespace MineS
            
 
         }
+
+        private async void ColorAuto_Checked(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+LocalTheme.Local.mineColor = "transparent";
+            localtheme = LocalTheme.Local;
+            await LocalTheme.write(LocalTheme.TojsonData(localtheme));
+            }
+            catch { }
+            
+        }
     }
 }

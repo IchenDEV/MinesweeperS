@@ -20,8 +20,9 @@
     <PackageCertificateKeyFile>MineS_StoreKey.pfx</PackageCertificateKeyFile>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
-    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
+    <AppxBundlePlatforms>x64</AppxBundlePlatforms>
     <PackageCertificateThumbprint>226EACE173E3A7335AC613D3698E16302B52B6F9</PackageCertificateThumbprint>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -102,6 +103,7 @@
     <Compile Include="Achievement.xaml.cs">
       <DependentUpon>Achievement.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AchievementInfo.cs" />
     <Compile Include="Lights\AmbLight.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -150,6 +152,7 @@
     <PRIResource Include="Strings\Zh-cn\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Achievent\Click1.png" />
     <Content Include="Assets\Background.png" />
     <Content Include="Assets\Customize.png" />
     <Content Include="Assets\Damaged_NormalMap.jpg" />

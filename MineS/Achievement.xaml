@@ -7,8 +7,14 @@
         xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
-
+    mc:Ignorable="d" Loaded="Page_Loaded">
+    <Page.Resources>
+        <ResourceDictionary x:Key="Res">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary x:Name="ioh"  Source="ms-appx:///Resouse/Dictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
     <Grid Background="{x:Bind local:LocalTheme.Local.BackgroundResouceName ,Converter={StaticResource ResouceConverter}}">
         <Border Opacity="0.5">
             <Image  Source="{x:Bind local:LocalTheme.Local.BackIMage ,Converter={StaticResource ImgConverter}}" Stretch="UniformToFill" ></Image>
@@ -21,5 +27,23 @@
             </interactivity:Interaction.Behaviors>
         </Border>
         <TextBlock VerticalAlignment="Center" Text="Sorry,We do not finsh it" HorizontalAlignment="Center" FontSize="25"/>
+        <GridView IsItemClickEnabled="True" ItemsSource="{x:Bind AC}" HorizontalAlignment="Stretch" VerticalAlignment="Center" >
+            <GridView.ItemTemplate>
+                <DataTemplate x:DataType="local:Achievements">
+                    <Button Background="#00000000" IsEnabled="{x:Bind ClickMaster}" Style="{StaticResource ButtonStyle}" Width="75" Height="76">
+                           <Grid >
+                            
+                                 <Image Source="{x:Bind img}" Stretch="Uniform"></Image>
+                            
+                            <Grid  Background="{StaticResource SystemControlAcrylicElementMediumHighBrush}" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                                <TextBlock Text="{x:Bind name}" VerticalAlignment="Bottom"></TextBlock>
+                            </Grid>
+                            
+                           </Grid>
+                        </Button>   
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+
     </Grid>
 </Page>

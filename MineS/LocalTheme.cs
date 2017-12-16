@@ -19,7 +19,7 @@ namespace MineS
         // To get operating system version
         public static OSVersion OperatingSystemVersion => SystemInformation.OperatingSystemVersion;
         public static Themes Local { get; set; }
-      
+
         public async static void Initialize()
         {
 
@@ -35,14 +35,15 @@ namespace MineS
                     {
                         ThemeName = "Snow",
                         BackgroundResouceName = "SuperMidAcrylicWiBrush",
-                        ClickMusic = "ms-appx:///Assets//Theme//1709//M.mp3",      
-                        BackIMage=new List<string> (),
+                        ClickMusic = "ms-appx:///Assets//Theme//1709//M.mp3",
+                        BackIMage = new List<string>(),
                         IsAcrlic = true,
                         IsHighMode = true,
-                        BoomMusic = "",
+                        BoomMusic = "ms-appx:///Assets//Theme//1709//M.mp3",
                         KilIM = "",
                         MineIM = "",
-                        SuccessMusic = "",
+                        MarkMusic= "ms-appx:///Assets//Theme//1709//M.mp3",
+                        SuccessMusic = "ms-appx:///Assets//Theme//1709//M.mp3",
                         MarkMineResouceName = "",
                         NomalMineResouceName = "",
                         ShowNumResouceName = "",
@@ -51,7 +52,7 @@ namespace MineS
                     Theme.BackIMage.Add("ms-appx:///Assets//Theme//1709//01_hiking_1920x1200.png");
                     Local = Theme;
                     string js = TojsonData(Theme);
-                    await write( js);
+                    await write(js);
                 }
 
 
@@ -77,9 +78,10 @@ namespace MineS
 
         }
 
-        public static async Task write( string js)
+        public static async Task write(string js)
         {
-            var file = await localFolder.TryGetItemAsync("localTheme.json");
+            var file 
+             =await localFolder.CreateFileAsync("localTheme.json", CreationCollisionOption.ReplaceExisting);
             using (var stream = await (file as StorageFile).OpenStreamForWriteAsync())
             {
                 using (StreamWriter sw = new StreamWriter(stream))
@@ -124,7 +126,7 @@ namespace MineS
     {
         public Themes() { }
         public String ThemeName { get; set; }
-        public bool AutoBackChange{get;set;}
+        public bool AutoBackChange { get; set; }
         public List<String> BackIMage { get; set; }
         public String MineIM { get; set; }
         public String KilIM { get; set; }
