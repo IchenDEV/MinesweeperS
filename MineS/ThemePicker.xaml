@@ -9,14 +9,14 @@
      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
     d:DesignHeight="300"
-    d:DesignWidth="400">
+    d:DesignWidth="400" Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <local:ConverterTOIMG x:Key="ImgConverter"/>
         <local:ConverterTOResouce x:Key="ResouceConverter"/>
     </UserControl.Resources>
     <Grid>
         <Grid>
-            <GridView x:Name="Gv">
+            <GridView x:Name="Gv" ItemsSource="{x:Bind them}" ItemClick="Gv_ItemClick" IsItemClickEnabled="True">
                 <GridView.ItemTemplate >
                     <DataTemplate x:DataType="local:Themes">
                         <Grid>

@@ -145,6 +145,7 @@
     </AppxManifest>
     <None Include="MineS_StoreKey.pfx" />
     <None Include="MineS_TemporaryKey.pfx" />
+    <None Include="Theme\Shine.json" />
     <PRIResource Include="Strings\en-US\Resources.resw" />
     <PRIResource Include="Strings\Zh-cn\Resources.resw" />
   </ItemGroup>

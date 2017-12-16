@@ -41,7 +41,7 @@
                     
                     <ToggleSwitch Header="Is NumBack Flower Enable" x:Uid="IsNFE" IsOn="{x:Bind localtheme.IsHighMode,Mode=TwoWay}" Toggled="ToggleSwitch_Toggled"></ToggleSwitch>
                     <!--<ToggleSwitch Header="Is Acr Enable" IsOn="{x:Bind localtheme.IsAcrlic,Mode=TwoWay}" ></ToggleSwitch>-->
-
+                    <local:ThemePicker></local:ThemePicker>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Color" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
                         <Rectangle ></Rectangle>

@@ -14,8 +14,14 @@ namespace MineS
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-       
-            return new BitmapImage(new Uri(((List<string>)value)[0]));
+            try
+            {
+  return new BitmapImage(new Uri(((List<string>)value)[0]));
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
