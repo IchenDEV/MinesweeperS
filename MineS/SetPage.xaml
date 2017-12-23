@@ -72,7 +72,7 @@
                                 <TextBlock   HorizontalAlignment="Center" Text="Height" VerticalAlignment="Center" FontSize="18"  ></TextBlock>
                                 <TextBlock Grid.Row="1"  HorizontalAlignment="Center" Text="Width" VerticalAlignment="Center" FontSize="18" ></TextBlock>
                                 <TextBlock Grid.Row="2" HorizontalAlignment="Center" Text="Number of mine" VerticalAlignment="Center" FontSize="18" ></TextBlock>
-                                <TextBox x:Name="MapHeightBox"  Text="{x:Bind MapHeigh ,Mode=TwoWay}" Grid.Column="1" Margin="5.2,5,4,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
+                                <TextBox x:Name="MapHeightBox"  Text="{x:Bind MapHeigh ,Mode=TwoWay}"  Grid.Column="1" Margin="5.2,5,4,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
                                 <TextBox x:Name="MapWidthBox"  Text="{x:Bind MapWidth ,Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Margin="5.2,5,4,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
                                 <TextBox x:Name="MapNumBox" Text="{x:Bind NumMine ,Mode=TwoWay}" Grid.Row="2" Grid.Column="1" Margin="5.2,5,4,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
                                 <HyperlinkButton Content="Play" Grid.RowSpan="5" Grid.ColumnSpan="5" Click="HyperlinkButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="30"  />
