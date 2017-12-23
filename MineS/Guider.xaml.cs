@@ -27,8 +27,8 @@ namespace MineS
         {
             this.InitializeComponent();
 
+           
 
-            
 
 
 

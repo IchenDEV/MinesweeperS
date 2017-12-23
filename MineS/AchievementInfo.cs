@@ -10,6 +10,35 @@ namespace MineS
     public static class AchievementInfo
     {
       static  LocalObjectStorageHelper local = new LocalObjectStorageHelper();
+
+
+        private static List<Achievements> _Achinves;
+        public static List<Achievements> Achinves
+        {
+            get
+            {
+                return local.Read<List<Achievements>>("Achinves", new List<Achievements>()); ;
+            }
+            set
+            {
+                local.Save("Achinves", value);
+                _Achinves = value;
+
+
+            }
+        }
+
+        public static void DeAC()
+        {
+
+
+        }
+        private static void DeAC()
+        {
+
+
+        }
+
         private static int _clickTime;
         public static int ClickTime
         {
@@ -21,6 +50,7 @@ namespace MineS
             {
                 local.Save("ClickTime", value);
                 _clickTime = value;
+               
 
             }
         }
@@ -35,7 +65,7 @@ namespace MineS
             set
             {
                 local.Save("GameoverTime", value);
-                _clickTime = value;
+                _gameoverTime = value;
 
             }
         }
@@ -50,7 +80,7 @@ namespace MineS
             set
             {
                 local.Save("WinTime", value);
-                _clickTime = value;
+                _winTime = value;
 
             }
         }
@@ -65,9 +95,71 @@ namespace MineS
             set
             {
                 local.Save("CrashTime", value);
-                _clickTime = value;
+                _crashTime = value;
 
             }
         }
+
+        private static int _maxSocore;
+        public static int MaxSocore
+        {
+            get
+            {
+                return local.Read("MaxSocore", 0); ;
+            }
+            set
+            {
+                local.Save("MaxSocore", value);
+                _maxSocore = value;
+
+            }
+        }
+
+        private static int _allSocore;
+        public static int AllSocore
+        {
+            get
+            {
+                return local.Read("AllSocore", 0); ;
+            }
+            set
+            {
+                local.Save("AllSocore", value);
+                _allSocore = value;
+
+            }
+        }
+
+        private static DateTimeOffset _singlePlayTime;
+        public static DateTimeOffset SinglePlayTime
+        {
+            get
+            {
+                return local.Read<DateTimeOffset>("SinglePlayTime", new DateTimeOffset (0,TimeSpan.Zero)); ;
+            }
+            set
+            {
+                local.Save<DateTimeOffset>("SinglePlayTime", value);
+                _singlePlayTime = value;
+
+            }
+        }
+        private static DateTimeOffset _allPlayTime;
+        public static DateTimeOffset AllPlayTime
+        {
+            get
+            {
+                return local.Read<DateTimeOffset>("AllPlayTime", new DateTimeOffset(0, TimeSpan.Zero)); ;
+            }
+            set
+            {
+                local.Save<DateTimeOffset>("AllPlayTime", value);
+                _allPlayTime = value;
+
+            }
+        }
+
+
+
     }
 }

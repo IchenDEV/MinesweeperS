@@ -151,9 +151,9 @@
             FallbackColor="#FF7F0000"/>
     <AcrylicBrush x:Key="SuperMidAcrylicELBrush"
             BackgroundSource="Backdrop"
-            TintColor="#FFFFFFFF"
+            TintColor="#5FFFFFFF"
             TintOpacity="0.2"
-            FallbackColor="#FF7F0000"/>
+            FallbackColor="#2F7F0000"/>
     <AcrylicBrush x:Key="SuperRedAcrylicELBrush"
             BackgroundSource="Backdrop"
             TintColor="#6F8F0000"

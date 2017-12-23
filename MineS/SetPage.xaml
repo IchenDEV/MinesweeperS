@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
     xmlns:UI="using:Microsoft.Advertising.WinRT.UI"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d" FontFamily="Bahnschrift Light" >
     <Page.Resources>
         <ResourceDictionary>
@@ -20,6 +21,7 @@
             <Storyboard x:Name="ExitStoryboard">
                <FadeOutThemeAnimation Storyboard.TargetName="super" />   
             </Storyboard>
+            <local:InputNumConverter x:Key="Numin"></local:InputNumConverter>
         </ResourceDictionary>
     </Page.Resources>
     <Grid>
@@ -55,8 +57,8 @@
                 <Button  Background="{ThemeResource SuperHighAcrylicELBrush}"  Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" Click="Button_Click"  Margin="10,10,36,36" VerticalAlignment="Stretch" Style="{StaticResource ButtonStyle}">
                     <Image Source="Assets/Customize.png" Stretch="UniformToFill"/>
                     <Button.Flyout>
-                        <Flyout x:Name="tl"    >
-                            <Grid x:Name="Cur"  Grid.RowSpan="3"   Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="100"  >
+                        <Flyout x:Name="tl" FlyoutPresenterStyle="{StaticResource InkToolbarFlyoutStyle}"  >
+                            <Grid x:Name="Cur" Background="{StaticResource SuperMidAcrylicELBrush}"   HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"  Margin="0"  >
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="50"/>
                                     <RowDefinition Height="50"/>
@@ -72,10 +74,11 @@
                                 <TextBlock   HorizontalAlignment="Center" Text="Height" VerticalAlignment="Center" FontSize="18"  ></TextBlock>
                                 <TextBlock Grid.Row="1"  HorizontalAlignment="Center" Text="Width" VerticalAlignment="Center" FontSize="18" ></TextBlock>
                                 <TextBlock Grid.Row="2" HorizontalAlignment="Center" Text="Number of mine" VerticalAlignment="Center" FontSize="18" ></TextBlock>
-                                <TextBox x:Name="MapHeightBox"  Text="{x:Bind MapHeigh ,Mode=TwoWay}"  Grid.Column="1" Margin="5.2,5,4,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
-                                <TextBox x:Name="MapWidthBox"  Text="{x:Bind MapWidth ,Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Margin="5.2,5,4,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
-                                <TextBox x:Name="MapNumBox" Text="{x:Bind NumMine ,Mode=TwoWay}" Grid.Row="2" Grid.Column="1" Margin="5.2,5,4,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
+                                <TextBox x:Name="MapHeightBox"  Text="{x:Bind MapHeigh ,Mode=TwoWay,Converter={StaticResource Numin}}"  Grid.Column="1" Margin="5.2,5,4,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
+                                <TextBox x:Name="MapWidthBox"  Text="{x:Bind MapWidth ,Mode=TwoWay,Converter={StaticResource Numin}}" Grid.Row="1" Grid.Column="1" Margin="5.2,5,4,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
+                                <TextBox x:Name="MapNumBox" Text="{x:Bind NumMine ,Mode=TwoWay,Converter={StaticResource Numin}}" Grid.Row="2" Grid.Column="1" Margin="5.2,5,4,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
                                 <HyperlinkButton Content="Play" Grid.RowSpan="5" Grid.ColumnSpan="5" Click="HyperlinkButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="30"  />
+                                <controls:InAppNotification x:Name="ExampleInAppNotification" VerticalAlignment="Bottom" Grid.RowSpan="10" Grid.ColumnSpan="10"/>
 
                             </Grid>
                         </Flyout>

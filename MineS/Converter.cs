@@ -48,13 +48,39 @@ namespace MineS
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-          
+
             return !(bool)value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             throw new NotImplementedException();
+        }
+    }
+    public class InputNumConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            return value.ToString();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            try
+            {
+                int a = System.Convert.ToInt16(value);
+                if (a > 3 && a < 35)
+                {
+                    return a;
+                }
+                else return 3;
+            }
+            catch
+            {
+                return 3;
+            }
+
+
         }
     }
 }

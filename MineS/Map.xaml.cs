@@ -247,6 +247,7 @@ namespace MineS
             {
                 finished = true;
                 watch.Stop();
+                AchievementInfo.AllPlayTime = AchievementInfo.AllPlayTime.Add(watch.Elapsed);
                 LostDialog lost = new LostDialog();
                 M2.Play();
                 AchievementInfo.GameoverTime++;
@@ -265,7 +266,12 @@ namespace MineS
             {
                 watch.Stop();
                 var time = watch.Elapsed.TotalSeconds;
+                AchievementInfo.AllPlayTime= AchievementInfo.AllPlayTime.Add(watch.Elapsed);
+               // AchievementInfo.SinglePlayTime = AchievementInfo.SinglePlayTime watch.Elapsed;
                 int source = (int)((AllNum * AllNum) * 1000 / (Widt * Heigh * time));
+                AchievementInfo.MaxSocore = Math.Max(AchievementInfo.MaxSocore, source);
+                AchievementInfo.AllSocore += source;
+                
                 WinDialog win = new WinDialog() { Source = source, Mode = String.Format("{0},{1},{2}\n{3}", Widt, Heigh, AllNum, Mode) };
                 AchievementInfo.WinTime++;
                 M3.Play();

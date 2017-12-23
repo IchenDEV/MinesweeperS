@@ -23,7 +23,7 @@ namespace MineS
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class SetPage :Page, INotifyPropertyChanged
+    public sealed partial class SetPage : Page, INotifyPropertyChanged
 
     {
         public SetPage()
@@ -32,8 +32,8 @@ namespace MineS
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-           band =
-         ((Frame)e.Parameter);
+            band =
+          ((Frame)e.Parameter);
 
             EnterStoryboard.Begin();
         }
@@ -41,7 +41,7 @@ namespace MineS
         private int _MapHeigh = 0;
         private int _MapWidth = 0;
         private int _NumMine = 0;
-        private string _Mode ;
+        private string _Mode;
         private bool _isCustom = false;
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
 
@@ -100,13 +100,13 @@ namespace MineS
 
         void goToPlay()
         {
-            MapData md = new MapData() { w = MapWidth, h = MapHeigh, mine = NumMine, mode = Mode,local=band };
-            band.Navigate(typeof(Map),md);
+            MapData md = new MapData() { w = MapWidth, h = MapHeigh, mine = NumMine, mode = Mode, local = band };
+            band.Navigate(typeof(Map), md);
         }
         private void Easy_Click(object sender, RoutedEventArgs e)
         {
             isCustom = false;
-            MapHeigh = 10; MapWidth = 10; NumMine = 9;Mode = "easy";
+            MapHeigh = 10; MapWidth = 10; NumMine = 9; Mode = "easy";
             goToPlay();
         }
 
@@ -128,7 +128,7 @@ namespace MineS
         {
             isCustom = true; Mode = "Custom";
             //  EnterStoryboard.Begin();
-           // tl.IsOpen = true;
+            // tl.IsOpen = true;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -140,13 +140,23 @@ namespace MineS
         {
             Frame rootFrame = Window.Current.Content as Frame;
 
-                        rootFrame.Navigate(typeof(ThemeSet));
-                    
-                }
+            rootFrame.Navigate(typeof(ThemeSet));
+
+        }
 
         private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
         {
-            goToPlay();
+
+            if (MapHeigh * MapWidth > 2 * NumMine)
+            {
+                goToPlay();
+            }
+            else
+            {
+                int duration = 2000;
+                ExampleInAppNotification.Show("Some text.", duration);
+            }
+
         }
 
         private void super_Loaded(object sender, RoutedEventArgs e)
@@ -169,5 +179,5 @@ namespace MineS
             rootFrame.Navigate(typeof(About));
         }
     }
-    
+
 }
