@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
@@ -81,6 +82,20 @@ namespace MineS
             }
 
 
+        }
+    }
+    public class ConverterTObrush : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            SolidColorBrush solidColorBrush = new SolidColorBrush((Color)value);
+
+            return solidColorBrush;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
         }
     }
 }

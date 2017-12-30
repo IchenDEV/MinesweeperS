@@ -13,6 +13,7 @@
         <local:ConverterTOIMG x:Key="ImgConverter"/>
         <local:ConverterTOResouce x:Key="ResouceConverter"/>
         <local:ObjectConverterTOable x:Key="CheckCC"/>
+        <local:ConverterTObrush x:Key="Brush"/>
     </Page.Resources>
     <Grid >
         <Border Opacity="0.5">
@@ -48,7 +49,7 @@
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Color:" HorizontalAlignment="Left" FontSize="28" VerticalAlignment="Center" ></TextBlock>
                             <CheckBox x:Name="ColorAuto" IsChecked="{x:Bind local:LocalTheme.Local.isAutoColor,Mode=TwoWay}" Content="Auto" Checked="ColorAuto_Checked"></CheckBox>
-                            <Rectangle Fill="{x:Bind cp.Color,Mode=OneWay}"></Rectangle>
+                            <Rectangle Fill="{x:Bind cp.Color,Mode=OneWay,Converter={StaticResource Brush}}"></Rectangle>
 
                         </StackPanel>
                         <controls:Expander IsEnabled="{x:Bind ColorAuto.IsChecked ,Converter={StaticResource CheckCC},Mode=OneWay}" x:Name="Expander1" VerticalAlignment="Top" Margin="0,0,0,10"
