@@ -27,27 +27,30 @@
         </Border>
         <StackPanel Background="{x:Bind local:LocalTheme.Local.BackgroundResouceName ,Converter={StaticResource ResouceConverter}}" >
             <TextBlock  Margin="30,30,0,0" Text="Theme Settings" x:Uid="ThemeSet" FontSize="36" FontWeight="Bold" />
-        </StackPanel> 
+        </StackPanel>
         <ScrollViewer HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-        <StackPanel  Margin="250,100,0,0" HorizontalAlignment="Stretch">
-           
-                <StackPanel  Margin="30">
-                    
+            <StackPanel  Margin="250,100,0,0" HorizontalAlignment="Stretch">
+
+                <StackPanel  Margin="10">
+
                     <controls:HeaderedTextBlock 
             Header="Current Theme Name"
                         x:Uid="CTN"
             Text="{x:Bind localtheme.ThemeName}"
             Orientation="Horizontal"
             Margin="20,10,0,0" />
-                    
+
                     <ToggleSwitch Header="Is NumBack Flower Enable" x:Uid="IsNFE" IsOn="{x:Bind localtheme.IsHighMode,Mode=TwoWay}" Toggled="ToggleSwitch_Toggled"></ToggleSwitch>
                     <!--<ToggleSwitch Header="Is Acr Enable" IsOn="{x:Bind localtheme.IsAcrlic,Mode=TwoWay}" ></ToggleSwitch>-->
                     <local:ThemePicker></local:ThemePicker>
-                    
+
                     <StackPanel >
-                        <TextBlock Text="Color" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
-                        <CheckBox x:Name="ColorAuto" IsChecked="{x:Bind local:LocalTheme.Local.isAutoColor,Mode=TwoWay}" Content="Auto" Checked="ColorAuto_Checked"></CheckBox>
-                        <Rectangle ></Rectangle>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Color:" HorizontalAlignment="Left" FontSize="28" VerticalAlignment="Center" ></TextBlock>
+                            <CheckBox x:Name="ColorAuto" IsChecked="{x:Bind local:LocalTheme.Local.isAutoColor,Mode=TwoWay}" Content="Auto" Checked="ColorAuto_Checked"></CheckBox>
+                            <Rectangle Fill="{x:Bind cp.Color,Mode=OneWay}"></Rectangle>
+
+                        </StackPanel>
                         <controls:Expander IsEnabled="{x:Bind ColorAuto.IsChecked ,Converter={StaticResource CheckCC},Mode=OneWay}" x:Name="Expander1" VerticalAlignment="Top" Margin="0,0,0,10"
                           Header="Color Picker"
                           HorizontalContentAlignment="Stretch"
@@ -56,12 +59,12 @@
                           IsExpanded="False"
                           ExpandDirection="Down">
                             <Grid>
-                                <ColorPicker IsAlphaEnabled="True" ColorChanged="ColorPicker_ColorChanged"/>
+                                <ColorPicker x:Name="cp" IsAlphaEnabled="True" ColorChanged="ColorPicker_ColorChanged"/>
                             </Grid>
 
                         </controls:Expander>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal" >
+                    <StackPanel  >
                         <controls:HeaderedTextBlock 
                             x:Uid="backimg"
             Header="BackImage"
@@ -74,8 +77,8 @@
 
                 </StackPanel>
 
-           
-        </StackPanel> 
+
+            </StackPanel>
         </ScrollViewer>
     </Grid>
 </Page>

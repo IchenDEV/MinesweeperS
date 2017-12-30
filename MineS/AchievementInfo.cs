@@ -30,14 +30,10 @@ namespace MineS
 
         public static void DeAC()
         {
-
-
-        }
-        private static void DeAC()
-        {
-
+            Achinves.Add(new Achievements() { name="Insider",caption="Taster"});
 
         }
+     
 
         private static int _clickTime;
         public static int ClickTime

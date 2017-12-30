@@ -15,10 +15,10 @@
     <Grid>
         <StackPanel x:Name="root" Background="{ThemeResource SystemControlAcrylicElementMediumHighBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Center"  >
             <TextBlock Text="Succeed" FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="{x:Bind Mode}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            <TextBlock  FontSize="36" Text="{x:Bind Mode}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
             <TextBlock FontSize="36" Text="{x:Bind Source}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
             <Grid Height="100" Tapped="Grid_Tapped">
-                <InkCanvas x:Name="inkCanvas"  ></InkCanvas>
+                <InkCanvas x:Name="inkCanvas" CharacterReceived="inkCanvas_CharacterReceived"  ></InkCanvas>
                 <TextBlock x:Name="sin" Text="Sign Your Name Here" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
             </Grid>
 

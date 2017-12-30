@@ -26,11 +26,12 @@
                         AutomaticallyStart="True"/>
             </interactivity:Interaction.Behaviors>
         </Border>
-        <TextBlock VerticalAlignment="Center" Text="Sorry,We do not finsh it" HorizontalAlignment="Center" FontSize="25"/>
-        <GridView IsItemClickEnabled="True" ItemsSource="{x:Bind AC}" HorizontalAlignment="Stretch" VerticalAlignment="Center" >
+        
+        <TextBlock VerticalAlignment="Center" Text="Ach" HorizontalAlignment="Left" Margin="50,25,0,0" FontSize="25"/>
+        <GridView Margin="50" IsItemClickEnabled="True" ItemsSource="{x:Bind AC}" HorizontalAlignment="Stretch" VerticalAlignment="Center" >
             <GridView.ItemTemplate>
                 <DataTemplate x:DataType="local:Achievements">
-                    <Button Background="#00000000" IsEnabled="{x:Bind ClickMaster}" Style="{StaticResource ButtonStyle}" Width="75" Height="76">
+                    <Button Background="#00000000" IsEnabled="{x:Bind ClickMaster}" Style="{StaticResource ButtonRevealAchiStyle}" Width="150" Height="120" BorderThickness="0">
                            <Grid >
                             
                                  <Image Source="{x:Bind img}" Stretch="Uniform"></Image>

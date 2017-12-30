@@ -60,8 +60,6 @@ namespace MineS
             var ss = (await bitmap.GetPixelsAsync()).AsStream().AsRandomAccessStream();
             args.Request.Data.Properties.Title = "共享图像";
             args.Request.Data.Properties.Description = "共享以下图片。";
-
-
             request.Data.SetBitmap(RandomAccessStreamReference.CreateFromStream(ss));
             deferral.Complete();
 
@@ -113,6 +111,11 @@ namespace MineS
         private void AppBarButton_Click_1(object sender, RoutedEventArgs e)
         {
             Back = true;
+        }
+
+        private void inkCanvas_CharacterReceived(UIElement sender, CharacterReceivedRoutedEventArgs args)
+        {
+            sin.Visibility = Visibility.Collapsed;
         }
     }
 }
