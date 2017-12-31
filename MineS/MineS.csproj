@@ -153,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Achievent\Click1.png" />
+    <Content Include="Assets\Achievent\Insider.png" />
     <Content Include="Assets\Background.png" />
     <Content Include="Assets\Customize.png" />
     <Content Include="Assets\Damaged_NormalMap.jpg" />
@@ -272,6 +273,9 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Services.Store.SDK">
       <Version>10.1705.16001</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications">
+      <Version>2.1.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
       <Version>2.1.0</Version>

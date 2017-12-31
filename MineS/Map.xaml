@@ -17,7 +17,7 @@
             </Storyboard>
         </ResourceDictionary>
     </Page.Resources>
-    <Grid x:Name="root" Margin="0,50,0,0">
+    <Grid x:Name="roots" Margin="0,50,0,0">
         <MediaElement x:Name="M3" Source="{x:Bind local:LocalTheme.Local.ClickMusic}" />
         <MediaElement x:Name="M2" Source="{x:Bind local:LocalTheme.Local.BoomMusic}" />
         <MediaElement x:Name="M1" Source="{x:Bind local:LocalTheme.Local.MarkMusic}" />
@@ -26,5 +26,6 @@
             <Grid x:Name="Map1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="8"  ></Grid>
         </ScrollViewer>
         <ProgressRing x:Name="pr" IsEnabled="True" Foreground="Black"/>
+      
     </Grid>
 </Page>

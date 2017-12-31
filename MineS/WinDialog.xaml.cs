@@ -8,7 +8,9 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.Storage.Streams;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -45,24 +47,32 @@ namespace MineS
 
             inkCanvas.InkPresenter.InputDeviceTypes =
 
-                Windows.UI.Core.CoreInputDeviceTypes.Mouse | Windows.UI.Core.CoreInputDeviceTypes.Touch|
+                Windows.UI.Core.CoreInputDeviceTypes.Mouse | Windows.UI.Core.CoreInputDeviceTypes.Touch |
 
                 Windows.UI.Core.CoreInputDeviceTypes.Pen;
-        }
 
+        }
+        private StorageFile _tempExportFile;
         private async void DataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
         {
-            DataRequest request = args.Request;
-            var deferral = args.Request.GetDeferral();
+            var _tempExportFile = await ApplicationData.Current.LocalFolder.GetFileAsync("win.jpg");
+            try
+            {
+                DataPackage requestData = args.Request.Data;
+                requestData.Properties.Title = "Share";
+                requestData.Properties.Description = "Beat me in Here";
 
-            RenderTargetBitmap bitmap = new RenderTargetBitmap();
-            await bitmap.RenderAsync(root);
-            var ss = (await bitmap.GetPixelsAsync()).AsStream().AsRandomAccessStream();
-            args.Request.Data.Properties.Title = "共享图像";
-            args.Request.Data.Properties.Description = "共享以下图片。";
-            request.Data.SetBitmap(RandomAccessStreamReference.CreateFromStream(ss));
-            deferral.Complete();
+                List<IStorageItem> imageItems = new List<IStorageItem> { _tempExportFile };
+                requestData.SetStorageItems(imageItems);
 
+                RandomAccessStreamReference imageStreamRef = RandomAccessStreamReference.CreateFromFile(_tempExportFile);
+                requestData.Properties.Thumbnail = imageStreamRef;
+                requestData.SetBitmap(imageStreamRef);
+            }
+            catch (Exception ex)
+            {
+                await new MessageDialog(ex.Message, "爆了").ShowAsync();
+            }
         }
 
         public int Source
@@ -110,12 +120,25 @@ namespace MineS
 
         private void AppBarButton_Click_1(object sender, RoutedEventArgs e)
         {
-            Back = true;
+            ExitStoryboard.Begin();
+            ExitStoryboard.Completed += ExitStoryboard_Completed;
+
         }
 
-        private void inkCanvas_CharacterReceived(UIElement sender, CharacterReceivedRoutedEventArgs args)
+        private void ExitStoryboard_Completed(object sender, object e)
+        {
+            Back = true;
+
+        }
+
+        private void inkCanvas_CharacterReceived(object sender, ManipulationStartedRoutedEventArgs e)
         {
             sin.Visibility = Visibility.Collapsed;
+        }
+
+        private void root_Loaded(object sender, RoutedEventArgs e)
+        {
+            EnterStoryboard.Begin();
         }
     }
 }

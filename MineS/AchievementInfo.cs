@@ -1,23 +1,30 @@
 ﻿using Microsoft.Toolkit.Uwp.Helpers;
+using Microsoft.Toolkit.Uwp.Notifications;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Windows.UI.Notifications;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace MineS
 {
     public static class AchievementInfo
     {
-      static  LocalObjectStorageHelper local = new LocalObjectStorageHelper();
+        static LocalObjectStorageHelper local = new LocalObjectStorageHelper();
 
 
-        private static List<Achievements> _Achinves;
+        private static List<Achievements> _Achinves = local.Read<List<Achievements>>("Achinves", new List<Achievements>());
         public static List<Achievements> Achinves
         {
             get
             {
-                return local.Read<List<Achievements>>("Achinves", new List<Achievements>()); ;
+                try
+                {
+                    return _Achinves;
+                }
+                catch
+                {
+                    return new List<Achievements>();
+                }
             }
             set
             {
@@ -30,23 +37,83 @@ namespace MineS
 
         public static void DeAC()
         {
-            Achinves.Add(new Achievements() { name="Insider",caption="Taster"});
+            foreach (var item in Achinves)
+            {
+                if (item.name == "Insider")
+                {
+                    return;
+                }
+            }
 
+            _Achinves.Add(new Achievements() { GetTime = DateTime.Now, name = "Insider", caption = "Taster", img = new BitmapImage(new Uri("ms-appx:///Assets/Achievent/Insider.png")) });
+            local.Save("Achinves", _Achinves);
+            GenerateToastContentAnPop("Insider", "Taster", "Insider.png");
         }
-     
+
+
+        public static void GenerateToastContentAnPop(string name, string img, string caption)
+        {
+            var toastContent = new ToastContent()
+            {
+                Visual = new ToastVisual()
+                {
+                    BaseUri = new Uri("ms-appx:///Assets/Achievent/"),
+                    BindingGeneric = new ToastBindingGeneric()
+                    {
+                        Children =
+            {
+                new AdaptiveText()
+                {
+                    Text = "Wow,You get "+name+"!!!"
+                },
+
+                new AdaptiveText()
+                {
+            Text = caption
+                },
+
+                new AdaptiveGroup()
+                {
+                    Children =
+                    {
+                        new AdaptiveSubgroup()
+                        {
+                            Children =
+                            {
+                                new AdaptiveImage()
+                                {
+                                    HintRemoveMargin = true,
+                                    Source = img
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+                    }
+                }
+            };
+
+            // Create the toast notification
+            var toastNotif = new ToastNotification(toastContent.GetXml());
+
+            // And send the notification
+            ToastNotificationManager.CreateToastNotifier().Show(toastNotif);
+        }
+
 
         private static int _clickTime;
         public static int ClickTime
         {
             get
             {
-                return local.Read("ClickTime",0);;
+                return local.Read("ClickTime", 0); ;
             }
             set
             {
                 local.Save("ClickTime", value);
                 _clickTime = value;
-               
+
 
             }
         }
@@ -131,7 +198,7 @@ namespace MineS
         {
             get
             {
-                return local.Read<DateTimeOffset>("SinglePlayTime", new DateTimeOffset (0,TimeSpan.Zero)); ;
+                return local.Read<DateTimeOffset>("SinglePlayTime", new DateTimeOffset(0, TimeSpan.Zero)); ;
             }
             set
             {

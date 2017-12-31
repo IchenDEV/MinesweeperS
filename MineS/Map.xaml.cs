@@ -10,7 +10,11 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Display;
+using Windows.Graphics.Imaging;
 using Windows.Phone.Devices.Notification;
+using Windows.Storage;
+using Windows.Storage.Streams;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -20,6 +24,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Markup;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
@@ -158,29 +163,27 @@ namespace MineS
                     ButtonCollection[i, j].VerticalAlignment = VerticalAlignment.Stretch;
                     try
                     {
-                        if (LocalTheme.Local.mineColor== "transparent")
+                        if (LocalTheme.Local.mineColor == "transparent")
                         {
                             UISettings ui = new UISettings();
-                            ButtonCollection[i, j].Background = new SolidColorBrush(ui.GetColorValue( UIColorType.Accent));
+                            ButtonCollection[i, j].Background = new SolidColorBrush(ui.GetColorValue(UIColorType.Accent));
                         }
                         else
                         {
                             var ss = LocalTheme.Local.mineColor.Remove(0, 1);
                             ButtonCollection[i, j].Background = new SolidColorBrush(Color.FromArgb(Convert.ToByte(ss.Substring(0, 2), 16), Convert.ToByte(ss.Substring(2, 2), 16), Convert.ToByte(ss.Substring(4, 2), 16), Convert.ToByte(ss.Substring(6, 2), 16)));
                         }
-                       
+
                     }
                     catch { }
-                  
-                    Binding binding = new Binding();
-                    binding.Path = new PropertyPath("MineButtonStyle");
-                    binding.Mode = BindingMode.OneWay;
-                    ButtonCollection[i, j].SetBinding(Button.StyleProperty, binding);
+
+
+                    ButtonCollection[i, j].Style = (Style)Resources["ButtonRevealStyle"];
                     ButtonCollection[i, j].Tapped += B_Click;
                     ButtonCollection[i, j].RightTapped += B_RightTapped;
                     ButtonCollection[i, j].Holding += Map_Holding;
-                   // ButtonCollection[i, j].Unloaded += Map_Unloaded;
-                   ButtonCollection[i, j].Tag = new Point() { x = i, y = j };
+                    // ButtonCollection[i, j].Unloaded += Map_Unloaded;
+                    ButtonCollection[i, j].Tag = new Point() { x = i, y = j };
                     Map1.Children.Add(ButtonCollection[i, j]);
                     Grid.SetRow(ButtonCollection[i, j], i);
                     Grid.SetColumn(ButtonCollection[i, j], j);
@@ -251,7 +254,7 @@ namespace MineS
                 LostDialog lost = new LostDialog();
                 M2.Play();
                 AchievementInfo.GameoverTime++;
-                root.Children.Add(lost);
+                roots.Children.Add(lost);
                 lost.PropertyChanged += Win_PropertyChanged;
 
                 foreach (var item in ButtonCollection)
@@ -266,23 +269,69 @@ namespace MineS
             {
                 watch.Stop();
                 var time = watch.Elapsed.TotalSeconds;
-                AchievementInfo.AllPlayTime= AchievementInfo.AllPlayTime.Add(watch.Elapsed);
-               // AchievementInfo.SinglePlayTime = AchievementInfo.SinglePlayTime watch.Elapsed;
+                AchievementInfo.AllPlayTime = AchievementInfo.AllPlayTime.Add(watch.Elapsed);
+                // AchievementInfo.SinglePlayTime = AchievementInfo.SinglePlayTime watch.Elapsed;
                 int source = (int)((AllNum * AllNum) * 1000 / (Widt * Heigh * time));
                 AchievementInfo.MaxSocore = Math.Max(AchievementInfo.MaxSocore, source);
                 AchievementInfo.AllSocore += source;
-                
+
                 WinDialog win = new WinDialog() { Source = source, Mode = String.Format("{0},{1},{2}\n{3}", Widt, Heigh, AllNum, Mode) };
                 AchievementInfo.WinTime++;
+
                 M3.Play();
-                root.Children.Add(win);
+                roots.Children.Add(win);
+
                 win.PropertyChanged += Win_PropertyChanged;
                 foreach (var item in ButtonCollection)
                 {
                     item.IsEnabled = false;
                 }
+                try
+                {
+                    await StoImg();
+                }
+                catch { }
                 EnterStoryboard.Begin();
-                
+
+            }
+        }
+
+        private async Task StoImg()
+        {
+            var bitmap = new RenderTargetBitmap();
+
+            var _tempExportFile = await ApplicationData.Current.LocalFolder.CreateFileAsync("win.jpg",CreationCollisionOption.ReplaceExisting);
+
+            await bitmap.RenderAsync(this);
+
+            var buffer = await bitmap.GetPixelsAsync();
+
+            using (IRandomAccessStream stream = await _tempExportFile.OpenAsync(FileAccessMode.ReadWrite))
+
+            {
+
+                var encod = await BitmapEncoder.CreateAsync(
+
+                    BitmapEncoder.JpegEncoderId, stream);
+
+                encod.SetPixelData(BitmapPixelFormat.Bgra8,
+
+                    BitmapAlphaMode.Ignore,
+
+                    (uint)bitmap.PixelWidth,
+
+                    (uint)bitmap.PixelHeight,
+
+                    DisplayInformation.GetForCurrentView().LogicalDpi,
+
+                    DisplayInformation.GetForCurrentView().LogicalDpi,
+
+                    buffer.ToArray()
+
+                   );
+
+                await encod.FlushAsync();
+
             }
         }
 
@@ -353,9 +402,10 @@ namespace MineS
         }
 
         private async void B_Click(object sender, RoutedEventArgs e)
-        {  AchievementInfo.ClickTime++;
+        {
+            AchievementInfo.ClickTime++;
             var P = (sender as Button).Tag as Point;
-          
+
             M3.Play();
             pr.IsActive = true;
             if (Marked[P.x, P.y])
@@ -443,8 +493,8 @@ namespace MineS
             try
             {
                 float szoom = (float)Math.Min(Mapv.ActualWidth / (50 * Widt), Mapv.ActualHeight / (50 * Heigh));
-              Mapv.ChangeView(0,0 , szoom);
-              //  Mapv.ZoomToFactor(szoom);
+                Mapv.ChangeView(0, 0, szoom);
+                //  Mapv.ZoomToFactor(szoom);
             }
             catch
             {

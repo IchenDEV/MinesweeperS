@@ -11,14 +11,28 @@
     
 
    >
+    <UserControl.Resources>
+        <ResourceDictionary>
+        <ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary x:Name="ioh"  Source="ms-appx:///Resouse/Dictionary.xaml"></ResourceDictionary>
+        </ResourceDictionary.MergedDictionaries>
+        <Storyboard x:Name="EnterStoryboard">
+            <PopInThemeAnimation Storyboard.TargetName="root" />
+        </Storyboard>
+        <Storyboard x:Name="ExitStoryboard">
+            <FadeOutThemeAnimation Storyboard.TargetName="root" />
+        </Storyboard>
+    
+    </ResourceDictionary>
+    </UserControl.Resources>
 
     <Grid>
-        <StackPanel x:Name="root" Background="{ThemeResource SystemControlAcrylicElementMediumHighBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Center"  >
+        <StackPanel Loaded="root_Loaded" x:Name="root" Background="{ThemeResource SuperHighAcrylicELBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Center"  >
             <TextBlock Text="Succeed" FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-            <TextBlock  FontSize="36" Text="{x:Bind Mode}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            <TextBlock FontSize="36" Text="{x:Bind Mode}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
             <TextBlock FontSize="36" Text="{x:Bind Source}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
             <Grid Height="100" Tapped="Grid_Tapped">
-                <InkCanvas x:Name="inkCanvas" CharacterReceived="inkCanvas_CharacterReceived"  ></InkCanvas>
+                <InkCanvas x:Name="inkCanvas"  ManipulationStarted="inkCanvas_CharacterReceived"  ></InkCanvas>
                 <TextBlock x:Name="sin" Text="Sign Your Name Here" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
             </Grid>
 
