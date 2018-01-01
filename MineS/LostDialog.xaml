@@ -12,15 +12,15 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary x:Name="ioh"  Source="ms-appx:///Resouse/Dictionary.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
-
+            <local:ConverterTOResouce x:Key="ResouceConverter"/>
         </ResourceDictionary>
     </UserControl.Resources>
-    <StackPanel x:Name="root" Background="{ThemeResource SuperRedAcrylicELBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Center"  >
+    <StackPanel x:Name="root" Background="{x:Bind local:LocalTheme.Local.SupELAcrLostResouceName,Converter={StaticResource ResouceConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Center"  >
         <TextBlock Text="Lose" FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
        
         
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <AppBarButton Icon="Back" Click="AppBarButton_Click"/>
+            <AppBarButton Icon="Back" Style="{x:Bind local:LocalTheme.Local.AppButtonResouceName,Converter={StaticResource ResouceConverter}}" Click="AppBarButton_Click"/>
         </StackPanel>
        
     </StackPanel>

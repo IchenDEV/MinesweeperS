@@ -26,27 +26,13 @@ namespace MineS
     {
        
         private string _Mode;
-        private bool _back;
-        public bool Back
-        {
-            get { return this._back; }
-            set
-            {
-                this._back = value;
-                this.OnPropertyChanged();
-            }
-        }
+       
         public LostDialog()
         {
             this.InitializeComponent();
            
 
         }
-
-        
-
-       
-
         public String Mode
         {
             get { return this._Mode; }
@@ -68,11 +54,12 @@ namespace MineS
         }
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
+         
         }
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
-            Back = true;
+              ((Map)((Grid)this.Parent).Parent).WinBack();
         }
     }
 }

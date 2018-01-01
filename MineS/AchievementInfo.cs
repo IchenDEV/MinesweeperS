@@ -37,22 +37,23 @@ namespace MineS
 
         public static void DeAC()
         {
+            GenerateToastContentAnPop("Insider","Insider.png", "Taster" );
+        }
+
+
+        public static void GenerateToastContentAnPop(string Name, string Img, string Caption)
+        {
             foreach (var item in Achinves)
             {
-                if (item.name == "Insider")
+                if (item.name == Name)
                 {
                     return;
                 }
             }
 
-            _Achinves.Add(new Achievements() { GetTime = DateTime.Now, name = "Insider", caption = "Taster", img = new BitmapImage(new Uri("ms-appx:///Assets/Achievent/Insider.png")) });
+            _Achinves.Add(new Achievements() { GetTime = DateTime.Now, name = Name, caption = Caption, img = "ms-appx:///Assets/Achievent/"+Img });
             local.Save("Achinves", _Achinves);
-            GenerateToastContentAnPop("Insider", "Taster", "Insider.png");
-        }
 
-
-        public static void GenerateToastContentAnPop(string name, string img, string caption)
-        {
             var toastContent = new ToastContent()
             {
                 Visual = new ToastVisual()
@@ -64,12 +65,12 @@ namespace MineS
             {
                 new AdaptiveText()
                 {
-                    Text = "Wow,You get "+name+"!!!"
+                    Text = "Wow,You get "+Name+"!!!"
                 },
 
                 new AdaptiveText()
                 {
-            Text = caption
+            Text = Caption
                 },
 
                 new AdaptiveGroup()
@@ -83,7 +84,7 @@ namespace MineS
                                 new AdaptiveImage()
                                 {
                                     HintRemoveMargin = true,
-                                    Source = img
+                                    Source = Img
                                 }
                             }
                         }
@@ -99,6 +100,140 @@ namespace MineS
 
             // And send the notification
             ToastNotificationManager.CreateToastNotifier().Show(toastNotif);
+
+            var tileContent = new TileContent()
+            {
+                Visual = new TileVisual()
+                {
+                    Branding = TileBranding.NameAndLogo,
+                    TileMedium = new TileBinding()
+                    {
+                        Content = new TileBindingContentAdaptive()
+                        {
+                            TextStacking = TileTextStacking.Center,
+                            Children =
+                {
+                    new AdaptiveText()
+                    {
+                        Text = "Hi,",
+                        HintStyle = AdaptiveTextStyle.Base,
+                        HintAlign = AdaptiveTextAlign.Center
+                    },
+                    new AdaptiveText()
+                    {
+                        Text = Name,
+                        HintStyle = AdaptiveTextStyle.CaptionSubtle,
+                        HintAlign = AdaptiveTextAlign.Center
+                    }
+                },
+                            PeekImage = new TilePeekImage()
+                            {
+                                Source = "ms-appx:///Assets/Achievent/"+Img,
+                                HintCrop = TilePeekImageCrop.Circle
+                            }
+                        }
+                    },
+                    TileWide = new TileBinding()
+                    {
+                        Content = new TileBindingContentAdaptive()
+                        {
+                            Children =
+                {
+                    new AdaptiveGroup()
+                    {
+                        Children =
+                        {
+                            new AdaptiveSubgroup()
+                            {
+                                HintWeight = 33,
+                                Children =
+                                {
+                                    new AdaptiveImage()
+                                    {
+                                        HintCrop = AdaptiveImageCrop.Circle,
+                                        Source = "ms-appx:///Assets/Achievent/"+Img,
+                                    }
+                                }
+                            },
+                            new AdaptiveSubgroup()
+                            {
+                                Children =
+                                {
+                                    new AdaptiveText()
+                                    {
+                                        Text = "Hi,",
+                                        HintStyle = AdaptiveTextStyle.Title
+                                    },
+                                    new AdaptiveText()
+                                    {
+                                        Text = Name,
+                                        HintStyle = AdaptiveTextStyle.SubtitleSubtle
+                                    }
+                                },
+                                HintTextStacking = AdaptiveSubgroupTextStacking.Center
+                            }
+                        }
+                    }
+                }
+                        }
+                    },
+                    TileLarge = new TileBinding()
+                    {
+                        Content = new TileBindingContentAdaptive()
+                        {
+                            TextStacking = TileTextStacking.Center,
+                            Children =
+                {
+                    new AdaptiveGroup()
+                    {
+                        Children =
+                        {
+                            new AdaptiveSubgroup()
+                            {
+                                HintWeight = 1
+                            },
+                            new AdaptiveSubgroup()
+                            {
+                                HintWeight = 2,
+                                Children =
+                                {
+                                    new AdaptiveImage()
+                                    {
+                                        HintCrop = AdaptiveImageCrop.Circle,
+                                        Source = "ms-appx:///Assets/Achievent/"+Img,
+                                    }
+                                }
+                            },
+                            new AdaptiveSubgroup()
+                            {
+                                HintWeight = 1
+                            }
+                        }
+                    },
+                    new AdaptiveText()
+                    {
+                        Text = "Hi,",
+                        HintStyle = AdaptiveTextStyle.Title,
+                        HintAlign = AdaptiveTextAlign.Center
+                    },
+                    new AdaptiveText()
+                    {
+                        Text = Name,
+                        HintStyle = AdaptiveTextStyle.SubtitleSubtle,
+                        HintAlign = AdaptiveTextAlign.Center
+                    }
+                }
+                        }
+                    }
+                }
+            };
+
+            // Create the tile notification
+            var tileNotif = new TileNotification(tileContent.GetXml());
+
+            // And send the notification to the primary tile
+            TileUpdateManager.CreateTileUpdaterForApplication().Update(tileNotif);
+
         }
 
 
@@ -113,7 +248,19 @@ namespace MineS
             {
                 local.Save("ClickTime", value);
                 _clickTime = value;
+                if (value > 10)
+                {
+                    GenerateToastContentAnPop("Click (Green Hand)", "IClickB.png", "Click more than 10 times");
 
+                }
+                else if (value > 100)
+                {
+                    GenerateToastContentAnPop("Click (Expert)", "IClickL.png", "Click more than 100 times");
+                }
+                else if (value > 1000)
+                {
+                    GenerateToastContentAnPop("Click (Master)", "IClickG.png", "Click more than 1000 times");
+                }
 
             }
         }
@@ -129,7 +276,19 @@ namespace MineS
             {
                 local.Save("GameoverTime", value);
                 _gameoverTime = value;
+                if (value > 10)
+                {
+                    GenerateToastContentAnPop("Bad Luck(Green Hand)", "LostB.png", "Die more than 10 times");
 
+                }
+                else if (value > 100)
+                {
+                    GenerateToastContentAnPop("Super Bad Luck(Expert)", "LostL.png", "Die more than 100 times");
+                }
+                else if (value > 1000)
+                {
+                    GenerateToastContentAnPop("Bad Luck..........(Master)", "LostG.png", "Die more than 1000 times");
+                }
             }
         }
 
@@ -144,7 +303,19 @@ namespace MineS
             {
                 local.Save("WinTime", value);
                 _winTime = value;
+                if (value > 10)
+                {
+                    GenerateToastContentAnPop("Winner (Green Hand)", "WinnerB.png", "Win more than 10 times");
 
+                }
+                else if (value > 100)
+                {
+                    GenerateToastContentAnPop("Winner (Expert)", "WinnerL.png", "Win more than 100 times");
+                }
+                else if (value > 1000)
+                {
+                    GenerateToastContentAnPop("Winner (Master)", "WinnerG.png", "Win more than 1000 times");
+                }
             }
         }
 
@@ -174,7 +345,19 @@ namespace MineS
             {
                 local.Save("MaxSocore", value);
                 _maxSocore = value;
+                //if (value > 10)
+                //{
+                //    GenerateToastContentAnPop("(Green Hand)", "WinnerB.png", "Win more than 10 times");
 
+                //}
+                //else if (value > 100)
+                //{
+                //    GenerateToastContentAnPop("Winner (Expert)", "WinnerL.png", "Win more than 100 times");
+                //}
+                //else if (value > 1000)
+                //{
+                //    GenerateToastContentAnPop("Winner (Master)", "WinnerG.png", "Win more than 1000 times");
+                //}
             }
         }
 
@@ -218,7 +401,19 @@ namespace MineS
             {
                 local.Save<DateTimeOffset>("AllPlayTime", value);
                 _allPlayTime = value;
+                if (value.Offset.TotalMinutes > 10)
+                {
+                    GenerateToastContentAnPop("Play(Green Hand)", "PlayB.png", "Play more than 10 Minutes");
 
+                }
+                else if (value.Offset.TotalMinutes > 100)
+                {
+                    GenerateToastContentAnPop("Play(Expert)", "PlayL.png", "Play more than 100 Minutes");
+                }
+                else if (value.Offset.TotalMinutes > 1000)
+                {
+                    GenerateToastContentAnPop("Play(Master)", "PlayG.png", "Play more than 1000 Minutes");
+                }
             }
         }
 

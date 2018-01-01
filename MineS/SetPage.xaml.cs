@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.Toolkit.Uwp.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,6 +30,11 @@ namespace MineS
         public SetPage()
         {
             this.InitializeComponent();
+            //if (SystemInformation.DeviceFamily == "Windows.Mobile")
+            //{
+            //    Sett.IsEnabled = false;
+            //}
+
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {

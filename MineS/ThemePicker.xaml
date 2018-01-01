@@ -30,7 +30,7 @@
                         AutomaticallyStart="True"/>
                                 </interactivity:Interaction.Behaviors>
                             </Border>
-                            <Grid Background="{StaticResource SystemControlAcrylicElementMediumHighBrush}">
+                            <Grid Background="{x:Bind local:LocalTheme.Local.SupELAcrResouceName ,Converter={StaticResource ResouceConverter}}">
                                   <TextBlock VerticalAlignment="Bottom" Text="{x:Bind ThemeName}"/>
                             </Grid>
                                 

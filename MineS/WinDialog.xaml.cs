@@ -3,13 +3,19 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Display;
+using Windows.Graphics.Imaging;
 using Windows.Storage;
 using Windows.Storage.Streams;
+using Windows.UI;
+using Windows.UI.Input.Inking;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -28,16 +34,7 @@ namespace MineS
     {
         private int _Source;
         private string _Mode;
-        private bool _back;
-        public bool Back
-        {
-            get { return this._back; }
-            set
-            {
-                this._back = value;
-                this.OnPropertyChanged();
-            }
-        }
+
         public WinDialog()
         {
             this.InitializeComponent();
@@ -50,12 +47,71 @@ namespace MineS
                 Windows.UI.Core.CoreInputDeviceTypes.Mouse | Windows.UI.Core.CoreInputDeviceTypes.Touch |
 
                 Windows.UI.Core.CoreInputDeviceTypes.Pen;
+            inkCanvas.ManipulationStarted += InkCanvas_ManipulationStarted;
+            if (this.ActualTheme == ElementTheme.Dark)
+            {
+                var attr = new InkDrawingAttributes
+                {
+                    Color = Colors.White, //颜色
+                    IgnorePressure = false,  //是否忽略数字化器表面上的接触压力
+                    PenTip = PenTipShape.Circle, //笔尖类型设置
+                    Size = new Size(4, 10), //画笔粗细
+                    PenTipTransform = Matrix3x2.CreateRotation((float)(70 * Math.PI / 180)) //笔尖形状矩阵
+                };
+                //更新画笔
+                inkCanvas.InkPresenter.UpdateDefaultDrawingAttributes(attr);
+            }
+
 
         }
+
+        private void InkCanvas_ManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
+        {
+            sin.Visibility = Visibility.Collapsed;
+        }
+
         private StorageFile _tempExportFile;
+        private async Task StoImg()
+        {
+            var bitmap = new RenderTargetBitmap();
+
+            _tempExportFile = await ApplicationData.Current.LocalFolder.CreateFileAsync("win.jpg", CreationCollisionOption.ReplaceExisting);
+
+            await bitmap.RenderAsync(((MainPage)((Grid)((Frame)((Map)((Grid)this.Parent).Parent).Parent).Parent).Parent));
+
+            var buffer = await bitmap.GetPixelsAsync();
+
+            using (IRandomAccessStream stream = await _tempExportFile.OpenAsync(FileAccessMode.ReadWrite))
+
+            {
+
+                var encod = await BitmapEncoder.CreateAsync(
+
+                    BitmapEncoder.JpegEncoderId, stream);
+
+                encod.SetPixelData(BitmapPixelFormat.Bgra8,
+
+                    BitmapAlphaMode.Ignore,
+
+                    (uint)bitmap.PixelWidth,
+
+                    (uint)bitmap.PixelHeight,
+
+                    DisplayInformation.GetForCurrentView().LogicalDpi,
+
+                    DisplayInformation.GetForCurrentView().LogicalDpi,
+
+                    buffer.ToArray()
+
+                   );
+
+                await encod.FlushAsync();
+
+            }
+        }
         private async void DataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
         {
-            var _tempExportFile = await ApplicationData.Current.LocalFolder.GetFileAsync("win.jpg");
+
             try
             {
                 DataPackage requestData = args.Request.Data;
@@ -108,8 +164,9 @@ namespace MineS
         {
         }
 
-        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        private async void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
+            await StoImg();
             DataTransferManager.ShowShareUI();
         }
 
@@ -127,8 +184,7 @@ namespace MineS
 
         private void ExitStoryboard_Completed(object sender, object e)
         {
-            Back = true;
-
+            ((Map)((Grid)this.Parent).Parent).WinBack();
         }
 
         private void inkCanvas_CharacterReceived(object sender, ManipulationStartedRoutedEventArgs e)

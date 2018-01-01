@@ -21,7 +21,16 @@ namespace MineS
             }
             catch
             {
-                return null;
+                try
+                {
+                    return new BitmapImage(new Uri(value.ToString()));
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+
             }
         }
 
@@ -33,11 +42,20 @@ namespace MineS
     public class ConverterTOResouce : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
-        {
-            ResourceDictionary re = new ResourceDictionary();
+        {ResourceDictionary re = new ResourceDictionary();
+            try
+            {
+
             re.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("ms-appx:///Resouse/Dictionary.xaml") });
 
             return re[value];
+            }
+            catch (Exception)
+            {
+
+                return re["ApplicationPageBackgroundThemeBrush"];
+            }
+            
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

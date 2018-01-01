@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
@@ -30,38 +31,22 @@ namespace MineS
             this.InitializeComponent();
 
             froot.Navigate(typeof(SetPage), froot);
+          
+
 
         }
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            Frame rootFrame = Window.Current.Content as Frame;
 
-
-
-            if (rootFrame.CanGoBack)
-            {
-                // Show UI in title bar if opted-in and in-app backstack is not empty. 
-                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
-                    AppViewBackButtonVisibility.Visible;
-            }
-            else
-            {
-                // Remove the UI from the title bar if in-app back stack is empty. 
-                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
-                    AppViewBackButtonVisibility.Collapsed;
-            }
-        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-          
+
         }
 
         private void M_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-           if((sender as Map).finished)
+            if ((sender as Map).finished)
             {
                 root.Children.Remove((sender as Map));
-              
+
             }
         }
 
@@ -80,7 +65,36 @@ namespace MineS
         private void ShButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
             froot.Navigate(typeof(SetPage), froot);
-           // newGame.Visibility = Visibility.Collapsed;
+            // newGame.Visibility = Visibility.Collapsed;
+        }
+
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                im.Source = new BitmapImage(new Uri((await(LocalTheme.Initialize())).BackIMage[0]));
+
+
+            }
+            catch (Exception)
+            {
+                while (true)
+                {
+                    try
+                    {
+                        im.Source = new BitmapImage(new Uri((await (LocalTheme.Initialize())).BackIMage[0]));
+                        return;
+                    }
+                    catch (Exception)
+                    {
+
+                        //throw;
+                    }
+                }
+
+
+
+            }
         }
     }
 }

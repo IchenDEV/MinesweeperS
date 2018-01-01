@@ -11,6 +11,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI;
 using Windows.UI.Core;
+using Windows.UI.Popups;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -45,10 +46,9 @@ namespace MineS
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
-
-            // 不要在窗口已包含内容时重复应用程序初始化，
-            // 只需确保窗口处于活动状态
-            if (rootFrame == null)
+            try
+            {
+  if (rootFrame == null)
             {
                 // 创建要充当导航上下文的框架，并导航到第一页
                 rootFrame = new Frame();
@@ -77,6 +77,7 @@ namespace MineS
                     }
                     else
                     {
+                        
                         rootFrame.Navigate(typeof(MainPage), e.Arguments);
                     }
 
@@ -87,6 +88,15 @@ namespace MineS
                 
 Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += App_BackRequested;
             }
+            }
+            catch
+            {
+                MessageDialog messageDialog = new MessageDialog("Please Relaunch", "Sorry");
+                messageDialog.ShowAsync();
+            }
+            // 不要在窗口已包含内容时重复应用程序初始化，
+            // 只需确保窗口处于活动状态
+          
         }
 
         private void App_BackRequested(object sender, BackRequestedEventArgs e)
@@ -97,7 +107,7 @@ Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += App
 
             // Navigate back if possible, and if the event has not  
             // already been handled . 
-            if (rootFrame.CanGoBack && e.Handled == false)
+            if (rootFrame.CanGoBack && e.Handled == false&&rootFrame.Content.GetType()!=typeof(MainPage))
             {
                 e.Handled = true;
                 rootFrame.GoBack();
@@ -133,6 +143,36 @@ Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += App
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: 保存应用程序状态并停止任何后台活动
             deferral.Complete();
+        }
+        async  protected override void OnActivated(IActivatedEventArgs args)
+        {
+            if(args.Kind == ActivationKind.ToastNotification)
+    {
+                //从事件参数中获取预定义的数据和用户输入
+                var toastArgs = args as ToastNotificationActivatedEventArgs;
+                var arguments = toastArgs.Argument;
+             //   var input = toastArgs.UserInput["1"];
+                Frame rootFrame = Window.Current.Content as Frame;
+
+                // 不要在窗口已包含内容时重复应用程序初始化，
+                // 只需确保窗口处于活动状态
+                if (rootFrame == null)
+                {
+                    // 创建要充当导航上下文的框架，并导航到第一页
+                    rootFrame = new Frame();
+                    rootFrame.NavigationFailed += OnNavigationFailed;
+                    // 将框架放在当前窗口中
+                    Window.Current.Content = rootFrame;
+                }
+  
+                  
+                            rootFrame.Navigate(typeof(Achievement));
+                        
+
+                  
+                    // 确保当前窗口处于活动状态
+                    Window.Current.Activate();
+                }
         }
     }
 }

@@ -6,16 +6,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:local="using:MineS"
     mc:Ignorable="d"
     Loaded="ShadowsAdvanced_Loaded">
     <UserControl.Resources>
-        <AcrylicBrush x:Key="MyAcrylicBrush"
-            BackgroundSource="Backdrop"
-            TintColor="#4F0000FF"
-            TintOpacity="0.1"
-            FallbackColor="#FF7F0000"/>
-
-        <Style x:Key="btnNext" TargetType="Button">
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary x:Name="ioh"  Source="ms-appx:///Resouse/Dictionary.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        
+ <Style x:Key="btnNext" TargetType="Button">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -32,8 +32,8 @@
 
                                     <VisualState x:Name="PointerOver">
                                         <VisualState.Setters>
-                                            <Setter Target="RootGrid.(RevealBrush.State)" Value="PointerOver" />
-                                            <Setter Target="RootGrid.Background" Value="{ThemeResource ButtonRevealBackgroundPointerOver}" />
+                                            <!--<Setter Target="RootGrid.(RevealBrush.State)" Value="PointerOver" />-->
+                                            <Setter Target="RootGrid.Background" Value="{ThemeResource ButtonBackgroundPointerOver}" />
                                             <Setter Target="ContentPresenter.BorderBrush" Value="Transparent"/>
                                             <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource ButtonForegroundPointerOver}" />
                                         </VisualState.Setters>
@@ -45,9 +45,9 @@
 
                                     <VisualState x:Name="Pressed">
                                         <VisualState.Setters>
-                                            <Setter Target="RootGrid.(RevealBrush.State)" Value="Pressed" />
-                                            <Setter Target="RootGrid.Background" Value="{ThemeResource ButtonRevealBackgroundPressed}" />
-                                            <Setter Target="ContentPresenter.BorderBrush" Value="{ThemeResource ButtonRevealBackgroundPressed}" />
+                                            <!--<Setter Target="RootGrid.(RevealBrush.State)" Value="Pressed" />-->
+                                            <Setter Target="RootGrid.Background" Value="{ThemeResource ButtonBackgroundPressed}" />
+                                            <Setter Target="ContentPresenter.BorderBrush" Value="{ThemeResource ButtonBackgroundPressed}" />
                                             <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource ButtonForegroundPressed}" />
                                         </VisualState.Setters>
 
@@ -58,15 +58,15 @@
 
                                     <VisualState x:Name="Disabled">
                                         <VisualState.Setters>
-                                            <Setter Target="RootGrid.Background" Value="{ThemeResource ButtonRevealBackgroundDisabled}" />
-                                            <Setter Target="ContentPresenter.BorderBrush" Value="{ThemeResource ButtonRevealBorderBrushDisabled}" />
+                                            <Setter Target="RootGrid.Background" Value="{ThemeResource ButtonBackgroundDisabled}" />
+                                            <Setter Target="ContentPresenter.BorderBrush" Value="{ThemeResource ButtonBorderBrushDisabled}" />
                                             <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource ButtonForegroundDisabled}" />
                                         </VisualState.Setters>
                                     </VisualState>
                                 </VisualStateGroup>
 
                             </VisualStateManager.VisualStateGroups>
-                            <ContentPresenter x:Name="ContentPresenter" Background="{ThemeResource MyAcrylicBrush}"
+                                <ContentPresenter x:Name="ContentPresenter" Background="{TemplateBinding Background}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
                     Content="{TemplateBinding Content}"
@@ -81,7 +81,7 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Margin" Value="2"/>
             <Setter Property="Width" Value="50"/>
             <Setter Property="Height" Value="50"/>
             <Setter Property="FontSize" Value="120"/>
@@ -95,12 +95,15 @@
                 >
                             </DoubleAnimation>
         </Storyboard>
+        </ResourceDictionary>
+
+       
 
     </UserControl.Resources>
     <Grid>
         <Canvas x:Name="MainCanvas"          >
 
-            <Button   Click="Button_Click" Style="{ThemeResource btnNext}" Background="{ThemeResource MyAcrylicBrush}" PointerEntered="Button_PointerEntered" RenderTransformOrigin="0.5,0.5" PointerExited="but_PointerExited" >
+            <Button   Click="Button_Click" Background="Blue"   Style="{ThemeResource btnNext}"  PointerEntered="Button_PointerEntered" RenderTransformOrigin="0.5,0.5" PointerExited="but_PointerExited" >
                 <Button.RenderTransform>
                     <CompositeTransform x:Name="but" Rotation="-56.31"/>
                 </Button.RenderTransform>

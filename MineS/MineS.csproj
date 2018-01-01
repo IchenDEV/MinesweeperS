@@ -20,9 +20,9 @@
     <PackageCertificateKeyFile>MineS_StoreKey.pfx</PackageCertificateKeyFile>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
-    <AppxBundlePlatforms>x64</AppxBundlePlatforms>
-    <PackageCertificateThumbprint>226EACE173E3A7335AC613D3698E16302B52B6F9</PackageCertificateThumbprint>
-    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+    <AppxBundlePlatforms>x86|x64</AppxBundlePlatforms>
+    <PackageCertificateThumbprint>3FB93E13AD8E5CBE6B774196D41D4E037A4147D7</PackageCertificateThumbprint>
+    <AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -34,6 +34,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -46,6 +47,7 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -97,10 +99,13 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="About.xaml.cs">
+    <Compile Include="AchDital.xaml.cs">
+      <DependentUpon>AchDital.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Achievement.xaml.cs">
+    <Compile Include="Page\Achievement.xaml.cs">
       <DependentUpon>Achievement.xaml</DependentUpon>
     </Compile>
     <Compile Include="AchievementInfo.cs" />
@@ -109,7 +114,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converter.cs" />
-    <Compile Include="Guider.xaml.cs">
+    <Compile Include="Page\Guider.xaml.cs">
       <DependentUpon>Guider.xaml</DependentUpon>
     </Compile>
     <Compile Include="Lights\HoverLight.cs" />
@@ -117,7 +122,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Map.xaml.cs">
+    <Compile Include="Page\Map.xaml.cs">
       <DependentUpon>Map.xaml</DependentUpon>
     </Compile>
     <Compile Include="MaterialBrush.cs" />
@@ -131,7 +136,7 @@
     <Compile Include="ThemePicker.xaml.cs">
       <DependentUpon>ThemePicker.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ThemeSet.xaml.cs">
+    <Compile Include="Page\ThemeSet.xaml.cs">
       <DependentUpon>ThemeSet.xaml</DependentUpon>
     </Compile>
     <Compile Include="LostDialog.xaml.cs">
@@ -153,7 +158,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Achievent\Click1.png" />
+    <Content Include="Assets\Achievent\IClickB.png" />
+    <Content Include="Assets\Achievent\IClickG.png" />
+    <Content Include="Assets\Achievent\IClickL.png" />
     <Content Include="Assets\Achievent\Insider.png" />
+    <Content Include="Assets\Achievent\LostB.png" />
+    <Content Include="Assets\Achievent\LostG.png" />
+    <Content Include="Assets\Achievent\LostL.png" />
+    <Content Include="Assets\Achievent\PlayB.png" />
+    <Content Include="Assets\Achievent\PlayG.png" />
+    <Content Include="Assets\Achievent\PlayL.png" />
+    <Content Include="Assets\Achievent\WinnerB.png" />
+    <Content Include="Assets\Achievent\WinnerG.png" />
+    <Content Include="Assets\Achievent\WinnerL.png" />
     <Content Include="Assets\Background.png" />
     <Content Include="Assets\Customize.png" />
     <Content Include="Assets\Damaged_NormalMap.jpg" />
@@ -205,7 +222,6 @@
     <Content Include="Damaged_NormalMap.jpg" />
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
-    <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.scale-200.png" />
@@ -217,15 +233,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="About.xaml">
+    <Page Include="AchDital.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Achievement.xaml">
+    <Page Include="Page\About.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Guider.xaml">
+    <Page Include="Page\Achievement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Page\Guider.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -233,7 +253,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Map.xaml">
+    <Page Include="Page\Map.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -254,7 +274,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ThemeSet.xaml">
+    <Page Include="Page\ThemeSet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -269,7 +289,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.0.4</Version>
+      <Version>6.0.5</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Services.Store.SDK">
       <Version>10.1705.16001</Version>
@@ -278,7 +298,7 @@
       <Version>2.1.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
-      <Version>2.1.0</Version>
+      <Version>2.1.1</Version>
     </PackageReference>
     <PackageReference Include="Win2D.uwp">
       <Version>1.21.0</Version>

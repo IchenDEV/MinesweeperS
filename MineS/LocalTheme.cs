@@ -18,48 +18,25 @@ namespace MineS
         static StorageFolder localFolder = ApplicationData.Current.LocalFolder;
         // To get operating system version
         public static OSVersion OperatingSystemVersion => SystemInformation.OperatingSystemVersion;
-        public static Themes Local { get; set; }
+        private static Themes _local;
+        public static Themes Local
+        {
+            get
+            {
+                Initialize();
+                return _local;
+            }
+            set
+            {
+                _local = value;
+            }
+        }
 
-        public async static void Initialize()
+        public async static Task<Themes> Initialize()
         {
 
             var file = await localFolder.TryGetItemAsync("localTheme.json");
-            if (file == null)
-            {
-                file = await localFolder.CreateFileAsync("localTheme.json", CreationCollisionOption.OpenIfExists);
-
-                int bulid = OperatingSystemVersion.Build;
-                if (bulid >= 16299)
-                {
-                    var Theme = new Themes()
-                    {
-                        ThemeName = "Snow",
-                        BackgroundResouceName = "SuperMidAcrylicWiBrush",
-                        ClickMusic = "ms-appx:///Assets//Theme//1709//M.mp3",
-                        BackIMage = new List<string>(),
-                        IsAcrlic = true,
-                        IsHighMode = true,
-                        BoomMusic = "ms-appx:///Assets//Theme//1709//M.mp3",
-                        KilIM = "",
-                        MineIM = "",
-                        MarkMusic= "ms-appx:///Assets//Theme//1709//M.mp3",
-                        SuccessMusic = "ms-appx:///Assets//Theme//1709//M.mp3",
-                        MarkMineResouceName = "",
-                        NomalMineResouceName = "",
-                        ShowNumResouceName = "",
-                        mineColor = "#"
-                    };
-                    Theme.BackIMage.Add("ms-appx:///Assets//Theme//1709//01_hiking_1920x1200.png");
-                    Local = Theme;
-                    string js = TojsonData(Theme);
-                    await write(js);
-                }
-
-
-
-
-            }
-            else
+            try
             {
                 string result = String.Empty;
                 using (var ms = await (file as StorageFile).OpenStreamForReadAsync())
@@ -70,8 +47,96 @@ namespace MineS
                         result = reader.ReadToEnd();
                     }
                 }
-                Local = DeData<Themes>(result);
+
+                var themes = DeData<Themes>(result);
+                _local = themes;
+                return themes;
             }
+            catch (Exception)
+            {
+                try
+                {
+                    file.DeleteAsync();
+                }
+                catch (Exception)
+                {
+
+                    //   throw;
+                }
+
+                if (file == null)
+                {
+                    file = await localFolder.CreateFileAsync("localTheme.json", CreationCollisionOption.OpenIfExists);
+
+                    int bulid = OperatingSystemVersion.Build;
+                    if (bulid >= 16299)
+                    {
+                        var Theme = new Themes()
+                        {
+                            ThemeName = "Snow",
+                            BackgroundResouceName = "SuperMidAcrylicWiBrush",
+                            SysELAcrResouceName = "SystemControlAcrylicElementMediumHighBrush",
+                            SupELAcrResouceName = "SuperHighAcrylicELBrush",
+                            SupELAcrLostResouceName = "SuperRedAcrylicELBrush",
+                            ClickMusic = "ms-appx:///Assets//Theme//1709//M.mp3",
+                            BackIMage = new List<string>(),
+                            IsAcrlic = true,
+                            IsHighMode = true,
+                            BoomMusic = "ms-appx:///Assets//Theme//1709//M.mp3",
+                            KilIM = "",
+                            MineIM = "",
+                            MarkMusic = "ms-appx:///Assets//Theme//1709//M.mp3",
+                            SuccessMusic = "ms-appx:///Assets//Theme//1709//M.mp3",
+                            MarkMineResouceName = "ButtonRevealMarkedStyle",
+
+                            NomalButtonResouceName = "MyButtonStyle",
+                            ShowNumResouceName = "",
+                            mineColor = "#800078D7"
+                            ,
+                            AppButtonResouceName = "AppBarButtonRevealStyle"
+                        };
+                        Theme.BackIMage.Add("ms-appx:///Assets//Theme//1709//01_hiking_1920x1200.png");
+                        _local = Theme;
+                        string js = TojsonData(Theme);
+                        await write(js);
+                        return Theme;
+                    }
+                    else
+                    {
+                        var Theme = new Themes()
+                        {
+
+                            ThemeName = "Low",
+                            BackgroundResouceName = "ApplicationPageBackgroundThemeBrush",
+                            SysELAcrResouceName = "ApplicationPageBackgroundThemeBrush",
+                            SupELAcrResouceName = "ApplicationPageBackgroundThemeBrush",
+                            SupELAcrLostResouceName = "ApplicationPageBackgroundThemeBrush",
+                            ClickMusic = "ms-appx:///Assets//Theme//1709//M.mp3",
+                            BackIMage = new List<string>(),
+                            IsAcrlic = false,
+                            IsHighMode = false,
+                            BoomMusic = "ms-appx:///Assets//Theme//1709//M.mp3",
+                            KilIM = "",
+                            MineIM = "",
+                            MarkMusic = "ms-appx:///Assets//Theme//1709//M.mp3",
+                            SuccessMusic = "ms-appx:///Assets//Theme//1709//M.mp3",
+                            AppButtonResouceName = "AccentButtonStyle",
+                            NomalButtonResouceName = "AccentButtonStyle",
+                            MarkMineResouceName = "ButtonMarkedStyle",
+                            ShowNumResouceName = "",
+                            mineColor = "#800078D7"
+                        };
+                        Theme.BackIMage.Add("ms-appx:///Assets//Theme//1709//01_hiking_1920x1200.png");
+                        _local = Theme;
+                        string js = TojsonData(Theme);
+                        await write(js);
+                        return Theme;
+                    }
+
+                }
+            }
+            return new Themes();
+
 
 
 
@@ -80,8 +145,8 @@ namespace MineS
 
         public static async Task write(string js)
         {
-            var file 
-             =await localFolder.CreateFileAsync("localTheme.json", CreationCollisionOption.ReplaceExisting);
+            var file
+             = await localFolder.CreateFileAsync("localTheme.json", CreationCollisionOption.ReplaceExisting);
             using (var stream = await (file as StorageFile).OpenStreamForWriteAsync())
             {
                 using (StreamWriter sw = new StreamWriter(stream))
@@ -138,7 +203,12 @@ namespace MineS
         public bool IsAcrlic { get; set; }
         public String MarkMineResouceName { get; set; }
         public String BackgroundResouceName { get; set; }
-        public String NomalMineResouceName { get; set; }
+        public String SysELAcrResouceName { get; set; }
+        public String SupELAcrResouceName { get; set; }
+        public String SupELAcrLostResouceName { get; set; }
+        public String NomalButtonResouceName { get; set; }
+        public String AppButtonResouceName { get; set; }
+
         public String ShowNumResouceName { get; set; }
         public bool isAutoColor { get; set; }
         public string mineColor { get; set; }

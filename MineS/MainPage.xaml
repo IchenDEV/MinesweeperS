@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Loaded="Page_Loaded">
     <Page.Resources>
         <local:ConverterTOIMG x:Key="ImgConverter"/>
         <local:ConverterTOResouce x:Key="ResouceConverter"/>
@@ -17,9 +17,10 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    <Grid  x:Name="root" Background="{x:Bind local:LocalTheme.Local.BackgroundResouceName ,Converter={StaticResource ResouceConverter}}">
+    <Grid  x:Name="root" >
+        <Grid Background="{x:Bind local:LocalTheme.Local.SysELAcrResouceName ,Converter={StaticResource ResouceConverter}}"></Grid>
         <Border Opacity="0.5">
-            <Image  Source="{x:Bind local:LocalTheme.Local.BackIMage ,Converter={StaticResource ImgConverter}}" Stretch="UniformToFill" ></Image>
+            <Image x:Name="im"   Stretch="UniformToFill" ></Image>
             <interactivity:Interaction.Behaviors>
                 <behaviors:Blur x:Name="BlurBehavior"
                         Value="8.54"
@@ -31,6 +32,7 @@
        
         <Frame x:Name="froot" Navigated="froot_Navigated">
         </Frame>
+        
         <local:ShButton x:Name="newGame" VerticalAlignment="Bottom" HorizontalAlignment="Right" Tapped="ShButton_Tapped" Visibility="Collapsed"></local:ShButton>
     </Grid>
 </Page>

@@ -5,11 +5,8 @@
     xmlns:local="using:MineS"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-   
-    
-    
-
+    xmlns:Windows10FallCreatorsUpdate="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 5)"
+    mc:Ignorable="d" 
    >
     <UserControl.Resources>
         <ResourceDictionary>
@@ -22,24 +19,24 @@
         <Storyboard x:Name="ExitStoryboard">
             <FadeOutThemeAnimation Storyboard.TargetName="root" />
         </Storyboard>
-    
-    </ResourceDictionary>
+            <local:ConverterTOResouce x:Key="ResouceConverter"/>
+        </ResourceDictionary>
     </UserControl.Resources>
 
     <Grid>
-        <StackPanel Loaded="root_Loaded" x:Name="root" Background="{ThemeResource SuperHighAcrylicELBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Center"  >
+        <StackPanel Loaded="root_Loaded" x:Name="root" Background="{x:Bind local:LocalTheme.Local.SysELAcrResouceName,Converter={StaticResource ResouceConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Center"  >
             <TextBlock Text="Succeed" FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-            <TextBlock FontSize="36" Text="{x:Bind Mode}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-            <TextBlock FontSize="36" Text="{x:Bind Source}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            <TextBlock FontSize="26" Text="{x:Bind Mode.Trim()}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            <TextBlock FontSize="36" Foreground="Red" Text="{x:Bind Source}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
             <Grid Height="100" Tapped="Grid_Tapped">
-                <InkCanvas x:Name="inkCanvas"  ManipulationStarted="inkCanvas_CharacterReceived"  ></InkCanvas>
+                <InkCanvas x:Name="inkCanvas" Tapped="Grid_Tapped"  ManipulationStarted="inkCanvas_CharacterReceived"  ></InkCanvas>
                 <TextBlock x:Name="sin" Text="Sign Your Name Here" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
             </Grid>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <AppBarButton Icon="Share" Click="AppBarButton_Click"/>
-                <AppBarButton Icon="Back" Click="AppBarButton_Click_1"/>
-                <!--<AppBarButton Icon="Save"/>-->
+                <Windows10FallCreatorsUpdate:AppBarButton Icon="Share" Style="{x:Bind local:LocalTheme.Local.AppButtonResouceName,Converter={StaticResource ResouceConverter}}" Click="AppBarButton_Click"/>
+                <AppBarButton Icon="Back" Style="{x:Bind local:LocalTheme.Local.AppButtonResouceName,Converter={StaticResource ResouceConverter}}" Click="AppBarButton_Click_1"/>
+            
             </StackPanel>
 
         </StackPanel>

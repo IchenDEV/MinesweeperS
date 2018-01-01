@@ -42,6 +42,10 @@ namespace MineS
             List<StorageFile> SL = (await folder.GetFilesAsync()).ToList();
             foreach (var item in SL)
             {
+                if ((item.FileType != "json"))
+                {
+                    break;
+                }
                 string result = "";
                 using (Stream str = await item.OpenStreamForReadAsync())
                 {

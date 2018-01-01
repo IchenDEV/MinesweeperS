@@ -1,0 +1,41 @@
+﻿<UserControl
+    x:Class="MineS.AchDital"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MineS"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    <UserControl.Resources>
+      
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary x:Name="ioh"  Source="ms-appx:///Resouse/Dictionary.xaml"></ResourceDictionary>
+                </ResourceDictionary.MergedDictionaries>
+                <local:ConverterTOIMG x:Key="ImgConverter"/>
+            </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid x:Name="Fly" >
+        <ScrollViewer>
+            <StackPanel Padding="5" >
+
+                <Image MaxHeight="300" MaxWidth="400" Source="{x:Bind Local.img ,Mode=OneWay,Converter={StaticResource ImgConverter}}" Stretch="Uniform"></Image>
+                <Grid  CornerRadius="5"  Background="{x:Bind local:LocalTheme.Local.SupELAcrResouceName ,Converter={StaticResource ResouceConverter}}" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                    <TextBlock Text="{x:Bind  Local.name,Mode=OneWay}" VerticalAlignment="Bottom"></TextBlock>
+                </Grid>
+                <Grid  CornerRadius="5"  Background="{x:Bind local:LocalTheme.Local.SupELAcrResouceName ,Converter={StaticResource ResouceConverter}}" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                    <TextBlock Text="{x:Bind  Local.caption,Mode=OneWay}" VerticalAlignment="Bottom"></TextBlock>
+                </Grid>
+                <Grid  CornerRadius="5"  Background="{x:Bind local:LocalTheme.Local.SupELAcrResouceName ,Converter={StaticResource ResouceConverter}}" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                    <TextBlock Text="{x:Bind  Local.GetTime,Mode=OneWay}" VerticalAlignment="Bottom"></TextBlock>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+            
+        </Grid>
+
+   
+</UserControl>
