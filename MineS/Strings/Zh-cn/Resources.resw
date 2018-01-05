@@ -178,4 +178,13 @@
   <data name="Achieve.Text" xml:space="preserve">
     <value>成就</value>
   </data>
+  <data name="Height.Text" xml:space="preserve">
+    <value>高度</value>
+  </data>
+  <data name="Num.Text" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="Width.Text" xml:space="preserve">
+    <value>宽度</value>
+  </data>
 </root>

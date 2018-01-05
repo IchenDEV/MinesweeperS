@@ -219,34 +219,50 @@ namespace MineS
 
         private async Task Unload(Point P)
         {
-
-
-            if (MapNum[P.x, P.y] == 0)
+            if (!isOpened[P.x, P.y])
             {
-                for (int k = 0; k < 8; k++)
-                {
-                    try
-                    {
-                        if (!isOpened[(P.x + direction[k].x), (P.y + direction[k].y)])
-                        {
-                            OpenedButton++;
-                            Marked[P.x + direction[k].x, P.y + direction[k].y] = false;
-                            isOpened[(P.x + direction[k].x), (P.y + direction[k].y)] = true;
-
-                            await Unload(new Point() { x = P.x + direction[k].x, y = P.y + direction[k].y });
-                        }
-
-
-
-
-                    }
-                    catch { }
-
-                }
-
+                OpenedButton++;
             }
 
-            else if (MapNum[P.x, P.y] < 0)
+            if (MapNum[P.x, P.y] == 0|| isOpened[P.x, P.y])
+            {
+                Point[] bbs = new Point[100];
+                int head = 0, tail = 1;
+                bbs[0] = P;
+                for (int i = 0; i < tail; i++)
+                {
+                    var Pt = bbs[i];
+                    for (int k = 0; k < 8; k++)
+                    {
+                        try
+                        {
+                            var Np = new Point() { x = Pt.x + direction[k].x, y = Pt.y + direction[k].y };
+                            if (!isOpened[Np.x, Np.y] && MapNum[Np.x, Np.y] >= 0)
+                            {
+                                OpenedButton++;
+                                Marked[Np.x, Np.y] = false;
+                                isOpened[Np.x, Np.y] = true;
+                                if (MapNum[Np.x, Np.y] == 0)
+                                {
+                                    bbs[tail] = Np;
+                                    tail++;
+                                }
+                            }
+                        }
+
+                        catch { }
+
+                    }
+                }
+
+
+            }
+            JudgeWinLost(P);
+        }
+
+        private void JudgeWinLost(Point P)
+        {
+            if (MapNum[P.x, P.y] < 0)
             {
                 watch.Stop();
                 AchievementInfo.AllPlayTime = AchievementInfo.AllPlayTime.Add(watch.Elapsed);
@@ -307,8 +323,6 @@ namespace MineS
             }
         }
 
-
-
         public void WinBack()
         {
 
@@ -363,22 +377,7 @@ namespace MineS
                 }
                 if (((sender as Grid).Children[0] as TextBlock).Text == ActMark.ToString())
                 {
-                    for (int k = 0; k < 8; k++)
-                    {
-                        try
-                        {
-                            if (Marked[P.x + direction[k].x, P.y + direction[k].y] == false && !isOpened[P.x + direction[k].x, P.y + direction[k].y])
-                            {
-                                OpenedButton++;
-                                isOpened[(P.x + direction[k].x), (P.y + direction[k].y)] = true;
-                                pr.IsActive = true;
-                                await Unload(new Point() { x = P.x + direction[k].x, y = P.y + direction[k].y });
-                                pr.IsActive = false;
-                            }
-
-                        }
-                        catch { }
-                    }
+                    await Unload(P);
                 }
                 Refresh();
             }

@@ -25,7 +25,8 @@ namespace MineS
     {
         public Achievement()
         {
-           // AchievementInfo.DeAC();
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+            // AchievementInfo.DeAC();
             this.InitializeComponent();
         }
         ObservableCollection<Achievements> AC = new ObservableCollection<Achievements>(AchievementInfo.Achinves);

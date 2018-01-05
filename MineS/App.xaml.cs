@@ -48,46 +48,46 @@ namespace MineS
             Frame rootFrame = Window.Current.Content as Frame;
             try
             {
-  if (rootFrame == null)
-            {
-                // 创建要充当导航上下文的框架，并导航到第一页
-                rootFrame = new Frame();
-
-                rootFrame.NavigationFailed += OnNavigationFailed;
-
-                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
+                if (rootFrame == null)
                 {
-                    //TODO: 从之前挂起的应用程序加载状态
-                }
+                    // 创建要充当导航上下文的框架，并导航到第一页
+                    rootFrame = new Frame();
 
-                // 将框架放在当前窗口中
-                Window.Current.Content = rootFrame;
-            }
+                    rootFrame.NavigationFailed += OnNavigationFailed;
 
-            if (e.PrelaunchActivated == false)
-            {
-                if (rootFrame.Content == null)
-                {
-                    // 当导航堆栈尚未还原时，导航到第一页，
-                    // 并通过将所需信息作为导航参数传入来配置
-                    // 参数
-                    if (IsFirstUse)
+                    if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                     {
-                        rootFrame.Navigate(typeof(Guider), e.Arguments);
-                    }
-                    else
-                    {
-                        
-                        rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                        //TODO: 从之前挂起的应用程序加载状态
                     }
 
+                    // 将框架放在当前窗口中
+                    Window.Current.Content = rootFrame;
                 }
-                // 确保当前窗口处于活动状态
-                Window.Current.Activate();
-                extendAcrylicIntoTitleBar();
-                
-Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += App_BackRequested;
-            }
+
+                if (e.PrelaunchActivated == false)
+                {
+                    if (rootFrame.Content == null)
+                    {
+                        // 当导航堆栈尚未还原时，导航到第一页，
+                        // 并通过将所需信息作为导航参数传入来配置
+                        // 参数
+                        if (IsFirstUse)
+                        {
+                            rootFrame.Navigate(typeof(Guider), e.Arguments);
+                        }
+                        else
+                        {
+
+                            rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                        }
+
+                    }
+                    // 确保当前窗口处于活动状态
+                    Window.Current.Activate();
+                    extendAcrylicIntoTitleBar();
+                  
+                    SystemNavigationManager.GetForCurrentView().BackRequested += App_BackRequested;
+                }
             }
             catch
             {
@@ -96,7 +96,7 @@ Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += App
             }
             // 不要在窗口已包含内容时重复应用程序初始化，
             // 只需确保窗口处于活动状态
-          
+
         }
 
         private void App_BackRequested(object sender, BackRequestedEventArgs e)
@@ -107,7 +107,7 @@ Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += App
 
             // Navigate back if possible, and if the event has not  
             // already been handled . 
-            if (rootFrame.CanGoBack && e.Handled == false&&rootFrame.Content.GetType()!=typeof(MainPage))
+            if (rootFrame.CanGoBack && e.Handled == false && rootFrame.Content.GetType() != typeof(MainPage))
             {
                 e.Handled = true;
                 rootFrame.GoBack();
@@ -144,14 +144,14 @@ Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += App
             //TODO: 保存应用程序状态并停止任何后台活动
             deferral.Complete();
         }
-        async  protected override void OnActivated(IActivatedEventArgs args)
+        async protected override void OnActivated(IActivatedEventArgs args)
         {
-            if(args.Kind == ActivationKind.ToastNotification)
-    {
+            if (args.Kind == ActivationKind.ToastNotification)
+            {
                 //从事件参数中获取预定义的数据和用户输入
                 var toastArgs = args as ToastNotificationActivatedEventArgs;
                 var arguments = toastArgs.Argument;
-             //   var input = toastArgs.UserInput["1"];
+                //   var input = toastArgs.UserInput["1"];
                 Frame rootFrame = Window.Current.Content as Frame;
 
                 // 不要在窗口已包含内容时重复应用程序初始化，
@@ -164,15 +164,15 @@ Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += App
                     // 将框架放在当前窗口中
                     Window.Current.Content = rootFrame;
                 }
-  
-                  
-                            rootFrame.Navigate(typeof(Achievement));
-                        
 
-                  
-                    // 确保当前窗口处于活动状态
-                    Window.Current.Activate();
-                }
+
+                rootFrame.Navigate(typeof(Achievement));
+
+
+
+                // 确保当前窗口处于活动状态
+                Window.Current.Activate();
+            }
         }
     }
 }

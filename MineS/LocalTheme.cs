@@ -56,7 +56,7 @@ namespace MineS
             {
                 try
                 {
-                    file.DeleteAsync();
+                  await  file.DeleteAsync();
                 }
                 catch (Exception)
                 {
@@ -82,10 +82,10 @@ namespace MineS
                             BackIMage = new List<string>(),
                             IsAcrlic = true,
                             IsHighMode = true,
-                            BoomMusic = "ms-appx:///Assets//Theme//1709//M.mp3",
+                            BoomMusic = "ms-appx:///Assets//Theme//1709//win.mp3",
                             KilIM = "",
                             MineIM = "",
-                            MarkMusic = "ms-appx:///Assets//Theme//1709//M.mp3",
+                            MarkMusic = "ms-appx:///Assets//Theme//1709//MP.mp3",
                             SuccessMusic = "ms-appx:///Assets//Theme//1709//M.mp3",
                             MarkMineResouceName = "ButtonRevealMarkedStyle",
 

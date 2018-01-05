@@ -31,7 +31,7 @@ namespace MineS
             this.InitializeComponent();
 
             froot.Navigate(typeof(SetPage), froot);
-          
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
 
 
         }
@@ -73,7 +73,7 @@ namespace MineS
             try
             {
                 im.Source = new BitmapImage(new Uri((await(LocalTheme.Initialize())).BackIMage[0]));
-
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
 
             }
             catch (Exception)

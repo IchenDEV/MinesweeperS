@@ -26,6 +26,7 @@ namespace MineS
     {
         public About()
         {
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             this.InitializeComponent();
         }
         public string ApplicationName => SystemInformation.ApplicationName;

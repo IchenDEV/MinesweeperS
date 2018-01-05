@@ -9,6 +9,8 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -27,8 +29,12 @@ namespace MineS
     public sealed partial class SetPage : Page, INotifyPropertyChanged
 
     {
+       private UISettings uisetting = new UISettings();
+        public SolidColorBrush ForeColor = new SolidColorBrush(Colors.Black);
         public SetPage()
         {
+
+            //uisetting.ColorValuesChanged += Uisetting_ColorValuesChanged;
             this.InitializeComponent();
             //if (SystemInformation.DeviceFamily == "Windows.Mobile")
             //{
@@ -36,6 +42,21 @@ namespace MineS
             //}
 
         }
+
+        private void Uisetting_ColorValuesChanged(UISettings sender, object args)
+        {
+            try
+            {
+ ForeColor = new SolidColorBrush ( sender.GetColorValue(UIColorType.Accent));
+            }
+            catch (Exception)
+            {
+
+               
+            }
+           
+        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             band =
@@ -160,7 +181,7 @@ namespace MineS
             else
             {
                 int duration = 2000;
-                ExampleInAppNotification.Show("Some text.", duration);
+                ExampleInAppNotification.Show("Wrong input.", duration);
             }
 
         }

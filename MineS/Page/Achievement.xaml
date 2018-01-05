@@ -24,8 +24,8 @@
         
         
     </Page.Resources>
-    <Grid Background="{x:Bind local:LocalTheme.Local.SysELAcrResouceName ,Converter={StaticResource ResouceConverter}}">
-        <Border Opacity="0.5">
+    <Grid Background="{x:Bind local:LocalTheme.Local.BackgroundResouceName ,Converter={StaticResource ResouceConverter}}">
+        <Border Opacity="0.2">
             <Image  Source="{x:Bind local:LocalTheme.Local.BackIMage ,Converter={StaticResource ImgConverter}}" Stretch="UniformToFill" ></Image>
             <interactivity:Interaction.Behaviors>
                 <behaviors:Blur x:Name="BlurBehavior"

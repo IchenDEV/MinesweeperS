@@ -10,7 +10,7 @@
     xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
     mc:Ignorable="d">
 
-    <Grid Background="{x:Bind local:LocalTheme.Local.SysELAcrResouceName ,Converter={StaticResource ResouceConverter}}">
+    <Grid Background="{x:Bind local:LocalTheme.Local.BackgroundResouceName ,Converter={StaticResource ResouceConverter}}">
         <Border Opacity="0.5">
             <Image  Source="{x:Bind local:LocalTheme.Local.BackIMage ,Converter={StaticResource ImgConverter}}" Stretch="UniformToFill" ></Image>
             <interactivity:Interaction.Behaviors>

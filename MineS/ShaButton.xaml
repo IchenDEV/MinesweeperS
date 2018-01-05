@@ -8,7 +8,7 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:local="using:MineS"
     mc:Ignorable="d"
-    Loaded="ShadowsAdvanced_Loaded">
+   >
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -32,10 +32,10 @@
 
                                     <VisualState x:Name="PointerOver">
                                         <VisualState.Setters>
-                                            <!--<Setter Target="RootGrid.(RevealBrush.State)" Value="PointerOver" />-->
+                                            <Setter Target="RootGrid.(RevealBrush.State)" Value="PointerOver" />
                                             <Setter Target="RootGrid.Background" Value="{ThemeResource ButtonBackgroundPointerOver}" />
                                             <Setter Target="ContentPresenter.BorderBrush" Value="Transparent"/>
-                                            <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource ButtonForegroundPointerOver}" />
+                                         
                                         </VisualState.Setters>
 
                                         <Storyboard>
@@ -85,7 +85,7 @@
             <Setter Property="Width" Value="50"/>
             <Setter Property="Height" Value="50"/>
             <Setter Property="FontSize" Value="120"/>
-            <Setter Property="Foreground" Value="White"/>
+          
 
         </Style>
         <Storyboard x:Name="Switch">
@@ -101,15 +101,17 @@
 
     </UserControl.Resources>
     <Grid>
-        <Canvas x:Name="MainCanvas"          >
 
-            <Button   Click="Button_Click" Background="Blue"   Style="{ThemeResource btnNext}"  PointerEntered="Button_PointerEntered" RenderTransformOrigin="0.5,0.5" PointerExited="but_PointerExited" >
+
+        <Button x:Name="bt"   RenderTransformOrigin="0.5,0.5"   Style="{ThemeResource btnNext}"  PointerEntered="Button_PointerEntered" PointerExited="but_PointerExited" >
                 <Button.RenderTransform>
                     <CompositeTransform x:Name="but" Rotation="-56.31"/>
                 </Button.RenderTransform>
                 <SymbolIcon Symbol="Refresh"/>
             </Button>
+       
+           
 
-        </Canvas>
+       
     </Grid>
 </UserControl>

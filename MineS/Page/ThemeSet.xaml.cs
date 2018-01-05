@@ -73,6 +73,7 @@ namespace MineS
         }
         public ThemeSet()
         {
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             this.InitializeComponent();
         }
 
