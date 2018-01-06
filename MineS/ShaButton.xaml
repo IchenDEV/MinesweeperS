@@ -32,7 +32,7 @@
 
                                     <VisualState x:Name="PointerOver">
                                         <VisualState.Setters>
-                                            <Setter Target="RootGrid.(RevealBrush.State)" Value="PointerOver" />
+                                            <!--<Setter Target="RootGrid.(RevealBrush.State)" Value="PointerOver" />-->
                                             <Setter Target="RootGrid.Background" Value="{ThemeResource ButtonBackgroundPointerOver}" />
                                             <Setter Target="ContentPresenter.BorderBrush" Value="Transparent"/>
                                          

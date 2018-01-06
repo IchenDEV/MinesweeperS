@@ -188,6 +188,7 @@ namespace MineS
                     Grid.SetRow(ButtonCollection[i, j], i);
                     Grid.SetColumn(ButtonCollection[i, j], j);
                 }
+                EnterStoryboard2.Begin();
             }
 
         }
@@ -211,22 +212,22 @@ namespace MineS
 
         public Map()
         {
-
+         
 
             this.InitializeComponent();
             MineButtonStyle = (Style)ioh[LocalTheme.Local.NomalButtonResouceName];
         }
 
-        private async Task Unload(Point P)
+        private void Unload(Point P)
         {
             if (!isOpened[P.x, P.y])
             {
                 OpenedButton++;
             }
 
-            if (MapNum[P.x, P.y] == 0|| isOpened[P.x, P.y])
+            if (MapNum[P.x, P.y] == 0 || isOpened[P.x, P.y])
             {
-                Point[] bbs = new Point[100];
+                Point[] bbs = new Point[1000];
                 int head = 0, tail = 1;
                 bbs[0] = P;
                 for (int i = 0; i < tail; i++)
@@ -237,7 +238,7 @@ namespace MineS
                         try
                         {
                             var Np = new Point() { x = Pt.x + direction[k].x, y = Pt.y + direction[k].y };
-                            if (!isOpened[Np.x, Np.y] && MapNum[Np.x, Np.y] >= 0)
+                            if (!isOpened[Np.x, Np.y] && !Marked[Np.x, Np.y])
                             {
                                 OpenedButton++;
                                 Marked[Np.x, Np.y] = false;
@@ -247,6 +248,7 @@ namespace MineS
                                     bbs[tail] = Np;
                                     tail++;
                                 }
+                                JudgeWinLost(Np);
                             }
                         }
 
@@ -257,7 +259,13 @@ namespace MineS
 
 
             }
+            else
+            {
+                isOpened[P.x, P.y] = true;
+            }
+            Refresh();
             JudgeWinLost(P);
+            
         }
 
         private void JudgeWinLost(Point P)
@@ -291,7 +299,7 @@ namespace MineS
 
 
             }
-            if (OpenedButton == Widt * Heigh - AllNum && !finished)
+            if (OpenedButton >= Widt * Heigh - AllNum && !finished)
             {
                 watch.Stop();
                 var time = watch.Elapsed.TotalSeconds;
@@ -306,16 +314,17 @@ namespace MineS
 
 
                 roots.Children.Add(win);
-
+                M3.Play();
+                EnterStoryboard.Begin();
                 try
                 {
-                    M3.Play();
+
                     foreach (var item in ButtonCollection)
                     {
                         item.IsEnabled = false;
                     }
 
-                    EnterStoryboard.Begin();
+
                 }
                 catch { }
 
@@ -357,7 +366,7 @@ namespace MineS
 
 
 
-        private async void S_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        private void S_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
             try
             {
@@ -377,7 +386,7 @@ namespace MineS
                 }
                 if (((sender as Grid).Children[0] as TextBlock).Text == ActMark.ToString())
                 {
-                    await Unload(P);
+                    Unload(P);
                 }
                 Refresh();
             }
@@ -389,7 +398,7 @@ namespace MineS
 
         }
 
-        private async void B_Click(object sender, RoutedEventArgs e)
+        private void B_Click(object sender, RoutedEventArgs e)
         {
             AchievementInfo.ClickTime++;
             var P = (sender as Button).Tag as Point;
@@ -409,11 +418,10 @@ namespace MineS
             {
 
             }
-            OpenedButton++;
-            isOpened[P.x, P.y] = true;
+       
             try
             {
-                await Unload(P);
+                Unload(P);
             }
             catch (Exception)
             {

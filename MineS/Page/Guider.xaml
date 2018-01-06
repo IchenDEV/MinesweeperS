@@ -30,9 +30,24 @@
             <PivotItem Header="Guide">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0,10,0,10">
                     <ScrollViewer>
-                        <TextBlock x:Uid="howToPlay" TextWrapping="WrapWholeWords" Text="" HorizontalAlignment="Center" FontSize="20"/>
+                        <StackPanel>
+                            <TextBlock x:Uid="howToPlay" TextWrapping="WrapWholeWords" Text="The basic operation of the game includes left-click, right-click (phone Long Press), double-click three kinds.
+The left button is used to open the security grid, to advance the game progress; Right (long press) for marking mines, to assist in judgment, or to prepare for the next double-click;
+
+Double-click on a number of mines around a mark, the equivalent of a number of open blocks around a left-click operation, if the number surrounding the wrong mine, the game is over
+Thunder tactic Eight
+Rule number one: Don't forget the basic formula.
+Second: mouse clicks do not fast, stable rhythm to open.
+Third: Conveniently mark the Thunder not accustomed, accumulates down the record hangs.
+Fourth: Don't know how to stop Leng, near Guess Thunder heart horizontal.
+Fifth: Encounter guess Ray don't be afraid, burst the face does not leave scar.
+Sixth: Guess Ray guess wrong don't regret, cry day Rob Land also in vain.
+Seventh: Meet a good bureau do not panic, focus on local slow expansion. Eighth: Pain lost good bureau do not hate, since it is destined to have a share." HorizontalAlignment="Center" FontSize="20"/>
+                     <Button Content="Next" x:Uid="next" VerticalAlignment="Bottom" Margin="35"  HorizontalAlignment="Center" Click="Button_Click"/> 
+                        </StackPanel>
+                      
                     </ScrollViewer>
-                    <Button Content="Next" x:Uid="next" VerticalAlignment="Bottom" Margin="35"  HorizontalAlignment="Center" Click="Button_Click"/>
+                  
                 </StackPanel>
             </PivotItem>
             <PivotItem Header="Finish">

@@ -506,10 +506,10 @@
             TintColor="#6F8F0000"
             TintOpacity="0.2"
             FallbackColor="#FF7F0000"/>
-    <Windows10FallCreatorsUpdate:AcrylicBrush x:Key="SuperMidAcrylicWiBrush"
+    <Windows10FallCreatorsUpdate:AcrylicBrush x:Key="SuperMidAcrylicWiBrush" 
             BackgroundSource="HostBackdrop"
-            TintColor="#FFFFFFFF"
-            TintOpacity="0.3"
-           FallbackColor="#FFFFFFFF"/>
+            TintColor="#AF000000"                       
+            TintOpacity="0.6"
+           FallbackColor="#AF000000"/>
 
 </ResourceDictionary>

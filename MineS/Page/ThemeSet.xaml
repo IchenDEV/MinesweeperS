@@ -31,7 +31,7 @@
             <TextBlock  Margin="30,30,0,0" Text="Theme Settings" x:Uid="ThemeSet" FontSize="36" FontWeight="Bold" />
         </StackPanel>
         <ScrollViewer HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-            <StackPanel Padding="10" Margin="250,100,0,0" HorizontalAlignment="Stretch">
+            <StackPanel Padding="10" Margin="100,100,0,0" HorizontalAlignment="Stretch">
 
                 <StackPanel  Margin="10">
 
@@ -74,8 +74,13 @@
             Text="{x:Bind localtheme.BackIMage[0]}"
             Orientation="Horizontal"
             Margin="10,10,0,0"  />
-                        <Image Height="200" Width="200" Source="{x:Bind localtheme.BackIMage,Mode=OneWay,Converter={StaticResource ImgConverter}}" Stretch="Uniform"/>
-                        <AppBarButton Icon="OpenFile" Click="AppBarButton_Click"/>
+                        <ToggleSwitch Header="Show Background" x:Name="NB" IsOn="{x:Bind isShowBackground,Mode=OneWay}" Toggled="NB_Toggled"></ToggleSwitch>
+                        <StackPanel Orientation="Horizontal"  >
+                            <Image Height="200" Width="200" Source="{x:Bind localtheme.BackIMage,Mode=OneWay,Converter={StaticResource ImgConverter}}" Stretch="Uniform"/>
+                           
+                            <AppBarButton IsEnabled="{Binding ElementName=NB,Path=IsOn,Mode=OneWay}" Icon="OpenFile" Width="50" Click="AppBarButton_Click"/>
+                        </StackPanel>
+
                     </StackPanel>
 
                 </StackPanel>

@@ -28,7 +28,7 @@ namespace MineS
     public sealed partial class ThemeSet : Page, INotifyPropertyChanged
     {
         private Themes _localtheme = LocalTheme.Local;
-
+        private bool isShowBackground = true;
         public Themes localtheme
         {
             get { return this._localtheme; }
@@ -42,7 +42,10 @@ namespace MineS
         {
             Frame rootFrame = Window.Current.Content as Frame;
 
-
+            if (LocalTheme.Local.BackIMage[0] == ("ms-appx:///Assets/trans.png"))
+            {
+                isShowBackground = false;
+            }
 
             if (rootFrame.CanGoBack)
             {
@@ -83,17 +86,26 @@ namespace MineS
             fileOpen.FileTypeFilter.Add(".png");
             var file = await fileOpen.PickSingleFileAsync();
             var dest = await ApplicationData.Current.LocalFolder.CreateFolderAsync("Theme", CreationCollisionOption.OpenIfExists);
-            var fli = await file.CopyAsync(dest, file.Name, NameCollisionOption.ReplaceExisting);
-            LocalTheme.Local.BackIMage[0]=(fli.Path);
-            localtheme = LocalTheme.Local;
             try
             {
-                await LocalTheme.write(LocalTheme.TojsonData(localtheme));
+                var fli = await file.CopyAsync(dest, file.Name, NameCollisionOption.ReplaceExisting);
+                LocalTheme.Local.BackIMage[0] = (fli.Path);
+                localtheme = LocalTheme.Local;
+                try
+                {
+                    await LocalTheme.write(LocalTheme.TojsonData(localtheme));
+                }
+                catch
+                {
+
+                }
             }
-            catch
+            catch (Exception)
             {
 
+
             }
+
 
         }
 
@@ -138,6 +150,20 @@ namespace MineS
                 await LocalTheme.write(LocalTheme.TojsonData(localtheme));
             }
             catch { }
+        }
+
+        private async void NB_Toggled(object sender, RoutedEventArgs e)
+        {
+            LocalTheme.Local.BackIMage[0] = ("ms-appx:///Assets/trans.png");
+            localtheme = LocalTheme.Local;
+            try
+            {
+                await LocalTheme.write(LocalTheme.TojsonData(localtheme));
+            }
+            catch
+            {
+
+            }
         }
     }
 }

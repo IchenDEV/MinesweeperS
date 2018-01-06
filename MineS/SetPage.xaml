@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
     xmlns:Windows10FallCreatorsUpdate="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 5)"
+    xmlns:Windows10NotFallCreatorsUpdate="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractNotPresent(Windows.Foundation.UniversalApiContract, 5)"
     xmlns:UI="using:Microsoft.Advertising.WinRT.UI"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d" FontFamily="Bahnschrift Light" >
@@ -26,11 +27,11 @@
         </ResourceDictionary>
     </Page.Resources>
     <Grid>
-        <Windows10FallCreatorsUpdate:VisualStateManager.VisualStateGroups>
+        <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState>
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="718"></AdaptiveTrigger>
+                        <AdaptiveTrigger MinWindowWidth="618"></AdaptiveTrigger>
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="SetPanel.Grid.Row" Value="0"></Setter>
@@ -39,7 +40,7 @@
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
-        </Windows10FallCreatorsUpdate:VisualStateManager.VisualStateGroups>
+        </VisualStateManager.VisualStateGroups>
         <ScrollViewer  x:Name="sc">
             <Grid x:Name="gr">
 
@@ -52,7 +53,7 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="Minesweeper S" x:Uid="AppName"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="54" FontFamily="Bahnschrift Light" Foreground="{x:Bind ForeColor}"/>
+                <TextBlock Text="Minesweeper S" x:Uid="AppName"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="54" FontFamily="Bahnschrift Light" />
 
                 <Grid x:Name="super" MinHeight="300"  Grid.Row="1" Margin="25" Background="{x:Bind local:LocalTheme.Local.SupELAcrResouceName ,Converter={StaticResource ResouceConverter}}" CornerRadius="54,54,54,54" Loaded="super_Loaded">
                     <Grid.RowDefinitions>
@@ -89,13 +90,13 @@
                                         <ColumnDefinition Width="3*"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <TextBlock x:Uid="Hight"  Foreground="{x:Bind ForeColor}" HorizontalAlignment="Center" Text="Height" VerticalAlignment="Center" FontSize="18"  ></TextBlock>
-                                    <TextBlock x:Uid="Width"  Foreground="{x:Bind ForeColor}" Grid.Row="1"  HorizontalAlignment="Center" Text="Width" VerticalAlignment="Center" FontSize="18" ></TextBlock>
-                                    <TextBlock x:Uid="Num" Foreground="{x:Bind ForeColor}" Grid.Row="2" HorizontalAlignment="Center" Text="Number of mine" VerticalAlignment="Center" FontSize="18" ></TextBlock>
-                                    <TextBox Foreground="{x:Bind ForeColor}" x:Name="MapHeightBox"  Text="{x:Bind MapHeigh ,Mode=TwoWay,Converter={StaticResource Numin}}"  Grid.Column="1" Margin="5.2,5,4,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
-                                    <TextBox Foreground="{x:Bind ForeColor}" x:Name="MapWidthBox"  Text="{x:Bind MapWidth ,Mode=TwoWay,Converter={StaticResource Numin}}" Grid.Row="1" Grid.Column="1" Margin="5.2,5,4,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
-                                    <TextBox Foreground="{x:Bind ForeColor}" x:Name="MapNumBox" Text="{x:Bind NumMine ,Mode=TwoWay,Converter={StaticResource Numin}}" Grid.Row="2" Grid.Column="1" Margin="5.2,5,4,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
-                                    <HyperlinkButton Foreground="{x:Bind ForeColor}" Content="Play" Grid.RowSpan="5" Grid.ColumnSpan="5" Click="HyperlinkButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="30"  />
+                                    <TextBlock x:Uid="Hight"   HorizontalAlignment="Center" Text="Height" VerticalAlignment="Center" FontSize="18"  ></TextBlock>
+                                    <TextBlock x:Uid="Width"  Grid.Row="1"  HorizontalAlignment="Center" Text="Width" VerticalAlignment="Center" FontSize="18" ></TextBlock>
+                                    <TextBlock x:Uid="Num"  Grid.Row="2" HorizontalAlignment="Center" Text="Number of mine" VerticalAlignment="Center" FontSize="18" ></TextBlock>
+                                    <TextBox x:Name="MapHeightBox"  Text="{x:Bind MapHeigh ,Mode=TwoWay,Converter={StaticResource Numin}}"  Grid.Column="1" Margin="5.2,5,4,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
+                                    <TextBox  x:Name="MapWidthBox"  Text="{x:Bind MapWidth ,Mode=TwoWay,Converter={StaticResource Numin}}" Grid.Row="1" Grid.Column="1" Margin="5.2,5,4,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
+                                    <TextBox  x:Name="MapNumBox" Text="{x:Bind NumMine ,Mode=TwoWay,Converter={StaticResource Numin}}" Grid.Row="2" Grid.Column="1" Margin="5.2,5,4,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></TextBox>
+                                    <HyperlinkButton  Content="Play" Grid.RowSpan="5" Grid.ColumnSpan="5" Click="HyperlinkButton_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="30"  />
                                     <controls:InAppNotification x:Name="ExampleInAppNotification" VerticalAlignment="Bottom" Grid.RowSpan="10" Grid.ColumnSpan="10"/>
 
                                 </Grid>
@@ -114,13 +115,20 @@
                         <RowDefinition Height="250"/>
                     </Grid.RowDefinitions>
                     <Windows10FallCreatorsUpdate:Button x:Name="Sett" Click="Button_Click_1" Style="{x:Bind local:LocalTheme.Local.NomalButtonResouceName,Converter={StaticResource ResouceConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#00000000">
-                        <SymbolIcon Symbol="Setting" Foreground="{x:Bind ForeColor}" />
+                        <Windows10FallCreatorsUpdate:SymbolIcon Symbol="Setting"  />
                     </Windows10FallCreatorsUpdate:Button>
                     <Button Grid.Row="1" Click="Button_Click_2" Style="{x:Bind local:LocalTheme.Local.NomalButtonResouceName,Converter={StaticResource ResouceConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#00000000">
-                        <SymbolIcon Symbol="SolidStar" Foreground="{x:Bind ForeColor}" />
+                        <Grid>
+                            <Windows10FallCreatorsUpdate:SymbolIcon Symbol="SolidStar" />
+                            <Windows10NotFallCreatorsUpdate:TextBlock x:Uid="Achieve"></Windows10NotFallCreatorsUpdate:TextBlock>
+                        </Grid>
+
                     </Button>
                     <Button Grid.Row="2" Click="Button_Click_3" Style="{x:Bind local:LocalTheme.Local.NomalButtonResouceName,Converter={StaticResource ResouceConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#00000000">
-                        <SymbolIcon Symbol="Account" Foreground="{x:Bind ForeColor}"  />
+                        <Grid>
+                            <Windows10FallCreatorsUpdate:SymbolIcon Symbol="Account"   />
+                            <Windows10NotFallCreatorsUpdate:TextBlock x:Uid="About" ></Windows10NotFallCreatorsUpdate:TextBlock>
+                        </Grid>
                     </Button>
                     <Grid Grid.Row="3" MinHeight="250">
                         <TextBlock Text="AD"  HorizontalAlignment="Center" VerticalAlignment="Center"/>

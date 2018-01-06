@@ -15,6 +15,9 @@
             <Storyboard x:Name="EnterStoryboard">
                 <PopInThemeAnimation Storyboard.TargetName="win" />
             </Storyboard>
+            <Storyboard x:Name="EnterStoryboard2">
+                <PopInThemeAnimation Storyboard.TargetName="roots" />
+            </Storyboard>
         </ResourceDictionary>
     </Page.Resources>
     <Grid x:Name="roots" Margin="0,50,0,0">

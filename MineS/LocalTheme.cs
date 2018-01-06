@@ -74,7 +74,7 @@ namespace MineS
                         var Theme = new Themes()
                         {
                             ThemeName = "Snow",
-                            BackgroundResouceName = "SuperMidAcrylicWiBrush",
+                            BackgroundResouceName = "SystemControlAcrylicWindowMediumHighBrush",
                             SysELAcrResouceName = "SystemControlAcrylicElementMediumHighBrush",
                             SupELAcrResouceName = "SuperHighAcrylicELBrush",
                             SupELAcrLostResouceName = "SuperRedAcrylicELBrush",

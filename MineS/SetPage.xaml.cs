@@ -43,19 +43,7 @@ namespace MineS
 
         }
 
-        private void Uisetting_ColorValuesChanged(UISettings sender, object args)
-        {
-            try
-            {
- ForeColor = new SolidColorBrush ( sender.GetColorValue(UIColorType.Accent));
-            }
-            catch (Exception)
-            {
-
-               
-            }
-           
-        }
+       
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
