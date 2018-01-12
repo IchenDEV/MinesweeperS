@@ -187,4 +187,22 @@
   <data name="Width.Text" xml:space="preserve">
     <value>宽度</value>
   </data>
+  <data name="LostB" xml:space="preserve">
+    <value>踩到10次雷</value>
+  </data>
+  <data name="LostBc" xml:space="preserve">
+    <value>出师不利</value>
+  </data>
+  <data name="LostG" xml:space="preserve">
+    <value>踩到1000次雷</value>
+  </data>
+  <data name="LostGc" xml:space="preserve">
+    <value>”千“折不挠</value>
+  </data>
+  <data name="LostL" xml:space="preserve">
+    <value>踩到100次雷</value>
+  </data>
+  <data name="LostLc" xml:space="preserve">
+    <value>霉运当头</value>
+  </data>
 </root>

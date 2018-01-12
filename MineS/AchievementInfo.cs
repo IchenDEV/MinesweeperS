@@ -2,6 +2,7 @@
 using Microsoft.Toolkit.Uwp.Notifications;
 using System;
 using System.Collections.Generic;
+using Windows.ApplicationModel.Resources;
 using Windows.UI.Notifications;
 using Windows.UI.Xaml.Media.Imaging;
 
@@ -212,7 +213,7 @@ namespace MineS
                     },
                     new AdaptiveText()
                     {
-                        Text = "Hi,",
+                        Text = localLang.GetString("App"),
                         HintStyle = AdaptiveTextStyle.Title,
                         HintAlign = AdaptiveTextAlign.Center
                     },
@@ -230,11 +231,12 @@ namespace MineS
 
             // Create the tile notification
             var tileNotif = new TileNotification(tileContent.GetXml());
-
+            
             // And send the notification to the primary tile
             TileUpdateManager.CreateTileUpdaterForApplication().Update(tileNotif);
 
         }
+        static   ResourceLoader localLang=ResourceLoader.GetForCurrentView();
 
 
         private static int _clickTime;
@@ -278,16 +280,37 @@ namespace MineS
                 _gameoverTime = value;
                 if (value > 10)
                 {
-                    GenerateToastContentAnPop("Bad Luck(Green Hand)", "LostB.png", "Die more than 10 times");
+                    var ss = localLang.GetString("LostB");
+                    var sc = localLang.GetString("LostBc");
+                    if (ss == String.Empty)
+                    {
+                        ss = "Die more than 10 times";
+                        sc = "Bad Luck(Green Hand)";
+                    }
+                    GenerateToastContentAnPop(sc, "LostB.png", ss);
 
                 }
                 else if (value > 100)
                 {
-                    GenerateToastContentAnPop("Super Bad Luck(Expert)", "LostL.png", "Die more than 100 times");
+                    var ss = localLang.GetString("LostL");
+                    var sc = localLang.GetString("LostLc");
+                    if (ss == String.Empty)
+                    {
+                        ss = "Die more than 100 times";
+                        sc = "Super Bad Luck(Expert)";
+                    }
+                    GenerateToastContentAnPop(sc, "LostL.png", ss);
                 }
                 else if (value > 1000)
                 {
-                    GenerateToastContentAnPop("Bad Luck..........(Master)", "LostG.png", "Die more than 1000 times");
+                    var ss = localLang.GetString("LostG");
+                    var sc = localLang.GetString("LostGc");
+                    if (ss == String.Empty)
+                    {
+                        ss = "Die more than 1000 times";
+                        sc = "Bad Luck..........(Master)";
+                    }
+                    GenerateToastContentAnPop(sc, "LostG.png", ss);
                 }
             }
         }
