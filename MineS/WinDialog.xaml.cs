@@ -48,19 +48,29 @@ namespace MineS
 
                 Windows.UI.Core.CoreInputDeviceTypes.Pen;
             inkCanvas.ManipulationStarted += InkCanvas_ManipulationStarted;
-            if (this.ActualTheme == ElementTheme.Dark)
+            try
             {
-                var attr = new InkDrawingAttributes
+                if (ActualTheme == ElementTheme.Dark)
                 {
-                    Color = Colors.White, //颜色
-                    IgnorePressure = false,  //是否忽略数字化器表面上的接触压力
-                    PenTip = PenTipShape.Circle, //笔尖类型设置
-                    Size = new Size(4, 10), //画笔粗细
-                    PenTipTransform = Matrix3x2.CreateRotation((float)(70 * Math.PI / 180)) //笔尖形状矩阵
-                };
-                //更新画笔
-                inkCanvas.InkPresenter.UpdateDefaultDrawingAttributes(attr);
+                    var attr = new InkDrawingAttributes
+                    {
+                        Color = Colors.White, //颜色
+                        IgnorePressure = false,  //是否忽略数字化器表面上的接触压力
+                        PenTip = PenTipShape.Circle, //笔尖类型设置
+                        Size = new Size(4, 10), //画笔粗细
+
+                    };
+                    //更新画笔
+                    inkCanvas.InkPresenter.UpdateDefaultDrawingAttributes(attr);
+                }
             }
+            catch (Exception)
+            {
+
+
+            }
+
+
 
 
         }

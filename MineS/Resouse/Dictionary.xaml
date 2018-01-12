@@ -32,8 +32,8 @@
 
                                 <VisualState x:Name="PointerOver">
                                     <VisualState.Setters>
-                                        
-                                        <Setter Target="RootGrid.Background" Value="{ThemeResource ButtonBackgroundPointerOver}" />
+
+                                        <Setter Target="RootGrid.Background" Value="transparent" />
                                         <Setter Target="ContentPresenter.BorderBrush" Value="{ThemeResource ButtonBorderBrushPointerOver}" />
                                         <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource ButtonForegroundPointerOver}" />
                                     </VisualState.Setters>
@@ -58,7 +58,7 @@
 
                                 <VisualState x:Name="Disabled">
                                     <VisualState.Setters>
-                                        <Setter Target="RootGrid.Background" Value="{ThemeResource ButtonBackgroundDisabled}" />
+                                        <Setter Target="RootGrid.Background" Value="#5FFFB900" />
                                         <Setter Target="ContentPresenter.BorderBrush" Value="{ThemeResource ButtonBorderBrushDisabled}" />
                                         <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource ButtonForegroundDisabled}" />
                                     </VisualState.Setters>
@@ -113,7 +113,7 @@
                                 <VisualState x:Name="PointerOver">
                                     <VisualState.Setters>
                                         <Setter Target="RootGrid.(RevealBrush.State)" Value="PointerOver" />
-                                        <Setter Target="RootGrid.Background" Value="{ThemeResource ButtonRevealBackgroundPointerOver}" />
+                                        <Setter Target="RootGrid.Background" Value="transparent" />
                                         <Setter Target="ContentPresenter.BorderBrush" Value="{ThemeResource ButtonRevealBorderBrushPointerOver}" />
                                         <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource ButtonForegroundPointerOver}" />
                                     </VisualState.Setters>
@@ -138,7 +138,7 @@
 
                                 <VisualState x:Name="Disabled">
                                     <VisualState.Setters>
-                                        <Setter Target="RootGrid.Background" Value="{ThemeResource ButtonRevealBackgroundDisabled}" />
+                                        <Setter Target="RootGrid.Background" Value="#5FFFB900" />
                                         <Setter Target="ContentPresenter.BorderBrush" Value="{ThemeResource ButtonRevealBorderBrushDisabled}" />
                                         <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource ButtonForegroundDisabled}" />
                                     </VisualState.Setters>
@@ -167,8 +167,8 @@
         <Setter Property="Background" Value="{ThemeResource ButtonRevealBackground}"/>
         <Setter Property="Foreground" Value="{ThemeResource ButtonForeground}"/>
         <Setter Property="BorderBrush" Value="{ThemeResource ButtonRevealBorderBrush}"/>
-        <Setter Property="BorderThickness" Value="{ThemeResource ButtonRevealBorderThemeThickness}"/>
-        <Setter Property="Padding" Value="1"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="0"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
@@ -190,7 +190,7 @@
                                 <VisualState x:Name="PointerOver">
                                     <VisualState.Setters>
                                         <Setter Target="RootGrid.(RevealBrush.State)" Value="PointerOver"/>
-                                        <Setter Target="RootGrid.Background" Value="{ThemeResource ButtonRevealBackgroundPointerOver}"/>
+                                        <Setter Target="RootGrid.Background" Value="transparent"/>
 
                                         <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource ButtonForegroundPointerOver}"/>
                                     </VisualState.Setters>
@@ -211,7 +211,7 @@
                                 </VisualState>
                                 <VisualState x:Name="Disabled">
                                     <VisualState.Setters>
-                                        <Setter Target="RootGrid.Background" Value="{ThemeResource ButtonRevealBackgroundDisabled}"/>
+                                        <Setter Target="RootGrid.Background" Value="#5FFFB900"/>
                                         <Setter Target="ContentPresenter.BorderBrush" Value="{ThemeResource ButtonRevealBorderBrushDisabled}"/>
                                         <Setter Target="ContentPresenter.Foreground" Value="{ThemeResource ButtonForegroundDisabled}"/>
                                     </VisualState.Setters>
@@ -493,13 +493,13 @@
     </Style>
     <Windows10FallCreatorsUpdate:AcrylicBrush x:Key="SuperHighAcrylicELBrush"
             BackgroundSource="Backdrop"
-            TintColor="#2FFFFFFF"
-            TintOpacity="0.2"
+            TintColor="#5FFFFFFF"
+            TintOpacity="0.4"
             FallbackColor="#2F7F0000"/>
     <Windows10FallCreatorsUpdate:AcrylicBrush x:Key="SuperMidAcrylicELBrush"
             BackgroundSource="Backdrop"
             TintColor="#5FFFFFFF"
-            TintOpacity="0.2"
+            TintOpacity="0.4"
             FallbackColor="#2F7F0000"/>
     <Windows10FallCreatorsUpdate:AcrylicBrush x:Key="SuperRedAcrylicELBrush"
             BackgroundSource="Backdrop"

@@ -212,7 +212,7 @@ namespace MineS
 
         public Map()
         {
-         
+
 
             this.InitializeComponent();
             MineButtonStyle = (Style)ioh[LocalTheme.Local.NomalButtonResouceName];
@@ -228,7 +228,7 @@ namespace MineS
             if (MapNum[P.x, P.y] == 0 || isOpened[P.x, P.y])
             {
                 Point[] bbs = new Point[1000];
-                int head = 0, tail = 1;
+                int  tail = 1;
                 bbs[0] = P;
                 for (int i = 0; i < tail; i++)
                 {
@@ -265,7 +265,7 @@ namespace MineS
             }
             Refresh();
             JudgeWinLost(P);
-            
+
         }
 
         private void JudgeWinLost(Point P)
@@ -288,8 +288,14 @@ namespace MineS
                     foreach (var item in ButtonCollection)
                     {
                         item.IsEnabled = false;
-                    }
+                        var p = (Point)item.Tag;
+                        if (MapNum[p.x, p.y] < 0)
+                        {
+                            item.Content = "💣";
 
+                        }
+
+                    }
                 }
                 catch
                 {
@@ -299,8 +305,9 @@ namespace MineS
 
 
             }
-            if (OpenedButton >= Widt * Heigh - AllNum && !finished)
+            if (OpenedButton > Widt * Heigh - AllNum && !finished)
             {
+                finished = true;
                 watch.Stop();
                 var time = watch.Elapsed.TotalSeconds;
                 AchievementInfo.AllPlayTime = AchievementInfo.AllPlayTime.Add(watch.Elapsed);
@@ -312,21 +319,24 @@ namespace MineS
                 WinDialog win = new WinDialog() { Source = source, Mode = String.Format("{3}({0},{1},{2})", Widt, Heigh, AllNum, Mode) };
                 AchievementInfo.WinTime++;
 
+                foreach (var item in ButtonCollection)
+                {
+                    try
+                    {
+                        item.IsEnabled = false;
+                    }
+                    catch { }
+                }
 
                 roots.Children.Add(win);
                 M3.Play();
                 EnterStoryboard.Begin();
-                try
-                {
-
-                    foreach (var item in ButtonCollection)
-                    {
-                        item.IsEnabled = false;
-                    }
 
 
-                }
-                catch { }
+
+
+
+
 
 
             }
@@ -363,8 +373,6 @@ namespace MineS
             }
 
         }
-
-
 
         private void S_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
@@ -418,7 +426,7 @@ namespace MineS
             {
 
             }
-       
+
             try
             {
                 Unload(P);
