@@ -91,8 +91,7 @@ namespace MineS
             }
             catch
             {
-                MessageDialog messageDialog = new MessageDialog("Please Relaunch", "Sorry");
-                messageDialog.ShowAsync();
+                
             }
             // 不要在窗口已包含内容时重复应用程序初始化，
             // 只需确保窗口处于活动状态
@@ -144,7 +143,7 @@ namespace MineS
             //TODO: 保存应用程序状态并停止任何后台活动
             deferral.Complete();
         }
-        async protected override void OnActivated(IActivatedEventArgs args)
+         protected override void OnActivated(IActivatedEventArgs args)
         {
             if (args.Kind == ActivationKind.ToastNotification)
             {

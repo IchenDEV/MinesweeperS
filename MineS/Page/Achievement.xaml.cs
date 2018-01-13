@@ -43,7 +43,8 @@ namespace MineS
             {
                 // Remove the UI from the title bar if in-app back stack is empty. 
                 SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility =
-                    AppViewBackButtonVisibility.Collapsed;
+                    AppViewBackButtonVisibility.Visible;
+                rootFrame.BackStack.Add(new PageStackEntry(typeof(MainPage), null, null));
             }
         }
 
@@ -57,7 +58,7 @@ namespace MineS
             dilParent.Visibility = Visibility.Visible;
             AchDital dil = new AchDital() { Local = (Achievements)e.ClickedItem };
             dilParent.Children.Insert(0,dil);
-            EnterStoryboard.Begin();
+            EnterStoryboard2.Begin();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -77,6 +78,25 @@ namespace MineS
                 }
             }     
             dilParent.Visibility = Visibility.Collapsed;
+          
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            ExitStoryboard2.Begin();
+            ExitStoryboard2.Completed += ExitStoryboard2_Completed;
+        }
+
+        private void ExitStoryboard2_Completed(object sender, object e)
+        {
+           info.Visibility = Visibility.Collapsed;
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            info.Visibility = Visibility.Visible;
+          
+            EnterStoryboard2.Begin();
         }
     }
     

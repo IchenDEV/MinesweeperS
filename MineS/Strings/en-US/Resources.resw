@@ -185,4 +185,88 @@ Seventh: Meet a good bureau do not panic, focus on local slow expansion. Eighth:
   <data name="Width.Text" xml:space="preserve">
     <value>Width</value>
   </data>
+  <data name="get" xml:space="preserve">
+    <value>have got</value>
+  </data>
+  <data name="IClickB" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IClickBc" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IClickG" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IClickGc" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IClickL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IClickLc" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LostB" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LostBc" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LostG" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LostGc" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LostL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LostLc" xml:space="preserve">
+    <value />
+  </data>
+  <data name="WinnerB" xml:space="preserve">
+    <value />
+  </data>
+  <data name="WinnerBc" xml:space="preserve">
+    <value />
+  </data>
+  <data name="WinnerG" xml:space="preserve">
+    <value />
+  </data>
+  <data name="WinnerGc" xml:space="preserve">
+    <value />
+  </data>
+  <data name="WinnerL" xml:space="preserve">
+    <value />
+  </data>
+  <data name="WinnerLc" xml:space="preserve">
+    <value />
+  </data>
+  <data name="APT.Header" xml:space="preserve">
+    <value>Total play time</value>
+  </data>
+  <data name="AS.Header" xml:space="preserve">
+    <value>Scores</value>
+  </data>
+  <data name="CT.Header" xml:space="preserve">
+    <value>Click</value>
+  </data>
+  <data name="GOT.Header" xml:space="preserve">
+    <value>Failed</value>
+  </data>
+  <data name="InfoButton.Content" xml:space="preserve">
+    <value>More infor</value>
+  </data>
+  <data name="LPT.Header" xml:space="preserve">
+    <value>Longest play time</value>
+  </data>
+  <data name="MS.Header" xml:space="preserve">
+    <value>Highest Scores</value>
+  </data>
+  <data name="SBAC.Header" xml:space="preserve">
+    <value>show backgrund</value>
+  </data>
+  <data name="WT.Header" xml:space="preserve">
+    <value>Win</value>
+  </data>
 </root>

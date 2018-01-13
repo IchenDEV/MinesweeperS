@@ -17,13 +17,13 @@
         <local:ConverterTObrush x:Key="Brush"/>
     </Page.Resources>
     <Grid  Background="{x:Bind local:LocalTheme.Local.BackgroundResouceName ,Converter={StaticResource ResouceConverter}}" >
-        <Border Opacity="0.5">
+        <Border Opacity="0.4">
             <Image  Source="{x:Bind local:LocalTheme.Local.BackIMage ,Converter={StaticResource ImgConverter},Mode=OneWay}" Stretch="UniformToFill" ></Image>
             <interactivity:Interaction.Behaviors>
                 <behaviors:Blur x:Name="BlurBehavior"
                         Value="8.54"
                         Duration="22.94"
-                        Delay="30.26"
+                        Delay="3.26"
                         AutomaticallyStart="True"/>
             </interactivity:Interaction.Behaviors>
         </Border>
@@ -74,7 +74,7 @@
             Text="{x:Bind localtheme.BackIMage[0]}"
             Orientation="Horizontal"
             Margin="10,10,0,0"  />
-                        <ToggleSwitch Header="Show Background" x:Name="NB" IsOn="{x:Bind isShowBackground,Mode=OneWay}" Toggled="NB_Toggled"></ToggleSwitch>
+                        <ToggleSwitch Header="Show Background" x:Uid="SBAC" x:Name="NB" IsOn="{x:Bind isShowBackground,Mode=OneWay}" Toggled="NB_Toggled"></ToggleSwitch>
                         <StackPanel Orientation="Horizontal"  >
                             <Image Height="200" Width="200" Source="{x:Bind localtheme.BackIMage,Mode=OneWay,Converter={StaticResource ImgConverter}}" Stretch="Uniform"/>
                            

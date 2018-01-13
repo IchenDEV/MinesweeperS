@@ -7,6 +7,7 @@
         xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d" Loaded="Page_Loaded">
     <Page.Resources>
         <ResourceDictionary x:Key="Res">
@@ -14,15 +15,21 @@
                 <ResourceDictionary x:Name="ioh"  Source="ms-appx:///Resouse/Dictionary.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
             <local:ConverterTOIMG x:Key="ImgConverter"/>
-        <Storyboard x:Name="EnterStoryboard">
+            <Storyboard x:Name="EnterStoryboard">
                 <PopInThemeAnimation  Storyboard.TargetName="dilParent" />
-        </Storyboard>
+            </Storyboard>
+            <Storyboard x:Name="EnterStoryboard2">
+                <PopInThemeAnimation  Storyboard.TargetName="info" />
+            </Storyboard>
             <Storyboard x:Name="ExitStoryboard">
                 <PopOutThemeAnimation Storyboard.TargetName="dilParent" />
-        </Storyboard>
+            </Storyboard>
+            <Storyboard x:Name="ExitStoryboard2">
+                <PopOutThemeAnimation Storyboard.TargetName="info" />
+            </Storyboard>
         </ResourceDictionary>
-        
-        
+
+
     </Page.Resources>
     <Grid Background="{x:Bind local:LocalTheme.Local.BackgroundResouceName ,Converter={StaticResource ResouceConverter}}">
         <Border Opacity="0.2">
@@ -39,27 +46,42 @@
         <TextBlock VerticalAlignment="Top" x:Uid="Achieve" Text="Achievement" HorizontalAlignment="Left" Margin="50,25,0,0" FontSize="30" />
 
         <ScrollViewer>
-             <GridView  Margin="50" IsItemClickEnabled="True" ItemsSource="{x:Bind AC}" HorizontalAlignment="Stretch" VerticalAlignment="Center" ItemClick="GridView_ItemClick">
-            <GridView.ItemTemplate>
-                <DataTemplate x:DataType="local:Achievements">
-                   
+            <GridView  Margin="50" IsItemClickEnabled="True" ItemsSource="{x:Bind AC}" HorizontalAlignment="Stretch" VerticalAlignment="Center" ItemClick="GridView_ItemClick">
+                <GridView.ItemTemplate>
+                    <DataTemplate x:DataType="local:Achievements">
+
                         <Grid Height="150" Width="150">
                             <Image Source="{x:Bind img,Converter={StaticResource ImgConverter}}" Stretch="Uniform"></Image>
-                        <Grid  VerticalAlignment="Bottom" CornerRadius="5"  Background="{x:Bind local:LocalTheme.Local.SysELAcrResouceName,Converter={StaticResource ResouceConverter}}" HorizontalAlignment="Center">
+                            <Grid  VerticalAlignment="Bottom" CornerRadius="5"  Background="{x:Bind local:LocalTheme.Local.SysELAcrResouceName,Converter={StaticResource ResouceConverter}}" HorizontalAlignment="Center">
                                 <TextBlock Text="{x:Bind name}"></TextBlock>
                             </Grid>
                         </Grid>
-             
-                </DataTemplate>
-            </GridView.ItemTemplate>
-        </GridView>
+
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
         </ScrollViewer>
-       
+        <Button x:Uid="InfoButton" HorizontalAlignment="Stretch" Click="Button_Click_2" VerticalAlignment="Bottom"  Style="{x:Bind local:LocalTheme.Local.NomalButtonResouceName ,Converter={StaticResource ResouceConverter}}"  Content="More info"></Button>
         <Grid Background="{x:Bind local:LocalTheme.Local.SysELAcrResouceName ,Converter={StaticResource ResouceConverter}}" CornerRadius="10" Visibility="Collapsed" Margin="30" HorizontalAlignment="Center"  VerticalAlignment="Center" x:Name="dilParent">
             <Button Content="❌" Style="{x:Bind local:LocalTheme.Local.NomalButtonResouceName,Converter={StaticResource ResouceConverter}}" Background="#00000000" BorderThickness="0" Click="Button_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Margin=" 10"></Button>
-         
-            
+
+
         </Grid>
-        
+        <Grid Background="{x:Bind local:LocalTheme.Local.SysELAcrResouceName ,Converter={StaticResource ResouceConverter}}" CornerRadius="10" Visibility="Collapsed" Margin="30" HorizontalAlignment="Center"  VerticalAlignment="Center" x:Name="info">
+         
+            <ScrollViewer Margin="10">
+               
+                <StackPanel>
+                    <controls:HeaderedTextBlock x:Uid="APT"  Header="All Play Times:" Text="{x:Bind local:AchievementInfo.AllPlayTime.Offset}"></controls:HeaderedTextBlock>
+                    <controls:HeaderedTextBlock x:Uid="LPT" Header="Longest Play Times :" Text="{x:Bind local:AchievementInfo.SinglePlayTime.Offset}"></controls:HeaderedTextBlock>
+                    <controls:HeaderedTextBlock x:Uid="AS" Header="All Socores:" Text="{x:Bind local:AchievementInfo.AllSocore}"></controls:HeaderedTextBlock>
+                    <controls:HeaderedTextBlock x:Uid="MS" Header="Max Socores :" Text="{x:Bind local:AchievementInfo.MaxSocore}"></controls:HeaderedTextBlock>
+                    <controls:HeaderedTextBlock x:Uid="GOT" Header="Game over Times:" Text="{x:Bind local:AchievementInfo.GameoverTime}"></controls:HeaderedTextBlock>
+                    <controls:HeaderedTextBlock x:Uid="WT" Header="Win Times:" Text="{x:Bind local:AchievementInfo.WinTime}"></controls:HeaderedTextBlock>
+                    <controls:HeaderedTextBlock x:Uid="CT" Header="Click Times:" Text="{x:Bind local:AchievementInfo.ClickTime}"></controls:HeaderedTextBlock>
+                </StackPanel>
+            </ScrollViewer>
+            <Button Content="❌" Style="{x:Bind local:LocalTheme.Local.NomalButtonResouceName,Converter={StaticResource ResouceConverter}}" Background="#00000000" BorderThickness="0" Click="Button_Click_1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin=" 10"></Button>
+        </Grid>
     </Grid>
 </Page>

@@ -82,6 +82,7 @@ namespace MineS
 
         private async void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
+            NB.IsEnabled = true;
             FileOpenPicker fileOpen = new FileOpenPicker();
             fileOpen.FileTypeFilter.Add(".png");
             var file = await fileOpen.PickSingleFileAsync();
@@ -164,6 +165,7 @@ namespace MineS
             {
 
             }
+            NB.IsEnabled = false;
         }
     }
 }

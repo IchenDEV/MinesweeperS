@@ -19,13 +19,13 @@
     </Page.Resources>
     <Grid  x:Name="root" >
         <Grid Background="{x:Bind local:LocalTheme.Local.BackgroundResouceName ,Converter={StaticResource ResouceConverter}}"></Grid>
-        <Border Opacity="0.2">
+        <Border Opacity="0.3">
             <Image x:Name="im"   Stretch="UniformToFill" ></Image>
             <interactivity:Interaction.Behaviors>
                 <behaviors:Blur x:Name="BlurBehavior"
-                        Value="8.54"
+                        Value="8"
                         Duration="272.94"
-                        Delay="30.26"
+                        Delay="3.26"
                         AutomaticallyStart="True"/>
             </interactivity:Interaction.Behaviors>
         </Border>
@@ -33,6 +33,6 @@
         <Frame  Margin="10" x:Name="froot" Navigated="froot_Navigated">
         </Frame>
         
-        <local:ShButton x:Name="newGame" VerticalAlignment="Bottom" HorizontalAlignment="Left" Tapped="ShButton_Tapped" Visibility="Collapsed"></local:ShButton>
+        <local:ShButton x:Name="newGame" VerticalAlignment="Bottom" HorizontalAlignment="Right" Tapped="ShButton_Tapped" Visibility="Collapsed"></local:ShButton>
     </Grid>
 </Page>

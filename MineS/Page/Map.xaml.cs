@@ -283,7 +283,7 @@ namespace MineS
                     finished = true;
 
 
-                    M2.Play();
+                    //M2.Play();
 
                     foreach (var item in ButtonCollection)
                     {
@@ -512,7 +512,7 @@ namespace MineS
         {
             try
             {
-                float szoom = (float)Math.Min(Mapv.ActualWidth / (50 * Widt), Mapv.ActualHeight / (50 * Heigh));
+                float szoom = (float)Math.Min(Mapv.ActualWidth / (52 * Widt), Mapv.ActualHeight / (52 * Heigh));
                 Mapv.ChangeView(0, 0, szoom);
                 //  Mapv.ZoomToFactor(szoom);
             }

@@ -66,7 +66,7 @@ namespace MineS
             {
                 new AdaptiveText()
                 {
-                    Text = "Wow,You get "+Name+"!!!"
+                    Text = "Wow,"+localLang.GetString("get")+Name+"!!!"
                 },
 
                 new AdaptiveText()
@@ -116,7 +116,7 @@ namespace MineS
                 {
                     new AdaptiveText()
                     {
-                        Text = "Hi,",
+                        Text = localLang.GetString("Achieve.Text")+":",
                         HintStyle = AdaptiveTextStyle.Base,
                         HintAlign = AdaptiveTextAlign.Center
                     },
@@ -162,7 +162,7 @@ namespace MineS
                                 {
                                     new AdaptiveText()
                                     {
-                                        Text = "Hi,",
+                                        Text =localLang.GetString("Achieve.Text")+":",
                                         HintStyle = AdaptiveTextStyle.Title
                                     },
                                     new AdaptiveText()
@@ -252,16 +252,37 @@ namespace MineS
                 _clickTime = value;
                 if (value > 10)
                 {
-                    GenerateToastContentAnPop("Click (Green Hand)", "IClickB.png", "Click more than 10 times");
+                    var ss = localLang.GetString("IClickB");
+                    var sc = localLang.GetString("IClickBc");
+                    if (ss == String.Empty)
+                    {
+                        ss = "Click more than 10 times";
+                        sc = "Click (Green Hand)";
+                    }
+                    GenerateToastContentAnPop(sc, "IClickB.png", ss);
 
                 }
                 else if (value > 100)
                 {
-                    GenerateToastContentAnPop("Click (Expert)", "IClickL.png", "Click more than 100 times");
+                    var ss = localLang.GetString("IClickL");
+                    var sc = localLang.GetString("IClickLc");
+                    if (ss == String.Empty)
+                    {
+                        ss = "Click more than 100 times";
+                        sc = "Click (Expert)";
+                    }
+                    GenerateToastContentAnPop(sc, "IClickL.png", ss);
                 }
                 else if (value > 1000)
                 {
-                    GenerateToastContentAnPop("Click (Master)", "IClickG.png", "Click more than 1000 times");
+                    var ss = localLang.GetString("IClickG");
+                    var sc = localLang.GetString("IClickGc");
+                    if (ss == String.Empty)
+                    {
+                        ss = "Click more than 1000 times";
+                        sc = "Click (Master)";
+                    }
+                    GenerateToastContentAnPop(sc, "IClickG.png", ss);
                 }
 
             }
@@ -328,16 +349,37 @@ namespace MineS
                 _winTime = value;
                 if (value > 10)
                 {
-                    GenerateToastContentAnPop("Winner (Green Hand)", "WinnerB.png", "Win more than 10 times");
+                    var ss = localLang.GetString("WinnerB");
+                    var sc = localLang.GetString("WinnerBc");
+                    if (ss == String.Empty)
+                    {
+                        ss = "Win more than 10 times";
+                        sc = "Great Winner (GB)";
+                    }
+                    GenerateToastContentAnPop(sc, "WinnerB.png", ss);
 
                 }
                 else if (value > 100)
                 {
-                    GenerateToastContentAnPop("Winner (Expert)", "WinnerL.png", "Win more than 100 times");
+                    var ss = localLang.GetString("WinnerL");
+                    var sc = localLang.GetString("WinnerLc");
+                    if (ss == String.Empty)
+                    {
+                        ss = "Win more than 100 times";
+                        sc = "Great Winner (Expert)";
+                    }
+                    GenerateToastContentAnPop(sc, "WinnerL.png", ss);
                 }
                 else if (value > 1000)
                 {
-                    GenerateToastContentAnPop("Winner (Master)", "WinnerG.png", "Win more than 1000 times");
+                    var ss = localLang.GetString("WinnerG");
+                    var sc = localLang.GetString("WinnerGc");
+                    if (ss == String.Empty)
+                    {
+                        ss = "Win more than 1000 times";
+                        sc = "Great Winner (Master)";
+                    }
+                    GenerateToastContentAnPop(sc, "WinnerG.png", ss);
                 }
             }
         }

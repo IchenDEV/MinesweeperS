@@ -205,4 +205,70 @@
   <data name="LostLc" xml:space="preserve">
     <value>霉运当头</value>
   </data>
+  <data name="get" xml:space="preserve">
+    <value>获得了</value>
+  </data>
+  <data name="IClickB" xml:space="preserve">
+    <value>点击超过10次</value>
+  </data>
+  <data name="IClickBc" xml:space="preserve">
+    <value>点击菜鸟</value>
+  </data>
+  <data name="IClickG" xml:space="preserve">
+    <value>点击超过1000次</value>
+  </data>
+  <data name="IClickGc" xml:space="preserve">
+    <value>点击大师</value>
+  </data>
+  <data name="IClickL" xml:space="preserve">
+    <value>点击超过100次</value>
+  </data>
+  <data name="IClickLc" xml:space="preserve">
+    <value>点击专家</value>
+  </data>
+  <data name="WinnerB" xml:space="preserve">
+    <value>胜利超过10次</value>
+  </data>
+  <data name="WinnerBc" xml:space="preserve">
+    <value>胜利菜鸟</value>
+  </data>
+  <data name="WinnerG" xml:space="preserve">
+    <value>胜利超过1000次</value>
+  </data>
+  <data name="WinnerGc" xml:space="preserve">
+    <value>胜利大师</value>
+  </data>
+  <data name="WinnerL" xml:space="preserve">
+    <value>胜利超过100次</value>
+  </data>
+  <data name="WinnerLc" xml:space="preserve">
+    <value>胜利专家</value>
+  </data>
+  <data name="APT.Header" xml:space="preserve">
+    <value>总游戏时间</value>
+  </data>
+  <data name="AS.Header" xml:space="preserve">
+    <value>总分</value>
+  </data>
+  <data name="CT.Header" xml:space="preserve">
+    <value>点击次数</value>
+  </data>
+  <data name="GOT.Header" xml:space="preserve">
+    <value>失败次数</value>
+  </data>
+  <data name="InfoButton.Content" xml:space="preserve">
+    <value>更多信息</value>
+  </data>
+  <data name="LPT.Header" xml:space="preserve">
+    <value>最长游戏时间</value>
+  </data>
+  <data name="MS.Header" xml:space="preserve">
+    <value>最高分</value>
+  </data>
+  <data name="SBAC.Header" xml:space="preserve">
+    <value>显示图片背景</value>
+  </data>
+  <data name="WT.Header" xml:space="preserve">
+    <value>胜利次数</value>
+  </data>
 </root>
