@@ -23,8 +23,8 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid>
-        <StackPanel Loaded="root_Loaded" x:Name="root" Background="{x:Bind local:LocalTheme.Local.SupELAcrResouceName,Converter={StaticResource ResouceConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Center"  >
+    <Grid CornerRadius="54,54,54,54">
+        <StackPanel Loaded="root_Loaded" x:Name="root" Background="{StaticResource SuperHighAcrylicELBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Center"  >
             <TextBlock Text="Succeed" FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
             <TextBlock FontSize="26" Text="{x:Bind Mode.Trim()}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
             <TextBlock FontSize="36" Foreground="Red" Text="{x:Bind Source}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>

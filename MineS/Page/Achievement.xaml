@@ -10,7 +10,7 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d" Loaded="Page_Loaded">
     <Page.Resources>
-        <ResourceDictionary x:Key="Res">
+        <ResourceDictionary >
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary x:Name="ioh"  Source="ms-appx:///Resouse/Dictionary.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
@@ -31,7 +31,7 @@
 
 
     </Page.Resources>
-    <Grid Background="{x:Bind local:LocalTheme.Local.BackgroundResouceName ,Converter={StaticResource ResouceConverter}}">
+    <Grid Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}">
         <Border Opacity="0.2">
             <Image  Source="{x:Bind local:LocalTheme.Local.BackIMage ,Converter={StaticResource ImgConverter}}" Stretch="UniformToFill" ></Image>
             <interactivity:Interaction.Behaviors>
@@ -43,7 +43,7 @@
             </interactivity:Interaction.Behaviors>
         </Border>
 
-        <TextBlock VerticalAlignment="Top" x:Uid="Achieve" Text="Achievement" HorizontalAlignment="Left" Margin="50,25,0,0" FontSize="30" />
+        <TextBlock VerticalAlignment="Top" x:Uid="Achieve" Text="Achievement" HorizontalAlignment="Left" Margin="50,25,0,0" FontSize="30" FontFamily="Noto Sans S Chinese Thin" />
 
         <ScrollViewer>
             <GridView  Margin="50" IsItemClickEnabled="True" ItemsSource="{x:Bind AC}" HorizontalAlignment="Stretch" VerticalAlignment="Center" ItemClick="GridView_ItemClick">
@@ -52,8 +52,8 @@
 
                         <Grid Height="150" Width="150">
                             <Image Source="{x:Bind img,Converter={StaticResource ImgConverter}}" Stretch="Uniform"></Image>
-                            <Grid  VerticalAlignment="Bottom" CornerRadius="5"  Background="{x:Bind local:LocalTheme.Local.SysELAcrResouceName,Converter={StaticResource ResouceConverter}}" HorizontalAlignment="Center">
-                                <TextBlock Text="{x:Bind name}"></TextBlock>
+                            <Grid  VerticalAlignment="Bottom" CornerRadius="5"  Background="{ThemeResource SuperHighAcrylicELBrush}" HorizontalAlignment="Center">
+                                <TextBlock Text="{x:Bind name}" FontFamily="Noto Sans S Chinese Thin"></TextBlock>
                             </Grid>
                         </Grid>
 
@@ -61,24 +61,24 @@
                 </GridView.ItemTemplate>
             </GridView>
         </ScrollViewer>
-        <Button x:Uid="InfoButton" HorizontalAlignment="Stretch" Click="Button_Click_2" VerticalAlignment="Bottom"  Style="{x:Bind local:LocalTheme.Local.NomalButtonResouceName ,Converter={StaticResource ResouceConverter}}"  Content="More info"></Button>
-        <Grid Background="{x:Bind local:LocalTheme.Local.SysELAcrResouceName ,Converter={StaticResource ResouceConverter}}" CornerRadius="10" Visibility="Collapsed" Margin="30" HorizontalAlignment="Center"  VerticalAlignment="Center" x:Name="dilParent">
+        <Button x:Uid="InfoButton" HorizontalAlignment="Stretch" Click="Button_Click_2" VerticalAlignment="Bottom"  Style="{x:Bind local:LocalTheme.Local.NomalButtonResouceName ,Converter={StaticResource ResouceConverter}}"  Content="More info" FontFamily="Noto Sans S Chinese Thin"></Button>
+        <Grid Background="{ThemeResource SuperHighAcrylicELBrush}" CornerRadius="10" Visibility="Collapsed" Margin="30" HorizontalAlignment="Center"  VerticalAlignment="Center" x:Name="dilParent">
             <Button Content="❌" Style="{x:Bind local:LocalTheme.Local.NomalButtonResouceName,Converter={StaticResource ResouceConverter}}" Background="#00000000" BorderThickness="0" Click="Button_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Margin=" 10"></Button>
 
 
         </Grid>
-        <Grid Background="{x:Bind local:LocalTheme.Local.SysELAcrResouceName ,Converter={StaticResource ResouceConverter}}" CornerRadius="10" Visibility="Collapsed" Margin="30" HorizontalAlignment="Center"  VerticalAlignment="Center" x:Name="info">
+        <Grid Background="{StaticResource SuperHighAcrylicELBrush}" CornerRadius="10" Visibility="Collapsed" Margin="30" HorizontalAlignment="Center"  VerticalAlignment="Center" x:Name="info">
          
             <ScrollViewer Margin="10">
                
                 <StackPanel>
-                    <controls:HeaderedTextBlock x:Uid="APT"  Header="All Play Times:" Text="{x:Bind local:AchievementInfo.AllPlayTime.Offset}"></controls:HeaderedTextBlock>
-                    <controls:HeaderedTextBlock x:Uid="LPT" Header="Longest Play Times :" Text="{x:Bind local:AchievementInfo.SinglePlayTime.Offset}"></controls:HeaderedTextBlock>
-                    <controls:HeaderedTextBlock x:Uid="AS" Header="All Socores:" Text="{x:Bind local:AchievementInfo.AllSocore}"></controls:HeaderedTextBlock>
-                    <controls:HeaderedTextBlock x:Uid="MS" Header="Max Socores :" Text="{x:Bind local:AchievementInfo.MaxSocore}"></controls:HeaderedTextBlock>
-                    <controls:HeaderedTextBlock x:Uid="GOT" Header="Game over Times:" Text="{x:Bind local:AchievementInfo.GameoverTime}"></controls:HeaderedTextBlock>
-                    <controls:HeaderedTextBlock x:Uid="WT" Header="Win Times:" Text="{x:Bind local:AchievementInfo.WinTime}"></controls:HeaderedTextBlock>
-                    <controls:HeaderedTextBlock x:Uid="CT" Header="Click Times:" Text="{x:Bind local:AchievementInfo.ClickTime}"></controls:HeaderedTextBlock>
+                    <controls:HeaderedTextBlock x:Uid="APT"  Header="All Play Times:" Text="{x:Bind local:AchievementInfo.AllPlayTime.Offset}" FontFamily="Noto Sans S Chinese Thin"></controls:HeaderedTextBlock>
+                    <controls:HeaderedTextBlock x:Uid="LPT" Header="Longest Play Times :" Text="{x:Bind local:AchievementInfo.SinglePlayTime.Offset}" FontFamily="Noto Sans S Chinese Thin"></controls:HeaderedTextBlock>
+                    <controls:HeaderedTextBlock x:Uid="AS" Header="All Socores:" Text="{x:Bind local:AchievementInfo.AllSocore}" FontFamily="Noto Sans S Chinese Thin"></controls:HeaderedTextBlock>
+                    <controls:HeaderedTextBlock x:Uid="MS" Header="Max Socores :" Text="{x:Bind local:AchievementInfo.MaxSocore}" FontFamily="Noto Sans S Chinese Thin"></controls:HeaderedTextBlock>
+                    <controls:HeaderedTextBlock x:Uid="GOT" Header="Game over Times:" Text="{x:Bind local:AchievementInfo.GameoverTime}" FontFamily="Noto Sans S Chinese Thin"></controls:HeaderedTextBlock>
+                    <controls:HeaderedTextBlock x:Uid="WT" Header="Win Times:" Text="{x:Bind local:AchievementInfo.WinTime}" FontFamily="Noto Sans S Chinese Thin"></controls:HeaderedTextBlock>
+                    <controls:HeaderedTextBlock x:Uid="CT" Header="Click Times:" Text="{x:Bind local:AchievementInfo.ClickTime}" FontFamily="Noto Sans S Chinese Thin"></controls:HeaderedTextBlock>
                 </StackPanel>
             </ScrollViewer>
             <Button Content="❌" Style="{x:Bind local:LocalTheme.Local.NomalButtonResouceName,Converter={StaticResource ResouceConverter}}" Background="#00000000" BorderThickness="0" Click="Button_Click_1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin=" 10"></Button>

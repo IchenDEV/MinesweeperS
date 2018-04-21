@@ -23,13 +23,13 @@
             <StackPanel Padding="5" >
 
                 <Image MaxHeight="300" MaxWidth="400" Source="{x:Bind Local.img ,Mode=OneWay,Converter={StaticResource ImgConverter}}" Stretch="Uniform"></Image>
-                <Grid  CornerRadius="5"  Background="{x:Bind local:LocalTheme.Local.SupELAcrResouceName ,Converter={StaticResource ResouceConverter}}" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                <Grid  CornerRadius="5"  Background="{StaticResource SuperHighAcrylicELBrush}" VerticalAlignment="Bottom" HorizontalAlignment="Center">
                     <TextBlock Text="{x:Bind  Local.name,Mode=OneWay}" VerticalAlignment="Bottom"></TextBlock>
                 </Grid>
-                <Grid  CornerRadius="5"  Background="{x:Bind local:LocalTheme.Local.SupELAcrResouceName ,Converter={StaticResource ResouceConverter}}" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                <Grid  CornerRadius="5"  Background="{StaticResource SuperHighAcrylicELBrush}" VerticalAlignment="Bottom" HorizontalAlignment="Center">
                     <TextBlock Text="{x:Bind  Local.caption,Mode=OneWay}" VerticalAlignment="Bottom"></TextBlock>
                 </Grid>
-                <Grid  CornerRadius="5"  Background="{x:Bind local:LocalTheme.Local.SupELAcrResouceName ,Converter={StaticResource ResouceConverter}}" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                <Grid  CornerRadius="5"  Background="{StaticResource SuperHighAcrylicELBrush}" VerticalAlignment="Bottom" HorizontalAlignment="Center">
                     <TextBlock Text="{x:Bind  Local.GetTime,Mode=OneWay}" VerticalAlignment="Bottom"></TextBlock>
                 </Grid>
             </StackPanel>

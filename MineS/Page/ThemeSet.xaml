@@ -16,7 +16,7 @@
         <local:ObjectConverterTOable x:Key="CheckCC"/>
         <local:ConverterTObrush x:Key="Brush"/>
     </Page.Resources>
-    <Grid  Background="{x:Bind local:LocalTheme.Local.BackgroundResouceName ,Converter={StaticResource ResouceConverter}}" >
+    <Grid  Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}" >
         <Border Opacity="0.4">
             <Image  Source="{x:Bind local:LocalTheme.Local.BackIMage ,Converter={StaticResource ImgConverter},Mode=OneWay}" Stretch="UniformToFill" ></Image>
             <interactivity:Interaction.Behaviors>

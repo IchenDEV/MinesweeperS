@@ -74,13 +74,8 @@ namespace MineS
                         var Theme = new Themes()
                         {
                             ThemeName = "Snow",
-                            BackgroundResouceName = "SystemControlAcrylicWindowMediumHighBrush",
-                            SysELAcrResouceName = "SystemControlAcrylicElementMediumHighBrush",
-                            SupELAcrResouceName = "SuperHighAcrylicELBrush",
-                            SupELAcrLostResouceName = "SuperRedAcrylicELBrush",
                             ClickMusic = "ms-appx:///Assets//Theme//1709//M.mp3",
                             BackIMage = new List<string>(),
-                            IsAcrlic = true,
                             IsHighMode = true,
                             BoomMusic = "ms-appx:///Assets//Theme//1709//MP.mp3",
                             KilIM = "",
@@ -88,14 +83,13 @@ namespace MineS
                             MarkMusic = "ms-appx:///Assets//Theme//1709//win.mp3",
                             SuccessMusic = "ms-appx:///Assets//Theme//1709//win.mp3",
                             MarkMineResouceName = "ButtonRevealMarkedStyle",
-
                             NomalButtonResouceName = "MyButtonStyle",
                             ShowNumResouceName = "",
                             mineColor = "#800078D7"
                             ,
                             AppButtonResouceName = "AppBarButtonRevealStyle"
                         };
-                        Theme.BackIMage.Add("ms-appx:///Assets//Theme//1709//01_hiking_1920x1200.png");
+                        Theme.BackIMage.Add("ms-appx:///Assets//trans.png");
                         _local = Theme;
                         string js = TojsonData(Theme);
                         await write(js);
@@ -107,10 +101,6 @@ namespace MineS
                         {
 
                             ThemeName = "Low",
-                            BackgroundResouceName = "LowBrush",
-                            SysELAcrResouceName = "LowBrush",
-                            SupELAcrResouceName = "LowBrush",
-                            SupELAcrLostResouceName = "LowBrush",
                             ClickMusic = "ms-appx:///Assets//Theme//1709//M.mp3",
                             BackIMage = new List<string>(),
                             IsAcrlic = false,

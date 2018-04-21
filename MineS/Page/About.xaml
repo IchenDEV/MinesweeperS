@@ -10,7 +10,7 @@
     xmlns:behaviors="using:Microsoft.Toolkit.Uwp.UI.Animations.Behaviors"
     mc:Ignorable="d">
 
-    <Grid Background="{x:Bind local:LocalTheme.Local.BackgroundResouceName ,Converter={StaticResource ResouceConverter}}">
+    <Grid Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}">
         <Border Opacity="0.5">
             <Image  Source="{x:Bind local:LocalTheme.Local.BackIMage ,Converter={StaticResource ImgConverter}}" Stretch="UniformToFill" ></Image>
             <interactivity:Interaction.Behaviors>
@@ -21,27 +21,27 @@
                         AutomaticallyStart="True"/>
             </interactivity:Interaction.Behaviors>
         </Border>
-        <TextBlock Text="About" x:Uid="about" FontSize="36" Margin="36"/>
+        <TextBlock Text="About" x:Uid="about" FontSize="36" Margin="36" FontFamily="Noto Sans S Chinese Thin" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         <ScrollViewer HorizontalAlignment="Stretch"  Margin="50,100,0,0" >
              <StackPanel MinWidth="300" HorizontalAlignment="Center">
                 <controls:HeaderedTextBlock 
             Header="App Name:"
             Text="{x:Bind ApplicationName}"
             Orientation="Vertical"
-            Margin="20,10,0,0" />
+            Margin="20,10,0,0" FontFamily="Noto Sans S Chinese Thin" />
                 <controls:HeaderedTextBlock 
             Header="Version"
                     x:Uid="ver"
             Text="{x:Bind ApplicationVersion}"
             Orientation="Vertical"
-            Margin="20,10,0,0" />
+            Margin="20,10,0,0" FontFamily="Noto Sans S Chinese Thin" />
                 <controls:HeaderedTextBlock 
             Header="Using"
                     x:Uid="using"
             Text=""
             Orientation="Vertical"
-            Margin="20,10,0,0" />
-                <HyperlinkButton Content="privacy" x:Uid="privacy" HorizontalAlignment="Center" NavigateUri="http://blog.sina.com.cn/s/blog_13888ba450102x344.html"></HyperlinkButton>
+            Margin="20,10,0,0" FontFamily="Noto Sans S Chinese Thin" />
+                <HyperlinkButton Content="privacy" x:Uid="privacy" HorizontalAlignment="Center" NavigateUri="http://blog.sina.com.cn/s/blog_13888ba450102x344.html" FontFamily="Noto Sans S Chinese Thin"></HyperlinkButton>
             </StackPanel>
         </ScrollViewer>
        

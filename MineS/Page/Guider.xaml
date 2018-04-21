@@ -7,24 +7,24 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}">
    
     
         <Pivot x:Name="pivot" >
             <PivotItem Header="Start">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0,10,0,10">
-                    <TextBlock x:Uid="welcome" Text="Welcome" HorizontalAlignment="Center" FontSize="48"/>
-                    <TextBlock Text="" x:Uid="AppName" HorizontalAlignment="Center" FontSize="30"/>
+                    <TextBlock x:Uid="welcome" Text="Welcome" HorizontalAlignment="Center" FontSize="48" FontFamily="Noto Sans S Chinese Thin"/>
+                    <TextBlock Text="" x:Uid="AppName" HorizontalAlignment="Center" FontSize="30" FontFamily="Noto Sans S Chinese Thin"/>
                 
-                    <Button Content="Next"  x:Uid="next" HorizontalAlignment="Center" Click="Button_Click"/>
+                    <Button Content="Next"  x:Uid="next" HorizontalAlignment="Center" Click="Button_Click" FontFamily="Noto Sans S Chinese Thin"/>
                 </StackPanel>
             </PivotItem>
             <PivotItem Header="Set Theme">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0,10,0,10">
-                    <TextBlock Text="Your System is" HorizontalAlignment="Center" FontSize="48"/>
-                    <TextBlock Text="{x:Bind OperatingSystemVersion.Build}" HorizontalAlignment="Center" FontSize="30"/>
-                    <TextBlock Text="We has chosen the best theme for you" x:Uid="haschsen" HorizontalAlignment="Center"/>
-                    <Button Content="Next" x:Uid="next" HorizontalAlignment="Center" Click="Button_Click"/>
+                    <TextBlock Text="Your System is" HorizontalAlignment="Center" FontSize="48" FontFamily="Noto Sans S Chinese Thin"/>
+                    <TextBlock Text="{x:Bind OperatingSystemVersion.Build}" HorizontalAlignment="Center" FontSize="30" FontFamily="Noto Sans S Chinese Thin"/>
+                    <TextBlock Text="We has chosen the best theme for you" x:Uid="haschsen" HorizontalAlignment="Center" FontFamily="Noto Sans S Chinese Thin"/>
+                    <Button Content="Next" x:Uid="next" HorizontalAlignment="Center" Click="Button_Click" FontFamily="Noto Sans S Chinese Thin"/>
                 </StackPanel>
             </PivotItem>
             <PivotItem Header="Guide">
@@ -42,8 +42,8 @@ Third: Conveniently mark the Thunder not accustomed, accumulates down the record
 Fourth: Don't know how to stop Leng, near Guess Thunder heart horizontal.
 Fifth: Encounter guess Ray don't be afraid, burst the face does not leave scar.
 Sixth: Guess Ray guess wrong don't regret, cry day Rob Land also in vain.
-Seventh: Meet a good bureau do not panic, focus on local slow expansion. Eighth: Pain lost good bureau do not hate, since it is destined to have a share." HorizontalAlignment="Center" FontSize="20"/>
-                     <Button Content="Next" x:Uid="next" VerticalAlignment="Bottom" Margin="35"  HorizontalAlignment="Center" Click="Button_Click"/> 
+Seventh: Meet a good bureau do not panic, focus on local slow expansion. Eighth: Pain lost good bureau do not hate, since it is destined to have a share." HorizontalAlignment="Center" FontSize="20" FontFamily="Noto Sans S Chinese Thin"/>
+                     <Button Content="Next" x:Uid="next" VerticalAlignment="Bottom" Margin="35"  HorizontalAlignment="Center" Click="Button_Click" FontFamily="Noto Sans S Chinese Thin"/> 
                         </StackPanel>
                       
                     </ScrollViewer>
@@ -52,8 +52,8 @@ Seventh: Meet a good bureau do not panic, focus on local slow expansion. Eighth:
             </PivotItem>
             <PivotItem Header="Finish">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0,10,0,10">
-                    <TextBlock Text="Finish" HorizontalAlignment="Center" FontSize="48"/>
-                    <HyperlinkButton Content="Go" Click="HyperlinkButton_Click" HorizontalAlignment="Center"></HyperlinkButton>
+                    <TextBlock Text="Finish" HorizontalAlignment="Center" FontSize="48" FontFamily="Noto Sans S Chinese Thin"/>
+                    <HyperlinkButton Content="Go" Click="HyperlinkButton_Click" HorizontalAlignment="Center" FontFamily="Noto Sans S Chinese Thin"></HyperlinkButton>
                 </StackPanel>
             </PivotItem>
         </Pivot>

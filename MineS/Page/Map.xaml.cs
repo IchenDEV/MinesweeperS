@@ -451,7 +451,9 @@ namespace MineS
 
 
         }
-
+        /// <summary>
+        /// 刷新视图
+        /// </summary>
         private void Refresh()
         {
             for (int i = 0; i < Heigh; i++)
@@ -476,6 +478,7 @@ namespace MineS
                                 };
 
                                 Grid s = new Grid();
+                                s.CornerRadius = new CornerRadius(54);
                                 if (LocalTheme.Local.IsHighMode)
                                 {
                                     s.Background = new MaterialBrush();

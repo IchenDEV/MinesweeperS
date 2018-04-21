@@ -15,7 +15,7 @@
             <local:ConverterTOResouce x:Key="ResouceConverter"/>
         </ResourceDictionary>
     </UserControl.Resources>
-    <StackPanel x:Name="root" Background="{x:Bind local:LocalTheme.Local.SupELAcrLostResouceName,Converter={StaticResource ResouceConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Center"  >
+    <StackPanel x:Name="root" Background="{ThemeResource SuperHighAcrylicELBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Center"  >
         <TextBlock Text="Lose" FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
        
         
