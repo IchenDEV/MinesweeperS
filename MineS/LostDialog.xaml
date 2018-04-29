@@ -15,13 +15,16 @@
             <local:ConverterTOResouce x:Key="ResouceConverter"/>
         </ResourceDictionary>
     </UserControl.Resources>
-    <StackPanel x:Name="root" Background="{ThemeResource SuperHighAcrylicELBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Center"  >
+    <StackPanel x:Name="root" HorizontalAlignment="Stretch" VerticalAlignment="Center"  >
+        <StackPanel.Background>
+            <AcrylicBrush BackgroundSource="Backdrop" FallbackColor="#2F7F0000" TintColor="#4FFF2222" TintOpacity="0.2"/>
+        </StackPanel.Background>
         <TextBlock Text="Lose" x:Uid="lose" FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center" FocusVisualPrimaryBrush="#FFFF0F0F" Foreground="#FFFF005D" FontFamily="Noto Sans S Chinese Thin"></TextBlock>
-       
-        
+
+
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <AppBarButton Icon="Back" Style="{x:Bind local:LocalTheme.Local.AppButtonResouceName,Converter={StaticResource ResouceConverter}}" Click="AppBarButton_Click" Foreground="#FFFF0101"/>
         </StackPanel>
-       
+
     </StackPanel>
 </UserControl>

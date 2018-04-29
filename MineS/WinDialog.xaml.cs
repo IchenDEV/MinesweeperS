@@ -80,7 +80,7 @@ namespace MineS
 
             _tempExportFile = await ApplicationData.Current.LocalFolder.CreateFileAsync("win.jpg", CreationCollisionOption.ReplaceExisting);
 
-            await bitmap.RenderAsync(((MainPage)((Grid)((Frame)((Map)((Grid)this.Parent).Parent).Parent).Parent).Parent));
+            await bitmap.RenderAsync(((MainPage)((Grid)((Frame)((Map)((Grid)((Grid)this.Parent).Parent).Parent).Parent).Parent).Parent));
 
             var buffer = await bitmap.GetPixelsAsync();
 
@@ -118,8 +118,8 @@ namespace MineS
             try
             {
                 DataPackage requestData = args.Request.Data;
-                requestData.Properties.Title = "Share";
-                requestData.Properties.Description = "Beat me in Here";
+                requestData.Properties.Title = "From Minesweeper S";
+                requestData.Properties.Description = "I got "+Source+ "in Minesweeper S";
 
                 List<IStorageItem> imageItems = new List<IStorageItem> { _tempExportFile };
                 requestData.SetStorageItems(imageItems);
@@ -130,7 +130,7 @@ namespace MineS
             }
             catch (Exception ex)
             {
-                await new MessageDialog(ex.Message, "爆了").ShowAsync();
+                await new MessageDialog(ex.Message, "Something wrong").ShowAsync();
             }
         }
 

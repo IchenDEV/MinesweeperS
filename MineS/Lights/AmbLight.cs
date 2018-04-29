@@ -12,16 +12,9 @@
 //
 //*********************************************************
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Composition;
-using System.Numerics;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 
 namespace CompositionSampleGallery.Samples.LightInterop

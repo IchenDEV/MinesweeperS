@@ -123,17 +123,17 @@
                         <Windows10FallCreatorsUpdate:SymbolIcon Symbol="Setting"  />
                     </Windows10FallCreatorsUpdate:Button>-->
                     <Button Grid.Row="1" Click="Button_Click_2" Style="{x:Bind Converter={StaticResource ResouceConverter}, Path=local:LocalTheme.Local.NomalButtonResouceName}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#00000000">
-                        <Grid>
+                        <StackPanel Orientation="Horizontal">
                             <SymbolIcon Symbol="SolidStar" />
                             <TextBlock x:Uid="Achieve"/>
-                        </Grid>
+                        </StackPanel>
 
                     </Button>
                     <Button Grid.Row="2" Click="Button_Click_3" Style="{x:Bind Converter={StaticResource ResouceConverter}, Path=local:LocalTheme.Local.NomalButtonResouceName}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#00000000">
-                        <Grid>
+                        <StackPanel Orientation="Horizontal">
                             <SymbolIcon Symbol="Account"   />
                             <TextBlock x:Uid="About" />
-                        </Grid>
+                        </StackPanel>
                     </Button>
                     <Button Grid.Row="3" Click="Button_Click_0" Style="{x:Bind Converter={StaticResource ResouceConverter}, Path=local:LocalTheme.Local.NomalButtonResouceName}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#00000000">
                         <StackPanel Orientation="Horizontal">

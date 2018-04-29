@@ -35,7 +35,7 @@ namespace MineS
         {
             try
             {
-                Color bg, fg;
+                Color bg;
                 bg = sender.GetColorValue(UIColorType.AccentLight1);
             
                 await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal,

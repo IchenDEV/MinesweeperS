@@ -445,4 +445,14 @@
             TintOpacity="0.6"
            FallbackColor="#AF000000"/>
     <SolidColorBrush x:Key="LowBrush" Color="#7FFFFFFF"></SolidColorBrush>
+    <BrushCollection x:Key="beta" >
+        <AcrylicBrush
+            BackgroundSource="HostBackdrop"
+            TintColor="#AF000000"                       
+            TintOpacity="0.6"
+           FallbackColor="#AF000000"
+        />
+        <ImageBrush ImageSource="ms-appx:///Assets/trans.png"/>
+    </BrushCollection>
+    
 </ResourceDictionary>
