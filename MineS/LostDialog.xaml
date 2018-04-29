@@ -16,11 +16,11 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <StackPanel x:Name="root" Background="{ThemeResource SuperHighAcrylicELBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Center"  >
-        <TextBlock Text="Lose" FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Text="Lose" x:Uid="lose" FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center" FocusVisualPrimaryBrush="#FFFF0F0F" Foreground="#FFFF005D" FontFamily="Noto Sans S Chinese Thin"></TextBlock>
        
         
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <AppBarButton Icon="Back" Style="{x:Bind local:LocalTheme.Local.AppButtonResouceName,Converter={StaticResource ResouceConverter}}" Click="AppBarButton_Click"/>
+            <AppBarButton Icon="Back" Style="{x:Bind local:LocalTheme.Local.AppButtonResouceName,Converter={StaticResource ResouceConverter}}" Click="AppBarButton_Click" Foreground="#FFFF0101"/>
         </StackPanel>
        
     </StackPanel>

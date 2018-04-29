@@ -17,18 +17,9 @@
         <local:ConverterTObrush x:Key="Brush"/>
     </Page.Resources>
     <Grid  Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}" >
-        <Border Opacity="0.4">
-            <Image  Source="{x:Bind local:LocalTheme.Local.BackIMage ,Converter={StaticResource ImgConverter},Mode=OneWay}" Stretch="UniformToFill" ></Image>
-            <interactivity:Interaction.Behaviors>
-                <behaviors:Blur x:Name="BlurBehavior"
-                        Value="8.54"
-                        Duration="22.94"
-                        Delay="3.26"
-                        AutomaticallyStart="True"/>
-            </interactivity:Interaction.Behaviors>
-        </Border>
+
         <StackPanel>
-            <TextBlock  Margin="30,30,0,0" Text="Theme Settings" x:Uid="ThemeSet" FontSize="36" FontWeight="Bold" />
+            <TextBlock  Margin="30,30,0,0" Text="Settings" x:Uid="ThemeSet" FontSize="36" FontWeight="Bold" />
         </StackPanel>
         <ScrollViewer HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
             <StackPanel Padding="10" Margin="100,100,0,0" HorizontalAlignment="Stretch">
@@ -43,10 +34,7 @@
             Orientation="Horizontal"
             Margin="20,10,0,0" />
 
-                    <ToggleSwitch Header="Is NumBack Flower Enable" x:Uid="IsNFE" IsOn="{x:Bind localtheme.IsHighMode,Mode=TwoWay}" Toggled="ToggleSwitch_Toggled"></ToggleSwitch>
-                    <!--<ToggleSwitch Header="Is Acr Enable" IsOn="{x:Bind localtheme.IsAcrlic,Mode=TwoWay}" ></ToggleSwitch>-->
-                    <local:ThemePicker></local:ThemePicker>
-
+                   
                     <StackPanel >
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Color:" HorizontalAlignment="Left" FontSize="28" VerticalAlignment="Center" ></TextBlock>

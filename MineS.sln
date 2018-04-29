@@ -5,9 +5,9 @@ VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MineS", "MineS\MineS.csproj", "{65C9F4BF-19B2-40A2-ACBE-665BA81367CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SamplesCommon", "..\..\..\Documents\WindowsUIDevLabs-master\SamplesCommon\SamplesCommon\SamplesCommon.csproj", "{0B6A4830-D1FF-4018-BAA2-7257EB4579FE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "..\..\..\Documents\WindowsUIDevLabs-master\SamplesCommon\SamplesCommon\Common.csproj", "{0B6A4830-D1FF-4018-BAA2-7257EB4579FE}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SamplesNative", "..\..\..\Documents\WindowsUIDevLabs-master\SamplesNative\SamplesNative.vcxproj", "{B0DCA768-5521-406C-803D-FDCCF67181D1}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Native", "..\..\..\Documents\WindowsUIDevLabs-master\SamplesNative\SamplesNative.vcxproj", "{B0DCA768-5521-406C-803D-FDCCF67181D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

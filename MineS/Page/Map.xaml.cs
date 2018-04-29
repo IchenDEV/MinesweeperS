@@ -1,30 +1,14 @@
 ﻿using CompositionSampleGallery.Samples.LightInterop;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.Graphics.Display;
-using Windows.Graphics.Imaging;
-using Windows.Phone.Devices.Notification;
-using Windows.Storage;
-using Windows.Storage.Streams;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Markup;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
@@ -503,13 +487,13 @@ namespace MineS
             }
         }
 
-        public static void VibrateOnce(double hs = 300)
-        {
+        //public static void VibrateOnce(double hs = 300)
+        //{
 
-            VibrationDevice vb = VibrationDevice.GetDefault();
-            vb.Vibrate(TimeSpan.FromMilliseconds(hs));
+        //    VibrationDevice vb = VibrationDevice.GetDefault();
+        //    vb.Vibrate(TimeSpan.FromMilliseconds(hs));
 
-        }
+        //}
 
         private void Mapv_SizeChanged(object sender, SizeChangedEventArgs e)
         {

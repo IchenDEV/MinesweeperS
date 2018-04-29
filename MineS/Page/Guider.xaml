@@ -10,7 +10,7 @@
     <Grid Background="{ThemeResource SystemControlAcrylicWindowMediumHighBrush}">
    
     
-        <Pivot x:Name="pivot" >
+        <Pivot x:Name="pivot" FontFamily="Noto Sans S Chinese Thin" >
             <PivotItem Header="Start">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Padding="0,10,0,10">
                     <TextBlock x:Uid="welcome" Text="Welcome" HorizontalAlignment="Center" FontSize="48" FontFamily="Noto Sans S Chinese Thin"/>

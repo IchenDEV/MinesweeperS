@@ -274,4 +274,13 @@
   <data name="Support.Text" xml:space="preserve">
     <value>支持我们</value>
   </data>
+  <data name="lose.Text" xml:space="preserve">
+    <value>失败了</value>
+  </data>
+  <data name="sign.Text" xml:space="preserve">
+    <value>你可以在此处签名</value>
+  </data>
+  <data name="Success.Text" xml:space="preserve">
+    <value>胜利</value>
+  </data>
 </root>

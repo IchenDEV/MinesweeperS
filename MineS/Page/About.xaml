@@ -42,6 +42,7 @@
             Orientation="Vertical"
             Margin="20,10,0,0" FontFamily="Noto Sans S Chinese Thin" />
                 <HyperlinkButton Content="privacy" x:Uid="privacy" HorizontalAlignment="Center" NavigateUri="http://blog.sina.com.cn/s/blog_13888ba450102x344.html" FontFamily="Noto Sans S Chinese Thin"></HyperlinkButton>
+                <Image Source="ms-appx:///Assets/SplashScreen.scale-125.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300" Height="300" />
             </StackPanel>
         </ScrollViewer>
        

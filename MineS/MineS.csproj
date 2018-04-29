@@ -11,7 +11,7 @@
     <AssemblyName>MineS</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.17134.0</TargetPlatformVersion>
+    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.16299.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
@@ -160,6 +160,7 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <Content Include="Assets\fonts\NotoSansHans-Thin-Windows.otf" />
+    <Content Include="Assets\NotoSansHans-Thin-Windows.otf" />
     <None Include="MineS_StoreKey.pfx" />
     <None Include="MineS_TemporaryKey.pfx" />
     <PRIResource Include="Strings\en-US\Resources.resw" />
@@ -303,7 +304,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.0.8</Version>
+      <Version>6.1.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Services.Store.SDK">
       <Version>10.1705.16001</Version>
@@ -331,17 +332,14 @@
     <SDKReference Include="Microsoft.VCLibs, Version=14.0">
       <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
     </SDKReference>
-    <SDKReference Include="WindowsDesktop, Version=10.0.17134.0">
+    <SDKReference Include="WindowsDesktop, Version=10.0.16299.0">
       <Name>Windows Desktop Extensions for the UWP</Name>
-    </SDKReference>
-    <SDKReference Include="WindowsMobile, Version=10.0.17134.0">
-      <Name>Windows Mobile Extensions for the UWP</Name>
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Documents\WindowsUIDevLabs-master\SamplesCommon\SamplesCommon\SamplesCommon.csproj">
+    <ProjectReference Include="..\..\..\..\Documents\WindowsUIDevLabs-master\SamplesCommon\SamplesCommon\Common.csproj">
       <Project>{0b6a4830-d1ff-4018-baa2-7257eb4579fe}</Project>
-      <Name>SamplesCommon</Name>
+      <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

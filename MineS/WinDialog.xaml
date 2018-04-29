@@ -1,45 +1,45 @@
-﻿<UserControl 
-    x:Class="MineS.WinDialog"
+﻿<UserControl
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MineS"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:Windows10FallCreatorsUpdate="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 5)"
+    xmlns:Windows10FallCreatorsUpdate="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    x:Class="MineS.WinDialog"
     mc:Ignorable="d" 
    >
     <UserControl.Resources>
         <ResourceDictionary>
-        <ResourceDictionary.MergedDictionaries>
-            <ResourceDictionary x:Name="ioh"  Source="ms-appx:///Resouse/Dictionary.xaml"></ResourceDictionary>
-        </ResourceDictionary.MergedDictionaries>
-        <Storyboard x:Name="EnterStoryboard">
-            <PopInThemeAnimation Storyboard.TargetName="root" />
-        </Storyboard>
-        <Storyboard x:Name="ExitStoryboard">
-            <FadeOutThemeAnimation Storyboard.TargetName="root" />
-        </Storyboard>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary x:Name="ioh"  Source="ms-appx:///Resouse/Dictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Storyboard x:Name="EnterStoryboard">
+                <PopInThemeAnimation Storyboard.TargetName="root" />
+            </Storyboard>
+            <Storyboard x:Name="ExitStoryboard">
+                <FadeOutThemeAnimation Storyboard.TargetName="root" />
+            </Storyboard>
             <local:ConverterTOResouce x:Key="ResouceConverter"/>
         </ResourceDictionary>
     </UserControl.Resources>
 
     <Grid CornerRadius="54,54,54,54">
         <StackPanel Loaded="root_Loaded" x:Name="root" Background="{StaticResource SuperHighAcrylicELBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Center"  >
-            <TextBlock Text="Succeed" FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-            <TextBlock FontSize="26" Text="{x:Bind Mode.Trim()}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
-            <TextBlock FontSize="36" Foreground="Red" Text="{x:Bind Source}" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            <TextBlock x:Uid="Success" Text="Success" FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FFC7D104" FontFamily="Noto Sans S Chinese Thin"/>
+            <TextBlock FontSize="26" Text="{x:Bind Path=Mode.Trim()}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock FontSize="36" Foreground="Red" Text="{x:Bind Path=Source}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Grid Height="100" Tapped="Grid_Tapped">
-                <InkCanvas x:Name="inkCanvas" Tapped="Grid_Tapped"  ManipulationStarted="inkCanvas_CharacterReceived"  ></InkCanvas>
-                <TextBlock x:Name="sin" Text="Sign Your Name Here" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+                <InkCanvas x:Name="inkCanvas" Tapped="Grid_Tapped"  ManipulationStarted="inkCanvas_CharacterReceived"  RightTapped="inkCanvas_RightTapped"  />
+                <TextBlock x:Name="sin" x:Uid="sign" Text="Sign Your Name Here" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Foreground="#FF272626" FontFamily="Noto Sans S Chinese Thin"/>
             </Grid>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Windows10FallCreatorsUpdate:AppBarButton Icon="Share" Style="{x:Bind local:LocalTheme.Local.AppButtonResouceName,Converter={StaticResource ResouceConverter}}" Click="AppBarButton_Click"/>
-                <AppBarButton Icon="Back" Style="{x:Bind local:LocalTheme.Local.AppButtonResouceName,Converter={StaticResource ResouceConverter}}" Click="AppBarButton_Click_1"/>
-            
+                <AppBarButton Icon="Share" Style="{x:Bind Converter={StaticResource ResouceConverter}, Path=local:LocalTheme.Local.AppButtonResouceName}" Click="AppBarButton_Click" Foreground="#FFC6CF08"/>
+                <AppBarButton Icon="Back" Style="{x:Bind Converter={StaticResource ResouceConverter}, Path=local:LocalTheme.Local.AppButtonResouceName}" Click="AppBarButton_Click_1" Foreground="#FFC6CF08"/>
+
             </StackPanel>
 
         </StackPanel>
     </Grid>
-   
+
 </UserControl>
