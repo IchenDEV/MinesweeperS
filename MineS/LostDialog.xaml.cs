@@ -59,7 +59,7 @@ namespace MineS
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
-              ((Map)((Grid)this.Parent).Parent).WinBack();
+              ((Map)((Grid)((Grid)this.Parent).Parent).Parent).WinBack();
         }
     }
 }

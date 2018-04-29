@@ -202,7 +202,7 @@ namespace MineS
             {
 
                 (sender as Button).Style = (Style)ioh[LocalTheme.Local.MarkMineResouceName];
-
+             //   (sender as Button).Background =;
             }
             else
             {

@@ -271,4 +271,7 @@
   <data name="WT.Header" xml:space="preserve">
     <value>胜利次数</value>
   </data>
+  <data name="Support.Text" xml:space="preserve">
+    <value>支持我们</value>
+  </data>
 </root>

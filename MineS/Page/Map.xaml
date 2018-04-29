@@ -24,7 +24,7 @@
         </ResourceDictionary>
     </Page.Resources>
     <Grid>
-        <Image Source="ms-appx:///Assets/SplashScreen.scale-125.png" Stretch="Uniform" VerticalAlignment="Top" HorizontalAlignment="Center" MaxWidth="70"/><Grid x:Name="roots" Margin="0,50,0,0">
+        <Image Source="ms-appx:///Assets/SplashScreen.scale-125.png" Stretch="Uniform" VerticalAlignment="Top" HorizontalAlignment="Center" MaxWidth="100" Margin="20"/><Grid x:Name="roots" Margin="0,50,0,0">
        
         <MediaElement x:Name="M3" Source="{x:Bind local:LocalTheme.Local.ClickMusic}" />
         <!--<MediaElement x:Name="M2" Source="{x:Bind local:LocalTheme.Local.BoomMusic}" />-->

@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Services.Store;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -192,6 +193,120 @@ namespace MineS
             Frame rootFrame = Window.Current.Content as Frame;
 
             rootFrame.Navigate(typeof(About));
+        }
+
+        private void Button_Click_0(object sender, RoutedEventArgs e)
+        {
+            PurchaseAddOn("9P44R6NSLH1P");
+           
+        }
+        private StoreContext context = null;
+        public async void PurchaseAddOn(string storeId)
+        {
+            if (context == null)
+            {
+                context = StoreContext.GetDefault();
+                // If your app is a desktop app that uses the Desktop Bridge, you
+                // may need additional code to configure the StoreContext object.
+                // For more info, see https://aka.ms/storecontext-for-desktop.
+            }
+
+            workingProgressRing.IsActive = true;
+            StorePurchaseResult result = await context.RequestPurchaseAsync(storeId);
+            workingProgressRing.IsActive = false;
+
+            // Capture the error message for the operation, if any.
+            string extendedError = string.Empty;
+            if (result.ExtendedError != null)
+            {
+                extendedError = result.ExtendedError.Message;
+            }
+
+            switch (result.Status)
+            {
+                case StorePurchaseStatus.AlreadyPurchased:
+                    // textBlock.Text = "The user has already purchased the product.";
+                    ConsumeAddOn("9P44R6NSLH1P");
+                    break;
+
+                case StorePurchaseStatus.Succeeded:
+                    //  textBlock.Text = "The purchase was successful.";
+                    ConsumeAddOn("9P44R6NSLH1P");
+                    break;
+
+                case StorePurchaseStatus.NotPurchased:
+                //    textBlock.Text = "The purchase did not complete. " +
+                      //  "The user may have cancelled the purchase. ExtendedError: " + extendedError;
+                    break;
+
+                case StorePurchaseStatus.NetworkError:
+                 //   textBlock.Text = "The purchase was unsuccessful due to a network error. " +
+                    //    "ExtendedError: " + extendedError;
+                    break;
+
+                case StorePurchaseStatus.ServerError:
+                 //   textBlock.Text = "The purchase was unsuccessful due to a server error. " +
+                  //      "ExtendedError: " + extendedError;
+                    break;
+
+                default:
+                 //   textBlock.Text = "The purchase was unsuccessful due to an unknown error. " +
+                  //      "ExtendedError: " + extendedError;
+                    break;
+            }
+        }
+        public async void ConsumeAddOn(string addOnStoreId)
+        {
+            if (context == null)
+            {
+                context = StoreContext.GetDefault();
+                // If your app is a desktop app that uses the Desktop Bridge, you
+                // may need additional code to configure the StoreContext object.
+                // For more info, see https://aka.ms/storecontext-for-desktop.
+            }
+
+            // This is an example for a Store-managed consumable, where you specify the actual number
+            // of units that you want to report as consumed so the Store can update the remaining
+            // balance. For a developer-managed consumable where you maintain the balance, specify 1
+            // to just report the add-on as fulfilled to the Store.
+            uint quantity = 1;
+        
+            Guid trackingId = Guid.NewGuid();
+
+            workingProgressRing.IsActive = true;
+            StoreConsumableResult result = await context.ReportConsumableFulfillmentAsync(
+                addOnStoreId, quantity, trackingId);
+            workingProgressRing.IsActive = false;
+
+            // Capture the error message for the operation, if any.
+            string extendedError = string.Empty;
+            if (result.ExtendedError != null)
+            {
+                extendedError = result.ExtendedError.Message;
+            }
+
+            switch (result.Status)
+            {
+                case StoreConsumableStatus.Succeeded:
+              
+                    break;
+
+                case StoreConsumableStatus.InsufficentQuantity:
+             
+                    break;
+
+                case StoreConsumableStatus.NetworkError:
+               
+                    break;
+
+                case StoreConsumableStatus.ServerError:
+                
+                    break;
+
+                default:
+                
+                    break;
+            }
         }
     }
 

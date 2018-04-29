@@ -116,6 +116,7 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
                         <RowDefinition Height="250"/>
                     </Grid.RowDefinitions>
                     <!--<Windows10FallCreatorsUpdate:Button x:Name="Sett" Click="Button_Click_1" Style="{x:Bind local:LocalTheme.Local.NomalButtonResouceName,Converter={StaticResource ResouceConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#00000000">
@@ -134,7 +135,15 @@
                             <Windows10NotFallCreatorsUpdate:TextBlock x:Uid="About" ></Windows10NotFallCreatorsUpdate:TextBlock>
                         </Grid>
                     </Button>
-                    <Grid Grid.Row="3" MinHeight="250">
+                    <Button Grid.Row="3" Click="Button_Click_0" Style="{x:Bind local:LocalTheme.Local.NomalButtonResouceName,Converter={StaticResource ResouceConverter}}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#00000000">
+                        <StackPanel Orientation="Horizontal">
+                            <Windows10FallCreatorsUpdate:SymbolIcon Symbol="Shop" />
+                            <Windows10FallCreatorsUpdate:TextBlock x:Uid="Support" Text="Support"></Windows10FallCreatorsUpdate:TextBlock>
+                        </StackPanel>
+
+                    </Button>
+                    <ProgressRing x:Name="workingProgressRing"/>
+                    <Grid Grid.Row="4" MinHeight="250">
                         <TextBlock Text="AD"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         <UI:AdControl
                               ApplicationId="9plcjb2gqn1t"

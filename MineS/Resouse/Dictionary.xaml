@@ -22,7 +22,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Grid x:Name="RootGrid" Background="{TemplateBinding Background}"  CornerRadius="54,54,54,54">
+                    <Grid x:Name="RootGrid" Background="#80FF0000"  CornerRadius="54,54,54,54">
                       
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
@@ -106,8 +106,8 @@
                 <ControlTemplate TargetType="Button">
                     <Grid x:Name="RootGrid" Background="{TemplateBinding Background}" CornerRadius="54,54,54,54">
                         <animations:Implicit.HideAnimations >
-                            <animations:ScalarAnimation Target="Opacity" Duration="0:0:0.2" To="0.0"></animations:ScalarAnimation>
-                            <animations:ScalarAnimation Target="Translation.Y" Duration="0:0:0.2" To="-20">
+                            <animations:ScalarAnimation Target="Opacity" Duration="0:0:0.1" To="0.0"></animations:ScalarAnimation>
+                            <animations:ScalarAnimation Target="Translation.Y" Duration="0:0:0.1" To="-20">
                                 <animations:ScalarKeyFrame Key="0.1" Value="10"></animations:ScalarKeyFrame>
                                 <animations:ScalarKeyFrame Key="0.3" Value="0.0"></animations:ScalarKeyFrame>
                             </animations:ScalarAnimation>
