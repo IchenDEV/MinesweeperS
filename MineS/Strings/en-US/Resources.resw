@@ -269,4 +269,13 @@ Seventh: Meet a good bureau do not panic, focus on local slow expansion. Eighth:
   <data name="WT.Header" xml:space="preserve">
     <value>Win</value>
   </data>
+  <data name="lose.Text" xml:space="preserve">
+    <value>Loser</value>
+  </data>
+  <data name="sign.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Success.Text" xml:space="preserve">
+    <value>Winner</value>
+  </data>
 </root>
